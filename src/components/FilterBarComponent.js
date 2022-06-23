@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import DropdownComponent from './DropdownComponent';
+import DropdownComponent from './DropdownComponent.js';
 
 export default class FilterBarComponent extends Component {
   render() {
