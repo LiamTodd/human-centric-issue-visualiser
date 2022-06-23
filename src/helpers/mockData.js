@@ -71,6 +71,7 @@ export const mockIssueData = {
       state_reason: null,
       score: 1
     },
+
     {
       url: 'https://api.github.com/repos/LiamTodd/probot-demo/issues/6',
       repository_url: 'https://api.github.com/repos/LiamTodd/probot-demo',
@@ -140,6 +141,7 @@ export const mockIssueData = {
       state_reason: null,
       score: 1
     },
+
     {
       url: 'https://api.github.com/repos/LiamTodd/probot-demo/issues/5',
       repository_url: 'https://api.github.com/repos/LiamTodd/probot-demo',
@@ -209,6 +211,7 @@ export const mockIssueData = {
       state_reason: null,
       score: 1
     },
+
     {
       url: 'https://api.github.com/repos/LiamTodd/probot-demo/issues/4',
       repository_url: 'https://api.github.com/repos/LiamTodd/probot-demo',
@@ -278,6 +281,7 @@ export const mockIssueData = {
       state_reason: null,
       score: 1
     },
+
     {
       url: 'https://api.github.com/repos/LiamTodd/probot-demo/issues/3',
       repository_url: 'https://api.github.com/repos/LiamTodd/probot-demo',
@@ -347,6 +351,7 @@ export const mockIssueData = {
       state_reason: null,
       score: 1
     },
+
     {
       url: 'https://api.github.com/repos/LiamTodd/probot-demo/issues/2',
       repository_url: 'https://api.github.com/repos/LiamTodd/probot-demo',
@@ -416,6 +421,7 @@ export const mockIssueData = {
       state_reason: null,
       score: 1
     },
+
     {
       url: 'https://api.github.com/repos/LiamTodd/probot-demo/issues/1',
       repository_url: 'https://api.github.com/repos/LiamTodd/probot-demo',
