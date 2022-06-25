@@ -1,5 +1,6 @@
-const { Octokit } = require('@octokit/rest');
 import { repo, owner, token } from './testCredentials';
+
+const { Octokit } = require('@octokit/rest');
 
 export const getGitHubLabels = async () => {
   const octokit = new Octokit({
