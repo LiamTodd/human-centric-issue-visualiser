@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import IssueComponent from './IssueComponent';
 import * as uuid from 'uuid';
+import { getGitHubIssues } from '../helpers/getGitHubIssues';
 
-export default function IssueList({ issues }) {
+export default function IssueList() {
+  const [issues, setIssues] = useState([]);
+
+  const getIssues = async () => {
+    const issueResponse = await getGitHubIssues();
+    let res = [];
+    console.log(issueResponse.data.length);
+    for (let i = 0; i <= issueResponse.data.length - 1; i++) {
+      res.push(issueResponse.data[i]);
+    }
+    setIssues(res);
+  };
+
+  useEffect(() => {
+    getIssues();
+  }, []);
+
   return (
     <div
       style={{
