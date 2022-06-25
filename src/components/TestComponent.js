@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { getGitHubLabels } from '../helpers/getGitHubLabels';
+import { createGitHubLabels } from '../helpers/createGitHubLabels';
+import { addGitHubLabels } from '../helpers/addGitHubLabels';
 
 export default function TestComponent() {
+  try {
+    createGitHubLabels();
+  } catch (error) {}
+
+  addGitHubLabels(1, ['User Reaction', 'Inclusiveness']);
+
   const [val, setVal] = useState([]);
 
   const getVal = async () => {
@@ -14,7 +22,6 @@ export default function TestComponent() {
   };
 
   useEffect(() => {
-    console.log('hello');
     getVal();
   }, []);
 
