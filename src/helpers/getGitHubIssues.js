@@ -13,10 +13,5 @@ export const getGitHubIssues = async () => {
     repo: repo
   });
 
-  // console.log(response.data[1]);
-  // console.log(
-  //   (await getGitHubIssueComments(response.data[1].number)).data[0].body
-  // );
-
   return response;
 };
