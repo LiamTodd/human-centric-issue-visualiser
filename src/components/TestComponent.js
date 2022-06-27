@@ -6,7 +6,7 @@ import { addGitHubLabels } from '../helpers/addGitHubLabels';
 export default function TestComponent() {
   createGitHubLabels();
 
-  addGitHubLabels(12, ['User Reaction', 'Inclusiveness']);
+  addGitHubLabels(0, ['User Reaction', 'Inclusiveness']);
 
   const [val, setVal] = useState([]);
 
@@ -24,16 +24,17 @@ export default function TestComponent() {
   }, []);
 
   return (
-    <div
-      style={{
-        textAlign: 'center',
-        paddingLeft: '20%',
-        paddingRight: '20%'
-      }}
-    >
-      {val.map((v) => {
-        return <div>{v.name}</div>;
-      })}
-    </div>
+    <p>test component active</p>
+    // <div
+    //   style={{
+    //     textAlign: 'center',
+    //     paddingLeft: '20%',
+    //     paddingRight: '20%'
+    //   }}
+    // >
+    //   {val.map((v) => {
+    //     return <div>{v.name}</div>;
+    //   })}
+    // </div>
   );
 }
