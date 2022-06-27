@@ -9,7 +9,6 @@ export default function IssueList() {
   const getIssues = async () => {
     const issueResponse = await getGitHubIssues();
     let res = [];
-    console.log(issueResponse.data.length);
     for (let i = 0; i <= issueResponse.data.length - 1; i++) {
       res.push(issueResponse.data[i]);
     }

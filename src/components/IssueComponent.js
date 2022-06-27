@@ -8,7 +8,6 @@ export default function IssueComponent({ issue }) {
   const getComments = async () => {
     const commentResponse = await getGitHubIssueComments(issue.number);
     let res = [];
-    console.log(commentResponse.data.length);
     for (let i = 0; i <= commentResponse.data.length - 1; i++) {
       res.push(commentResponse.data[i]);
     }
@@ -34,7 +33,13 @@ export default function IssueComponent({ issue }) {
           Raised by {issue.user.login}, Last updated at {issue.updated_at}
         </p>
 
-        <div>
+        <div
+          style={{
+            paddingLeft: '10%',
+            paddingRight: '10%',
+            margin: '10px'
+          }}
+        >
           Comments:
           {comments.map((comment) => {
             return (
@@ -42,7 +47,8 @@ export default function IssueComponent({ issue }) {
                 style={{
                   borderWidth: '2px',
                   borderStyle: 'dotted',
-                  borderColor: 'black'
+                  borderColor: 'black',
+                  margin: '10px'
                 }}
                 key={uuid.v4()}
               >

@@ -1,5 +1,4 @@
 import { repo, owner, token } from './testCredentials';
-import { getGitHubIssueComments } from './getGitHubIssueComments';
 
 const { Octokit } = require('@octokit/rest');
 
