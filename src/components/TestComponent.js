@@ -6,7 +6,7 @@ import { addGitHubLabels } from '../helpers/addGitHubLabels';
 export default function TestComponent() {
   createGitHubLabels();
 
-  addGitHubLabels(0, ['User Reaction', 'Inclusiveness']);
+  // addGitHubLabels(0, ['User Reaction', 'Inclusiveness']);
 
   const [val, setVal] = useState([]);
 
