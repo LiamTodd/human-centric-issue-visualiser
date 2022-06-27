@@ -4,6 +4,7 @@ import ProgressIssueComponent from './ProgressIssueComponent';
 import * as uuid from 'uuid';
 
 const statusLabels = ['Unresolved HCI', 'Resolving HCI', 'Resolved HCI'];
+const type = 'Unassigned';
 
 export default function UnassignedColumnComponent() {
   const [issues, setIssues] = useState([]);
@@ -40,6 +41,7 @@ export default function UnassignedColumnComponent() {
             <ProgressIssueComponent
               issue={issue}
               key={uuid.v4()}
+              type={type}
             ></ProgressIssueComponent>
           </div>
         );

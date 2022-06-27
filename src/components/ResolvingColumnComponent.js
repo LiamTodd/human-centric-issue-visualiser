@@ -4,6 +4,7 @@ import ProgressIssueComponent from './ProgressIssueComponent';
 import * as uuid from 'uuid';
 
 const resolvingLabel = 'Resolving HCI';
+const type = 'Resolving';
 
 export default function ResolvingColumnComponent() {
   const [issues, setIssues] = useState([]);
@@ -32,6 +33,7 @@ export default function ResolvingColumnComponent() {
           <ProgressIssueComponent
             issue={issue}
             key={uuid.v4()}
+            type={type}
           ></ProgressIssueComponent>
         );
       })}
