@@ -2,12 +2,8 @@ import React from 'react';
 import { addGitHubLabels } from '../helpers/addGitHubLabels';
 import { removeGitHubLabel } from '../helpers/removeGitHubLabel';
 
-const unassigned = 'Unassigned';
-const unresolved = 'Unresolved';
 const unresolvedLabel = 'Unresolved HCI';
-const resolving = 'Resolving';
 const resolvingLabel = 'Resolving HCI';
-const resolved = 'Resolved';
 const resolvedLabel = 'Resolved HCI';
 
 export default function ProgressIssueComponent({ issue, type }) {
@@ -44,11 +40,11 @@ export default function ProgressIssueComponent({ issue, type }) {
         }}
       >
         <h3>Issue Title: {issue.title}</h3>
-        {type == unassigned && (
-          <button onClick={() => setUnresolved(unassigned)}>move right</button>
+        {type == null && (
+          <button onClick={() => setUnresolved(null)}>move right</button>
         )}
 
-        {type == unresolved && (
+        {type == unresolvedLabel && (
           <>
             <button onClick={() => setUnassigned(unresolvedLabel)}>
               move left
@@ -59,7 +55,7 @@ export default function ProgressIssueComponent({ issue, type }) {
           </>
         )}
 
-        {type == resolving && (
+        {type == resolvingLabel && (
           <>
             <button onClick={() => setUnresolved(resolvingLabel)}>
               move left
@@ -70,7 +66,7 @@ export default function ProgressIssueComponent({ issue, type }) {
           </>
         )}
 
-        {type == resolved && (
+        {type == resolvedLabel && (
           <button onClick={() => setResolving(resolvedLabel)}>move left</button>
         )}
       </div>
