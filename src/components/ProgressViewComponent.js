@@ -58,6 +58,7 @@ export default function ProgressViewComponent() {
                   issue={issue}
                   key={uuid.v4()}
                   type={issue.type}
+                  issues={issues}
                 ></ProgressIssueComponent>
               </div>
             );
@@ -73,6 +74,7 @@ export default function ProgressViewComponent() {
                 issue={issue}
                 key={uuid.v4()}
                 type={issue.type}
+                issues={issues}
               ></ProgressIssueComponent>
             </div>
           );
@@ -87,6 +89,7 @@ export default function ProgressViewComponent() {
                 issue={issue}
                 key={uuid.v4()}
                 type={issue.type}
+                issues={issues}
               ></ProgressIssueComponent>
             </div>
           );
@@ -101,6 +104,7 @@ export default function ProgressViewComponent() {
                 issue={issue}
                 key={uuid.v4()}
                 type={issue.type}
+                issues={issues}
               ></ProgressIssueComponent>
             </div>
           );

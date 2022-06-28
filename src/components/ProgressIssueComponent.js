@@ -6,10 +6,11 @@ const unresolvedLabel = 'Unresolved HCI';
 const resolvingLabel = 'Resolving HCI';
 const resolvedLabel = 'Resolved HCI';
 
-export default function ProgressIssueComponent({ issue, type }) {
+export default function ProgressIssueComponent({ issue, type, issues }) {
   const setUnassigned = (prev) => {
     // remove prev label
     removeGitHubLabel(issue.number, prev);
+    issues = [[], [], [], []];
   };
   const setUnresolved = (prev) => {
     // remove prev label
