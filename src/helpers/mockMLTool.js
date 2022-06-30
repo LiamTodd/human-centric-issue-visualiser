@@ -1,7 +1,8 @@
 export const predict = (body) => {
   console.log(body);
+  const numberOfCategories = 3;
   let categories = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < numberOfCategories; i++) {
     const rand = Math.floor(Math.random() * 2);
     categories[i] = rand;
   }
