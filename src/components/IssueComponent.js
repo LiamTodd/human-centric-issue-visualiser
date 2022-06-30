@@ -52,7 +52,17 @@ export default function IssueComponent({ issue }) {
                 }}
                 key={uuid.v4()}
               >
-                {comment.body}, By: {comment.user.login} on {comment.created_at}
+                {comment.body}
+                <div
+                  style={{
+                    borderWidth: '2px',
+                    borderStyle: 'solid',
+                    borderColor: 'black',
+                    margin: '10px'
+                  }}
+                >
+                  By: {comment.user.login} on {comment.created_at}
+                </div>
               </div>
             );
           })}
