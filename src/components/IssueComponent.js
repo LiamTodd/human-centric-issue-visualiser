@@ -46,13 +46,13 @@ export default function IssueComponent({ issue }) {
               <div
                 style={{
                   borderWidth: '2px',
-                  borderStyle: 'dotted',
+                  borderStyle: 'solid',
                   borderColor: 'black',
                   margin: '10px'
                 }}
                 key={uuid.v4()}
               >
-                {comment.body}
+                {comment.body}, By: {comment.user.login} on {comment.created_at}
               </div>
             );
           })}
