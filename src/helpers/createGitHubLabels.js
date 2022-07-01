@@ -1,5 +1,6 @@
 import { getGitHubLabels } from './getGitHubLabels';
 import { repo, owner, token } from './testCredentials';
+import * as labels from './labels';
 
 const { Octokit } = require('@octokit/rest');
 
@@ -14,68 +15,68 @@ export const createGitHubLabels = async () => {
   });
 
   // User Reaction Label
-  if (!labelNames.includes(userReactionLabel.name)) {
+  if (!labelNames.includes(labels.userReactionLabel.name)) {
     await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
       owner: owner,
       repo: repo,
-      name: userReactionLabel.name,
-      description: userReactionLabel.description,
-      color: userReactionLabel.color
+      name: labels.userReactionLabel.name,
+      description: labels.userReactionLabel.description,
+      color: labels.userReactionLabel.color
     });
   }
 
   // Inclusiveness Label
-  if (!labelNames.includes(inclusivenessLabel.name)) {
+  if (!labelNames.includes(labels.inclusivenessLabel.name)) {
     await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
       owner: owner,
       repo: repo,
-      name: inclusivenessLabel.name,
-      description: inclusivenessLabel.description,
-      color: inclusivenessLabel.color
+      name: labels.inclusivenessLabel.name,
+      description: labels.inclusivenessLabel.description,
+      color: labels.inclusivenessLabel.color
     });
   }
 
   // App Usage Label
-  if (!labelNames.includes(appUsageLabel.name)) {
+  if (!labelNames.includes(labels.appUsageLabel.name)) {
     await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
       owner: owner,
       repo: repo,
-      name: appUsageLabel.name,
-      description: appUsageLabel.description,
-      color: appUsageLabel.color
+      name: labels.appUsageLabel.name,
+      description: labels.appUsageLabel.description,
+      color: labels.appUsageLabel.color
     });
   }
 
   // Unresolved Label
-  if (!labelNames.includes(unresolvedHCILabel.name)) {
+  if (!labelNames.includes(labels.unresolvedHCILabel.name)) {
     await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
       owner: owner,
       repo: repo,
-      name: unresolvedHCILabel.name,
-      description: unresolvedHCILabel.description,
-      color: unresolvedHCILabel.color
+      name: labels.unresolvedHCILabel.name,
+      description: labels.unresolvedHCILabel.description,
+      color: labels.unresolvedHCILabel.color
     });
   }
 
   // Resolving Label
-  if (!labelNames.includes(resolvingHCILabel.name)) {
+  if (!labelNames.includes(labels.resolvingHCILabel.name)) {
     await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
       owner: owner,
       repo: repo,
-      name: resolvingHCILabel.name,
-      description: resolvingHCILabel.description,
-      color: resolvingHCILabel.color
+      name: labels.resolvingHCILabel.name,
+      description: labels.resolvingHCILabel.description,
+      color: labels.resolvingHCILabel.color
     });
   }
 
   // Resolved Label
-  if (!labelNames.includes(resolvedHCILabel.name)) {
+  if (!labelNames.includes(labels.resolvedHCILabel.name)) {
     await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
       owner: owner,
       repo: repo,
-      name: resolvedHCILabel.name,
-      description: resolvedHCILabel.description,
-      color: resolvedHCILabel.color
+      name: labels.resolvedHCILabel.name,
+      description: labels.resolvedHCILabel.description,
+      color: labels.resolvedHCILabel.color
     });
   }
 };
