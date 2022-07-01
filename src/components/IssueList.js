@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import IssueComponent from './IssueComponent';
 import * as uuid from 'uuid';
 import { getGitHubIssues } from '../helpers/getGitHubIssues';
+import { assignHCILabels } from '../helpers/assignHCITags';
 
 export default function IssueList() {
   const [issues, setIssues] = useState([]);
@@ -17,6 +18,9 @@ export default function IssueList() {
 
   useEffect(() => {
     getIssues();
+    issues.forEach((issue) => {
+      assignHCILabels(issue);
+    });
   }, []);
 
   return (

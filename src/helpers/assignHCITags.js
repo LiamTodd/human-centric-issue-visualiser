@@ -1,8 +1,7 @@
 import { predict } from './mockMLTool';
 import { addGitHubLabels } from './addGitHubLabels';
 import { getGitHubIssueComments } from './getGitHubIssueComments';
-import './labels';
-import { appUsageLabel, inclusivenessLabel, userReactionLabel } from './labels';
+import * as repoLabels from './labels';
 import { removeGitHubLabel } from './removeGitHubLabel';
 
 export const assignHCILabels = async (issue) => {
@@ -10,12 +9,13 @@ export const assignHCILabels = async (issue) => {
   cleanUp(issue);
 
   // look through issue body and use ml tool to determine tags
-  let HCILabels = predict(issue.body);
+  let HCILabels = predict(issue.body).categories;
 
   // look through each issue comment on use ml tool to determine tags
   const comments = await getGitHubIssueComments(issue.number);
   for (let i = 0; i < comments.data.length; i++) {
     const commentLabels = predict(comments.data[i].body);
+
     // update HCILabels
     for (let j = 0; j < commentLabels.length; j++) {
       if (commentLabels[j] == 1) {
@@ -24,33 +24,36 @@ export const assignHCILabels = async (issue) => {
     }
   }
   // use addGitHubLabels to add relevant labels to the issue
-  const labels = [];
+  const labelNames = [];
   if (HCILabels[0] == 1) {
-    labels.push(appUsageLabel);
+    labelNames.push(repoLabels.appUsageLabel.name);
   }
   if (HCILabels[1] == 1) {
-    labels.push(inclusivenessLabel);
+    labelNames.push(repoLabels.inclusivenessLabel.name);
   }
   if (HCILabels[2] == 1) {
-    labels.push(userReactionLabel);
+    labelNames.push(repoLabels.userReactionLabel.name);
   }
 
-  addGitHubLabels(issue.number, labels);
+  if (labelNames.length > 0) {
+    addGitHubLabels(issue.number, labelNames);
+  }
 };
 
 const cleanUp = (issue) => {
+  // for mocking purposes
   // remove labels so double ups don't happen
   const labelNames = issue.labels.map((label) => {
-    label.name;
+    return label.name;
   });
 
-  if (labelNames.includes(appUsageLabel)) {
-    removeGitHubLabel(issue.number, appUsageLabel);
+  if (labelNames.includes(repoLabels.appUsageLabel.name)) {
+    removeGitHubLabel(issue.number, repoLabels.appUsageLabel.name);
   }
-  if (labelNames.includes(inclusivenessLabel)) {
-    removeGitHubLabel(issue.number, inclusivenessLabel);
+  if (labelNames.includes(repoLabels.inclusivenessLabel.name)) {
+    removeGitHubLabel(issue.number, repoLabels.inclusivenessLabel.name);
   }
-  if (labelNames.includes(userReactionLabel)) {
-    removeGitHubLabel(issue.number, appUsageLabel);
+  if (labelNames.includes(repoLabels.userReactionLabel.name)) {
+    removeGitHubLabel(issue.number, repoLabels.userReactionLabel.name);
   }
 };
