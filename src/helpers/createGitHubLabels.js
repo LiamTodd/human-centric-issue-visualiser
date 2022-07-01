@@ -2,37 +2,6 @@ import { getGitHubLabels } from './getGitHubLabels';
 import { repo, owner, token } from './testCredentials';
 
 const { Octokit } = require('@octokit/rest');
-const userReactionLabel = {
-  name: 'User Reaction',
-  description: 'TODO: need to find out what goes here',
-  color: 'FF66FF'
-};
-const inclusivenessLabel = {
-  name: 'Inclusiveness',
-  description: 'TODO: need to find out what goes here',
-  color: '6666FF'
-};
-const appUsageLabel = {
-  name: 'App Usage',
-  description: 'TODO: need to find out what goes here',
-  color: '66B2FF'
-};
-
-const unresolvedHCILabel = {
-  name: 'Unresolved HCI',
-  description: 'TODO: need to find out what goes here',
-  color: 'E6E6E6'
-};
-const resolvingHCILabel = {
-  name: 'Resolving HCI',
-  description: 'TODO: need to find out what goes here',
-  color: 'E6E6E6'
-};
-const resolvedHCILabel = {
-  name: 'Resolved HCI',
-  description: 'TODO: need to find out what goes here',
-  color: 'E6E6E6'
-};
 
 export const createGitHubLabels = async () => {
   const octokit = new Octokit({
