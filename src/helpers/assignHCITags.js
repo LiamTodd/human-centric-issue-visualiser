@@ -38,6 +38,8 @@ export const assignHCILabels = async (issue) => {
   if (labelNames.length > 0) {
     addGitHubLabels(issue.number, labelNames);
   }
+
+  return labelNames;
 };
 
 const cleanUp = (issue) => {

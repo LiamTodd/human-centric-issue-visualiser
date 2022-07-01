@@ -13,14 +13,15 @@ export default function IssueList() {
     for (let i = 0; i <= issueResponse.data.length - 1; i++) {
       res.push(issueResponse.data[i]);
     }
+    res.forEach(async (issue) => {
+      const HCILabels = await assignHCILabels(issue);
+      issue.HCILabels = HCILabels;
+    });
     setIssues(res);
   };
 
   useEffect(() => {
     getIssues();
-    issues.forEach((issue) => {
-      assignHCILabels(issue);
-    });
   }, []);
 
   return (
@@ -32,7 +33,11 @@ export default function IssueList() {
       }}
     >
       {issues.map((issue) => {
-        return <IssueComponent issue={issue} key={uuid.v4()}></IssueComponent>;
+        return (
+          <>
+            <IssueComponent issue={issue} key={uuid.v4()}></IssueComponent>
+          </>
+        );
       })}
     </div>
   );
