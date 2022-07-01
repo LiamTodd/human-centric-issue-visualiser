@@ -3,10 +3,15 @@ import { addGitHubLabels } from './addGitHubLabels';
 import { getGitHubIssueComments } from './getGitHubIssueComments';
 import './labels';
 import { appUsageLabel, inclusivenessLabel, userReactionLabel } from './labels';
+import { removeGitHubLabel } from './removeGitHubLabel';
 
 export const assignHCILabels = async (issue) => {
+  // cleanup for testing purposes
+  cleanUp(issue);
+
   // look through issue body and use ml tool to determine tags
   let HCILabels = predict(issue.body);
+
   // look through each issue comment on use ml tool to determine tags
   const comments = await getGitHubIssueComments(issue.number);
   for (let i = 0; i < comments.data.length; i++) {
@@ -29,5 +34,23 @@ export const assignHCILabels = async (issue) => {
   if (HCILabels[2] == 1) {
     labels.push(userReactionLabel);
   }
+
   addGitHubLabels(issue.number, labels);
+};
+
+const cleanUp = (issue) => {
+  // remove labels so double ups don't happen
+  const labelNames = issue.labels.map((label) => {
+    label.name;
+  });
+
+  if (labelNames.includes(appUsageLabel)) {
+    removeGitHubLabel(issue.number, appUsageLabel);
+  }
+  if (labelNames.includes(inclusivenessLabel)) {
+    removeGitHubLabel(issue.number, inclusivenessLabel);
+  }
+  if (labelNames.includes(userReactionLabel)) {
+    removeGitHubLabel(issue.number, appUsageLabel);
+  }
 };
