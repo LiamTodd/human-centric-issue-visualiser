@@ -1,6 +1,7 @@
 import React from 'react';
 import { addGitHubLabels } from '../helpers/addGitHubLabels';
 import { removeGitHubLabel } from '../helpers/removeGitHubLabel';
+import * as uuid from 'uuid';
 
 const unresolvedLabel = 'Unresolved HCI';
 const resolvingLabel = 'Resolving HCI';
@@ -78,10 +79,28 @@ export default function ProgressIssueComponent({
         }}
       >
         <h3>Issue Title: {issue.title}</h3>
+        HCIs:
+        {['mock HCI 1', 'mock HCI 2', 'mock HCI 3'].map((HCILabel) => {
+          if (Math.floor(Math.random() * 3) == 1) {
+            return (
+              <div
+                style={{
+                  borderWidth: '2px',
+                  borderStyle: 'solid',
+                  borderColor: 'black',
+                  margin: '10px'
+                }}
+                key={uuid.v4()}
+              >
+                {HCILabel}
+              </div>
+            );
+          }
+        })}
+        <p></p>
         {type == null && (
           <button onClick={() => setUnresolved(null)}>move right</button>
         )}
-
         {type == unresolvedLabel && (
           <>
             <button onClick={() => setUnassigned(unresolvedLabel)}>
@@ -92,7 +111,6 @@ export default function ProgressIssueComponent({
             </button>
           </>
         )}
-
         {type == resolvingLabel && (
           <>
             <button onClick={() => setUnresolved(resolvingLabel)}>
@@ -103,7 +121,6 @@ export default function ProgressIssueComponent({
             </button>
           </>
         )}
-
         {type == resolvedLabel && (
           <button onClick={() => setResolving(resolvedLabel)}>move left</button>
         )}
