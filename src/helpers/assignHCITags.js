@@ -7,6 +7,7 @@ import { removeGitHubLabel } from './removeGitHubLabel';
 export const assignHCILabels = async (issue) => {
   // cleanup for testing purposes
   cleanUp(issue);
+  // return [];
 
   // look through issue body and use ml tool to determine tags
   let HCILabels = predict(issue.body).categories;
@@ -48,8 +49,6 @@ const cleanUp = (issue) => {
   const labelNames = issue.labels.map((label) => {
     return label.name;
   });
-
-  console.log(issue.number, labelNames);
 
   if (labelNames.includes(repoLabels.appUsageLabel.name)) {
     removeGitHubLabel(issue.number, repoLabels.appUsageLabel.name);

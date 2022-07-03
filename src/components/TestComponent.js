@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { getGitHubLabels } from '../helpers/getGitHubLabels';
 import { createGitHubLabels } from '../helpers/createGitHubLabels';
 import { addGitHubLabels } from '../helpers/addGitHubLabels';
+import { setupLocalStorage } from '../helpers/setupLocalStorage';
 
 export default function TestComponent() {
+  setupLocalStorage();
+  return;
   createGitHubLabels();
 
   // addGitHubLabels(0, ['User Reaction', 'Inclusiveness']);
