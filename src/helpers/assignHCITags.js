@@ -49,6 +49,8 @@ const cleanUp = (issue) => {
     return label.name;
   });
 
+  console.log(issue.number, labelNames);
+
   if (labelNames.includes(repoLabels.appUsageLabel.name)) {
     removeGitHubLabel(issue.number, repoLabels.appUsageLabel.name);
   }

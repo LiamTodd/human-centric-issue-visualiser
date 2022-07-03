@@ -14,8 +14,8 @@ export default function IssueList() {
       res.push(issueResponse.data[i]);
     }
     res.forEach(async (issue) => {
-      const HCILabels = await assignHCILabels(issue);
-      issue.HCILabels = HCILabels;
+      issue.HCILabels = [];
+      issue.HCILabels = await assignHCILabels(issue);
     });
     setIssues(res);
   };
