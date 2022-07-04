@@ -73,7 +73,7 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
       >
         <h3>Issue Title: {issue.title}</h3>
         HCIs:
-        {['mock HCI 1', 'mock HCI 2', 'mock HCI 3'].map((HCILabel) => {
+        {issue.HCILabels.map((HCILabel) => {
           if (Math.floor(Math.random() * 3) == 1) {
             return (
               <div
