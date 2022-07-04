@@ -6,8 +6,8 @@ import { setupLocalStorage } from '../helpers/setupLocalStorage';
 
 export default function TestComponent() {
   setupLocalStorage();
-  return;
   createGitHubLabels();
+  return;
 
   // addGitHubLabels(0, ['User Reaction', 'Inclusiveness']);
 

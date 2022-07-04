@@ -3,25 +3,18 @@ import IssueComponent from './IssueComponent';
 import * as uuid from 'uuid';
 import { getGitHubIssues } from '../helpers/getGitHubIssues';
 import { assignHCILabels } from '../helpers/assignHCITags';
+import { ISSUES_KEY, setupLocalStorage } from '../helpers/setupLocalStorage';
 
 export default function IssueList() {
   const [issues, setIssues] = useState([]);
 
   const getIssues = async () => {
-    const issueResponse = await getGitHubIssues();
-    let res = [];
-    for (let i = 0; i <= issueResponse.data.length - 1; i++) {
-      res.push(issueResponse.data[i]);
-    }
-    res.forEach(async (issue) => {
-      issue.HCILabels = [];
-      issue.HCILabels = await assignHCILabels(issue);
-    });
-    setIssues(res);
+    setIssues(JSON.parse(localStorage.getItem(ISSUES_KEY)));
   };
 
   useEffect(() => {
     getIssues();
+    console.log(issues);
   }, []);
 
   return (
