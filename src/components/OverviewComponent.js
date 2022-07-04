@@ -1,5 +1,5 @@
 import React from 'react';
-import DoughnutChartComponent from './chartComponents/DoughnutChartComponent';
+import HorizontalBarChartComponent from './chartComponents/HorizontalBarChartComponent';
 import LineChartComponent from './chartComponents/LineChartComponent';
 import PolarAreaChartComponent from './chartComponents/PolarAreaChartComponent';
 import StackedBarChartComponent from './chartComponents/StackedBarChartComponent';
@@ -8,7 +8,7 @@ export default function OverviewComponent() {
   return (
     <>
       <PolarAreaChartComponent></PolarAreaChartComponent>
-      <DoughnutChartComponent></DoughnutChartComponent>
+      <HorizontalBarChartComponent></HorizontalBarChartComponent>
       <StackedBarChartComponent></StackedBarChartComponent>
       <LineChartComponent></LineChartComponent>
     </>

@@ -13,10 +13,10 @@ import { ISSUES_KEY } from '../../helpers/setupLocalStorage';
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
 const hexToRgb = (hex) => {
-  var bigint = parseInt(hex, 16);
-  var r = (bigint >> 16) & 255;
-  var g = (bigint >> 8) & 255;
-  var b = bigint & 255;
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
 
   return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.5)';
 };
