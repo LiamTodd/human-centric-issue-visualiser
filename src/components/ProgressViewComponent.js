@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getGitHubIssues } from '../helpers/getGitHubIssues';
 import * as uuid from 'uuid';
 import ProgressIssueComponent from './ProgressIssueComponent';
+import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 
 const statusLabels = ['Unresolved HCI', 'Resolving HCI', 'Resolved HCI'];
 
@@ -9,11 +9,11 @@ export default function ProgressViewComponent() {
   const [issues, setIssues] = useState([[], [], [], []]);
 
   const getIssues = async () => {
-    const issueResponse = await getGitHubIssues();
+    const cachedIssues = JSON.parse(localStorage.getItem(ISSUES_KEY));
     let res = [[], [], [], []];
-    for (let i = 0; i <= issueResponse.data.length - 1; i++) {
+    for (let i = 0; i <= cachedIssues.length - 1; i++) {
       let thisLabel = null;
-      const labels = issueResponse.data[i].labels.map((label) => {
+      const labels = cachedIssues[i].labels.map((label) => {
         return label.name;
       });
       labels.forEach((label) => {
@@ -21,16 +21,16 @@ export default function ProgressViewComponent() {
           thisLabel = label;
         }
       });
-      issueResponse.data[i].type = thisLabel;
+      cachedIssues[i].type = thisLabel;
 
       if (thisLabel == null) {
-        res[0].push(issueResponse.data[i]);
+        res[0].push(cachedIssues[i]);
       } else if (thisLabel == statusLabels[0]) {
-        res[1].push(issueResponse.data[i]);
+        res[1].push(cachedIssues[i]);
       } else if (thisLabel == statusLabels[1]) {
-        res[2].push(issueResponse.data[i]);
+        res[2].push(cachedIssues[i]);
       } else {
-        res[3].push(issueResponse.data[i]);
+        res[3].push(cachedIssues[i]);
       }
     }
     setIssues(res);
