@@ -5,9 +5,6 @@ import { assignHCILabels } from './assignHCITags';
 export const ISSUES_KEY = 'issues';
 
 export const setupLocalStorage = async () => {
-  // clean local storage
-  localStorage.removeItem(ISSUES_KEY);
-
   // get issues and comments
   const issues = (await getGitHubIssues()).data;
   issues.forEach((issue) => {
@@ -24,7 +21,6 @@ export const setupLocalStorage = async () => {
           })
           .then(() => {
             localStorage.setItem(ISSUES_KEY, JSON.stringify(issues));
-            console.log(issues);
           });
       });
   });

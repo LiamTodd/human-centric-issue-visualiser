@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import IssueComponent from './IssueComponent';
 import * as uuid from 'uuid';
-import { ISSUES_KEY, setupLocalStorage } from '../helpers/setupLocalStorage';
+import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 
 export default function IssueList() {
   const [issues, setIssues] = useState([]);
