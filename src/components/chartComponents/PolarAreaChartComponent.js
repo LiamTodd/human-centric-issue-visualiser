@@ -7,28 +7,70 @@ import {
   Legend
 } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
+import * as repoLabels from '../../helpers/labels';
+import { ISSUES_KEY } from '../../helpers/setupLocalStorage';
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
-export const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+const hexToRgb = (hex) => {
+  var bigint = parseInt(hex, 16);
+  var r = (bigint >> 16) & 255;
+  var g = (bigint >> 8) & 255;
+  var b = bigint & 255;
+
+  return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.5)';
+};
+
+const getHCICount = () => {
+  return [
+    getCount(repoLabels.appUsageLabel.name),
+    getCount(repoLabels.inclusivenessLabel.name),
+    getCount(repoLabels.userReactionLabel.name)
+  ];
+};
+
+const getCount = (labelName) => {
+  let count = 0;
+  const issues = JSON.parse(localStorage.getItem(ISSUES_KEY));
+  issues.forEach((issue) => {
+    if (issue.HCILabels.includes(labelName)) {
+      console.log(issue.HCILabels, labelName);
+      count += 1;
+    }
+  });
+  return count;
+};
+
+const data = {
+  labels: [
+    repoLabels.appUsageLabel.name,
+    repoLabels.inclusivenessLabel.name,
+    repoLabels.userReactionLabel.name
+  ],
   datasets: [
     {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
+      label: 'Distribution of HCI Categories',
+      data: getHCICount(),
       backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(255, 206, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-        'rgba(255, 159, 64, 0.5)'
+        hexToRgb(repoLabels.appUsageLabel.color),
+        hexToRgb(repoLabels.inclusivenessLabel.color),
+        hexToRgb(repoLabels.userReactionLabel.color)
       ],
       borderWidth: 1
     }
   ]
 };
 
+const options = {
+  scales: {
+    r: {
+      ticks: {
+        precision: 0
+      }
+    }
+  }
+};
+
 export default function PolarAreaChartComponent() {
-  return <PolarArea data={data}></PolarArea>;
+  return <PolarArea data={data} options={options}></PolarArea>;
 }
