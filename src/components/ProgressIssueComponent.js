@@ -99,30 +99,24 @@ export default function ProgressIssueComponent({
         })}
         <p></p>
         {type == null && (
-          <button onClick={() => setUnresolved(null)}>move right</button>
+          <button onClick={() => setUnresolved(null)}>{'>'}</button>
         )}
         {type == unresolvedLabel && (
           <>
             <button onClick={() => setUnassigned(unresolvedLabel)}>
-              move left
+              {`<`}
             </button>
-            <button onClick={() => setResolving(unresolvedLabel)}>
-              move right
-            </button>
+            <button onClick={() => setResolving(unresolvedLabel)}>{'>'}</button>
           </>
         )}
         {type == resolvingLabel && (
           <>
-            <button onClick={() => setUnresolved(resolvingLabel)}>
-              move left
-            </button>
-            <button onClick={() => setResolved(resolvingLabel)}>
-              move right
-            </button>
+            <button onClick={() => setUnresolved(resolvingLabel)}>{`<`}</button>
+            <button onClick={() => setResolved(resolvingLabel)}>{'>'}</button>
           </>
         )}
         {type == resolvedLabel && (
-          <button onClick={() => setResolving(resolvedLabel)}>move left</button>
+          <button onClick={() => setResolving(resolvedLabel)}>{`<`}</button>
         )}
       </div>
       <p></p>
