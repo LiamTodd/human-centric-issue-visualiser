@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import IssueComponent from './IssueComponent';
 import * as uuid from 'uuid';
-import { getGitHubIssues } from '../helpers/getGitHubIssues';
-import { assignHCILabels } from '../helpers/assignHCITags';
 import { ISSUES_KEY, setupLocalStorage } from '../helpers/setupLocalStorage';
 
 export default function IssueList() {

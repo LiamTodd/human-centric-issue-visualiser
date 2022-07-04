@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import * as uuid from 'uuid';
-import { getGitHubIssueComments } from '../helpers/getGitHubIssueComments';
 
 export default function IssueComponent({ issue }) {
   const [comments, setComments] = useState([]);
 
   const getComments = async () => {
-    const commentResponse = await getGitHubIssueComments(issue.number);
-    let res = [];
-    for (let i = 0; i <= commentResponse.data.length - 1; i++) {
-      res.push(commentResponse.data[i]);
-    }
-    setComments(res);
+    setComments(issue.cached_comments);
   };
 
   useEffect(() => {
