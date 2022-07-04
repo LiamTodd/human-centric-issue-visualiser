@@ -2,25 +2,37 @@ import React from 'react';
 import { addGitHubLabels } from '../helpers/addGitHubLabels';
 import { removeGitHubLabel } from '../helpers/removeGitHubLabel';
 import * as uuid from 'uuid';
+import { ISSUES_KEY } from '../helpers/setupLocalStorage';
+import {
+  resolvedHCILabel,
+  resolvingHCILabel,
+  unresolvedHCILabel
+} from '../helpers/labels';
 
 const unresolvedLabel = 'Unresolved HCI';
 const resolvingLabel = 'Resolving HCI';
 const resolvedLabel = 'Resolved HCI';
 
-export default function ProgressIssueComponent({
-  issue,
-  type,
-  issues,
-  setIssues
-}) {
+export default function ProgressIssueComponent({ issue, setIssues }) {
+  const updateLocalStorage = (newStatusLabel) => {
+    // update issues in local storage and trigger re-render
+    const issues = JSON.parse(localStorage.getItem(ISSUES_KEY));
+    // access current issue, remove its previous label
+    const updatedIssues = issues.map((anIssue) => {
+      if (anIssue.number == issue.number) {
+        anIssue.progressTag = newStatusLabel;
+      }
+      return anIssue;
+    });
+
+    localStorage.setItem(ISSUES_KEY, JSON.stringify(updatedIssues));
+    setIssues(updatedIssues);
+  };
   const setUnassigned = (prev) => {
     // remove prev label
     removeGitHubLabel(issue.number, prev);
 
-    const index = issues[1].indexOf(issue);
-    issues[1].splice(index, 1);
-    issue.type = null;
-    setIssues([issues[0].concat(issue), issues[1], issues[2], issues[3]]);
+    updateLocalStorage(null);
   };
 
   const setUnresolved = (prev) => {
@@ -28,16 +40,8 @@ export default function ProgressIssueComponent({
     removeGitHubLabel(issue.number, prev);
     // add new label
     addGitHubLabels(issue.number, [unresolvedLabel]);
-
-    if (prev == resolvingLabel) {
-      const index = issues[2].indexOf(issue);
-      issues[2].splice(index, 1);
-    } else if (prev == null) {
-      const index = issues[0].indexOf(issue);
-      issues[0].splice(index, 1);
-    }
-    issue.type = unresolvedLabel;
-    setIssues([issues[0], issues[1].concat(issue), issues[2], issues[3]]);
+    // update local storage
+    updateLocalStorage(unresolvedHCILabel.name);
   };
 
   const setResolving = (prev) => {
@@ -45,16 +49,8 @@ export default function ProgressIssueComponent({
     removeGitHubLabel(issue.number, prev);
     // add new label
     addGitHubLabels(issue.number, [resolvingLabel]);
-
-    if (prev == resolvedLabel) {
-      const index = issues[3].indexOf(issue);
-      issues[3].splice(index, 1);
-    } else if (prev == unresolvedLabel) {
-      const index = issues[1].indexOf(issue);
-      issues[1].splice(index, 1);
-    }
-    issue.type = resolvingLabel;
-    setIssues([issues[0], issues[1], issues[2].concat(issue), issues[3]]);
+    // update local storage
+    updateLocalStorage(resolvingHCILabel.name);
   };
 
   const setResolved = (prev) => {
@@ -62,11 +58,8 @@ export default function ProgressIssueComponent({
     removeGitHubLabel(issue.number, prev);
     // add new label
     addGitHubLabels(issue.number, [resolvedLabel]);
-
-    const index = issues[2].indexOf(issue);
-    issues[2].splice(index, 1);
-    issue.type = resolvedLabel;
-    setIssues([issues[0], issues[1], issues[2], issues[3].concat(issue)]);
+    // update local storage
+    updateLocalStorage(resolvedHCILabel.name);
   };
 
   return (
@@ -98,25 +91,33 @@ export default function ProgressIssueComponent({
           }
         })}
         <p></p>
-        {type == null && (
+        {issue.progressTag == null && (
           <button onClick={() => setUnresolved(null)}>{'>'}</button>
         )}
-        {type == unresolvedLabel && (
+        {issue.progressTag == unresolvedHCILabel.name && (
           <>
-            <button onClick={() => setUnassigned(unresolvedLabel)}>
+            <button onClick={() => setUnassigned(unresolvedHCILabel.name)}>
               {`<`}
             </button>
-            <button onClick={() => setResolving(unresolvedLabel)}>{'>'}</button>
+            <button onClick={() => setResolving(unresolvedHCILabel.name)}>
+              {'>'}
+            </button>
           </>
         )}
-        {type == resolvingLabel && (
+        {issue.progressTag == resolvingHCILabel.name && (
           <>
-            <button onClick={() => setUnresolved(resolvingLabel)}>{`<`}</button>
-            <button onClick={() => setResolved(resolvingLabel)}>{'>'}</button>
+            <button
+              onClick={() => setUnresolved(resolvingHCILabel.name)}
+            >{`<`}</button>
+            <button onClick={() => setResolved(resolvingHCILabel.name)}>
+              {'>'}
+            </button>
           </>
         )}
-        {type == resolvedLabel && (
-          <button onClick={() => setResolving(resolvedLabel)}>{`<`}</button>
+        {issue.progressTag == resolvedHCILabel.name && (
+          <button
+            onClick={() => setResolving(resolvedHCILabel.name)}
+          >{`<`}</button>
         )}
       </div>
       <p></p>

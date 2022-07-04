@@ -12,7 +12,6 @@ export default function IssueList() {
 
   useEffect(() => {
     getIssues();
-    console.log(issues);
   }, []);
 
   return (
