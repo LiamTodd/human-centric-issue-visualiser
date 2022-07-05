@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -36,14 +36,13 @@ export default function PolarAreaChartComponent() {
     const issues = JSON.parse(localStorage.getItem(ISSUES_KEY));
     issues.forEach((issue) => {
       if (issue.HCILabels.includes(labelName)) {
-        console.log(issue.HCILabels, labelName);
         count += 1;
       }
     });
     return count;
   };
 
-  const data = {
+  const [data, setData] = useState({
     labels: [
       repoLabels.noHCIIdentifiedLabel.name,
       repoLabels.appUsageLabel.name,
@@ -63,7 +62,38 @@ export default function PolarAreaChartComponent() {
         borderWidth: 1
       }
     ]
-  };
+  });
+
+  useEffect(() => {
+    const interval = setInterval(
+      () =>
+        setData({
+          labels: [
+            repoLabels.noHCIIdentifiedLabel.name,
+            repoLabels.appUsageLabel.name,
+            repoLabels.inclusivenessLabel.name,
+            repoLabels.userReactionLabel.name
+          ],
+          datasets: [
+            {
+              label: 'Distribution of HCI Categories',
+              data: getHCICount(),
+              backgroundColor: [
+                hexToRgb(repoLabels.noHCIIdentifiedLabel.color),
+                hexToRgb(repoLabels.appUsageLabel.color),
+                hexToRgb(repoLabels.inclusivenessLabel.color),
+                hexToRgb(repoLabels.userReactionLabel.color)
+              ],
+              borderWidth: 1
+            }
+          ]
+        }),
+      1000
+    );
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const options = {
     scales: {
