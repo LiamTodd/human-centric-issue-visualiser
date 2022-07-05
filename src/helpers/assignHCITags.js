@@ -34,7 +34,8 @@ export const assignHCILabels = async (issue) => {
   }
   if (HCILabels[2] == 1) {
     labelNames.push(repoLabels.userReactionLabel.name);
-  } else {
+  }
+  if (HCILabels[3] == 1) {
     labelNames.push(repoLabels.noHCIIdentifiedLabel.name);
   }
 
