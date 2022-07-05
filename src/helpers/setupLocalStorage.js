@@ -16,6 +16,7 @@ export const setupLocalStorage = async () => {
       })
       .then(() => {
         // get ML response
+        console.log('assigning labels, ', issue.number);
         assignHCILabels(issue)
           .then((HCIs) => {
             issue.HCILabels = HCIs;

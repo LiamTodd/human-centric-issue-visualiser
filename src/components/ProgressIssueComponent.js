@@ -74,21 +74,19 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
         <h3>Issue Title: {issue.title}</h3>
         HCIs:
         {issue.HCILabels.map((HCILabel) => {
-          if (Math.floor(Math.random() * 3) == 1) {
-            return (
-              <div
-                style={{
-                  borderWidth: '2px',
-                  borderStyle: 'solid',
-                  borderColor: 'black',
-                  margin: '10px'
-                }}
-                key={uuid.v4()}
-              >
-                {HCILabel}
-              </div>
-            );
-          }
+          return (
+            <div
+              style={{
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                borderColor: 'black',
+                margin: '10px'
+              }}
+              key={uuid.v4()}
+            >
+              {HCILabel}
+            </div>
+          );
         })}
         <p></p>
         {issue.progressTag == null && (

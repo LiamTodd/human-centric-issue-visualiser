@@ -12,7 +12,7 @@ import TestComponent from './components/TestComponent';
 function App() {
   return (
     <div className="App">
-      <AuthenticateComponent></AuthenticateComponent>
+      {/* <AuthenticateComponent></AuthenticateComponent> */}
       <HashRouter>
         <Navbar></Navbar>
         <div className="content">
