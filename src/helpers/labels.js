@@ -1,3 +1,9 @@
+export const noHCIIdentifiedLabel = {
+  name: 'No HCIs Identified',
+  description: 'TODO: need to find out what goes here',
+  color: '9AC7BF'
+};
+
 export const userReactionLabel = {
   name: 'User Reaction',
   description: 'TODO: need to find out what goes here',

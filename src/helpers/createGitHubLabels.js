@@ -47,6 +47,17 @@ export const createGitHubLabels = async () => {
     });
   }
 
+  // No HCIs label
+  if (!labelNames.includes(labels.noHCIIdentifiedLabel.name)) {
+    await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
+      owner: owner,
+      repo: repo,
+      name: labels.noHCIIdentifiedLabel.name,
+      description: labels.noHCIIdentifiedLabel.description,
+      color: labels.noHCIIdentifiedLabel.color
+    });
+  }
+
   // Unresolved Label
   if (!labelNames.includes(labels.unresolvedHCILabel.name)) {
     await octokit.request(`POST /repos/${owner}/${repo}/labels`, {

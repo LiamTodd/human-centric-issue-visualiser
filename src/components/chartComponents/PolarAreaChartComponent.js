@@ -23,6 +23,7 @@ const hexToRgb = (hex) => {
 
 const getHCICount = () => {
   return [
+    getCount(repoLabels.noHCIIdentifiedLabel.name),
     getCount(repoLabels.appUsageLabel.name),
     getCount(repoLabels.inclusivenessLabel.name),
     getCount(repoLabels.userReactionLabel.name)
@@ -43,6 +44,7 @@ const getCount = (labelName) => {
 
 const data = {
   labels: [
+    repoLabels.noHCIIdentifiedLabel.name,
     repoLabels.appUsageLabel.name,
     repoLabels.inclusivenessLabel.name,
     repoLabels.userReactionLabel.name
@@ -52,6 +54,7 @@ const data = {
       label: 'Distribution of HCI Categories',
       data: getHCICount(),
       backgroundColor: [
+        hexToRgb(repoLabels.noHCIIdentifiedLabel.color),
         hexToRgb(repoLabels.appUsageLabel.color),
         hexToRgb(repoLabels.inclusivenessLabel.color),
         hexToRgb(repoLabels.userReactionLabel.color)

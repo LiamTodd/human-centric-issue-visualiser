@@ -34,6 +34,8 @@ export const assignHCILabels = async (issue) => {
   }
   if (HCILabels[2] == 1) {
     labelNames.push(repoLabels.userReactionLabel.name);
+  } else {
+    labelNames.push(repoLabels.noHCIIdentifiedLabel.name);
   }
 
   if (labelNames.length > 0) {
@@ -58,5 +60,8 @@ const cleanUp = (issue) => {
   }
   if (labelNames.includes(repoLabels.userReactionLabel.name)) {
     removeGitHubLabel(issue.number, repoLabels.userReactionLabel.name);
+  }
+  if (labelNames.includes(repoLabels.noHCIIdentifiedLabel.name)) {
+    removeGitHubLabel(issue.number, repoLabels.noHCIIdentifiedLabel.name);
   }
 };
