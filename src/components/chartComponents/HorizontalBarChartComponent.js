@@ -97,5 +97,9 @@ const data = {
 };
 
 export default function HorizontalBarChartComponent() {
-  return <Bar options={options} data={data}></Bar>;
+  return (
+    <div style={{ width: '70%' }}>
+      <Bar options={options} data={data}></Bar>
+    </div>
+  );
 }

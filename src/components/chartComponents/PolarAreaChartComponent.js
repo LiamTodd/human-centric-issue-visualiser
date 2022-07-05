@@ -72,5 +72,9 @@ const options = {
 };
 
 export default function PolarAreaChartComponent() {
-  return <PolarArea data={data} options={options}></PolarArea>;
+  return (
+    <div style={{ width: '50%' }}>
+      <PolarArea data={data} options={options}></PolarArea>
+    </div>
+  );
 }
