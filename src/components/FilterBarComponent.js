@@ -3,73 +3,57 @@ import React from 'react';
 import * as repoLabels from '../helpers/labels';
 import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 
+const HCIType = 'HCI';
+const statusType = 'status';
+
 export default function FilterBarComponent({ setIssues }) {
-  const HCIOptions = [
-    { name: repoLabels.noHCIIdentifiedLabel.name, id: 0 },
-    { name: repoLabels.appUsageLabel.name, id: 1 },
-    { name: repoLabels.inclusivenessLabel.name, id: 2 },
-    { name: repoLabels.userReactionLabel.name, id: 3 }
+  const options = [
+    { name: repoLabels.noHCIIdentifiedLabel.name, type: HCIType },
+    { name: repoLabels.appUsageLabel.name, type: HCIType },
+    { name: repoLabels.inclusivenessLabel.name, type: HCIType },
+    { name: repoLabels.userReactionLabel.name, type: HCIType },
+    { name: 'Unassigned Status', type: statusType },
+    { name: repoLabels.unresolvedHCILabel.name, type: statusType },
+    { name: repoLabels.resolvingHCILabel.name, type: statusType },
+    { name: repoLabels.resolvedHCILabel.name, type: statusType }
   ];
-  const onHCISelect = (_, selectedHCI) => {
-    const newIssues = JSON.parse(localStorage.getItem(ISSUES_KEY)).filter(
-      (issue) => {
-        return issue.HCILabels.includes(selectedHCI.name);
-      }
-    );
-    setIssues(newIssues);
+
+  const updateSelected = (selectedList, selectedOption) => {
+    if (selectedList.length == 0) {
+      setIssues(JSON.parse(localStorage.getItem(ISSUES_KEY)));
+      return;
+    } else {
+      const newIssues = JSON.parse(localStorage.getItem(ISSUES_KEY)).filter(
+        (issue) => {
+          // iterate over each selected option, return true if issue meets the criteria
+          for (let i = 0; i < selectedList.length; i++) {
+            if (selectedList[i].type == HCIType) {
+              if (issue.HCILabels.includes(selectedList[i].name)) {
+                return true;
+              }
+            } else if (selectedList[i].type == statusType) {
+              if (issue.progressTag == selectedList[i].name) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }
+      );
+      setIssues(newIssues);
+    }
   };
-  const onHCIRemove = (_, deselectedHCI) => {
-    const newIssues = JSON.parse(localStorage.getItem(ISSUES_KEY)).filter(
-      (issue) => {
-        return !issue.HCILabels.includes(deselectedHCI.name);
-      }
-    );
-    setIssues(newIssues);
-  };
-  const statusOptions = [
-    { name: 'Unassigned Status', id: 0 },
-    { name: repoLabels.unresolvedHCILabel.name, id: 1 },
-    { name: repoLabels.resolvingHCILabel.name, id: 2 },
-    { name: repoLabels.resolvedHCILabel.name, id: 3 }
-  ];
-  const onStatusSelect = (_, selectedStatus) => {
-    const newIssues = JSON.parse(localStorage.getItem(ISSUES_KEY)).filter(
-      (issue) => {
-        return issue.progressTag == selectedStatus.name;
-      }
-    );
-    setIssues(newIssues);
-  };
-  const onStatusRemove = (_, deselectedStatus) => {
-    const newIssues = JSON.parse(localStorage.getItem(ISSUES_KEY)).filter(
-      (issue) => {
-        return !issue.progressTag == deselectedStatus.name;
-      }
-    );
-    setIssues(newIssues);
-  };
+
   return (
     <>
       <Multiselect
-        options={HCIOptions} // Options to display in the dropdown
+        options={options} // Options to display in the dropdown
         selectedValues={[]} // Preselected value to persist in dropdown
-        onSelect={onHCISelect} // Function will trigger on select event
-        onRemove={onHCIRemove} // Function will trigger on remove event
+        onSelect={updateSelected} // Function will trigger on select event
+        onRemove={updateSelected} // Function will trigger on remove event
         displayValue="name" // Property name to display in the dropdown options
         showCheckbox={true}
-        placeholder="Filter by HCI categories"
-        avoidHighlightFirstOption={true}
-        showArrow={true}
-      ></Multiselect>
-
-      <Multiselect
-        options={statusOptions} // Options to display in the dropdown
-        selectedValues={[]} // Preselected value to persist in dropdown
-        onSelect={onStatusSelect} // Function will trigger on select event
-        onRemove={onStatusRemove} // Function will trigger on remove event
-        displayValue="name" // Property name to display in the dropdown options
-        showCheckbox={true}
-        placeholder="Filter by status"
+        placeholder="Filter"
         avoidHighlightFirstOption={true}
         showArrow={true}
       ></Multiselect>
