@@ -10,33 +10,13 @@ export default function ListViewComponent() {
     setIssues(JSON.parse(localStorage.getItem(ISSUES_KEY)));
   };
 
-  const onSelect = (_, selectedHCI) => {
-    const newIssues = JSON.parse(localStorage.getItem(ISSUES_KEY)).filter(
-      (issue) => {
-        return issue.HCILabels.includes(selectedHCI.name);
-      }
-    );
-    setIssues(newIssues);
-  };
-  const onRemove = (_, deselectedHCI) => {
-    const newIssues = JSON.parse(localStorage.getItem(ISSUES_KEY)).filter(
-      (issue) => {
-        return !issue.HCILabels.includes(deselectedHCI.name);
-      }
-    );
-    setIssues(newIssues);
-  };
-
   useEffect(() => {
     getIssues();
   }, []);
   return (
     <>
-      <FilterBarComponent
-        issues={issues}
-        onSelect={onSelect}
-        onRemove={onRemove}
-      ></FilterBarComponent>
+      <FilterBarComponent setIssues={setIssues}></FilterBarComponent>
+      <p></p>
       <IssueList issues={issues}></IssueList>
     </>
   );
