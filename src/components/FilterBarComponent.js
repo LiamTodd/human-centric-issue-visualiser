@@ -6,6 +6,9 @@ import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 const HCIType = 'HCI';
 const statusType = 'status';
 
+const unassignedStatusName = 'Unassigned Status';
+const unassignedStatusValue = null;
+
 export default function FilterBarComponent({ setIssues }) {
   const options = [
     {
@@ -28,7 +31,11 @@ export default function FilterBarComponent({ setIssues }) {
       type: HCIType,
       value: repoLabels.userReactionLabel.name
     },
-    { name: 'Unassigned Status', type: statusType, value: null },
+    {
+      name: unassignedStatusName,
+      type: statusType,
+      value: unassignedStatusValue
+    },
     {
       name: repoLabels.unresolvedHCILabel.name,
       type: statusType,
