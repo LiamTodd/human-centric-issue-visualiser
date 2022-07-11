@@ -7,9 +7,12 @@ import OverviewComponent from './components/OverviewComponent';
 import PrioritiseViewComponent from './components/PrioritiseViewComponent';
 import ProgressViewComponent from './components/ProgressViewComponent';
 import ListViewComponent from './components/ListViewComponent';
-import TestComponent from './components/TestComponent';
+import { setupLocalStorage } from './helpers/setupLocalStorage';
+import { createGitHubLabels } from './helpers/createGitHubLabels';
 
 function App() {
+  setupLocalStorage();
+  createGitHubLabels();
   return (
     <div className="App">
       {/* <AuthenticateComponent></AuthenticateComponent> */}
@@ -33,7 +36,6 @@ function App() {
           </Routes>
         </div>
       </HashRouter>
-      <TestComponent></TestComponent>
     </div>
   );
 }
