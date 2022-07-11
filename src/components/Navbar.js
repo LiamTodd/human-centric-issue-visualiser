@@ -7,7 +7,7 @@ export default function Navbar() {
       className="navbar"
       style={{ width: '100%', fontSize: '24px', padding: '20px' }}
     >
-      <NavLink exact to="/">
+      <NavLink exact="true" to="/">
         Overview
       </NavLink>
       <NavLink to="/list">List</NavLink>
