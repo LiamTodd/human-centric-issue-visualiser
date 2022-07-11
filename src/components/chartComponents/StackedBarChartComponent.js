@@ -130,5 +130,43 @@ export default function StackedBarChartComponent() {
     ]
   });
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const dates = generateDates();
+      const labels = dates.map((date) => {
+        return date.toDateString();
+      });
+
+      setData({
+        labels: labels,
+        datasets: [
+          {
+            label: repoLabels.noHCIIdentifiedLabel.name,
+            data: getCount(repoLabels.noHCIIdentifiedLabel.name, dates),
+            backgroundColor: hexToRgb(repoLabels.noHCIIdentifiedLabel.color)
+          },
+          {
+            label: repoLabels.appUsageLabel.name,
+            data: getCount(repoLabels.appUsageLabel.name, dates),
+            backgroundColor: hexToRgb(repoLabels.appUsageLabel.color)
+          },
+          {
+            label: repoLabels.inclusivenessLabel.name,
+            data: getCount(repoLabels.inclusivenessLabel.name, dates),
+            backgroundColor: hexToRgb(repoLabels.inclusivenessLabel.color)
+          },
+          {
+            label: repoLabels.userReactionLabel.name,
+            data: getCount(repoLabels.userReactionLabel.name, dates),
+            backgroundColor: hexToRgb(repoLabels.userReactionLabel.color)
+          }
+        ]
+      });
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return <Bar options={options} data={data} />;
 }
