@@ -96,6 +96,12 @@ export default function PolarAreaChartComponent() {
   }, []);
 
   const options = {
+    plugins: {
+      title: {
+        display: true,
+        text: 'HCI Categorisation Distribution'
+      }
+    },
     scales: {
       r: {
         ticks: {
