@@ -5,9 +5,12 @@ import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 
 const HCIType = 'HCI';
 const statusType = 'status';
+const priorityType = 'priority';
 
 const unassignedStatusName = 'Unassigned Status';
 const unassignedStatusValue = null;
+const unassignedPriorityName = 'Unassigned Priority';
+const unassignedPriorityValue = null;
 
 export default function FilterBarComponent({ setIssues }) {
   const options = [
@@ -50,6 +53,26 @@ export default function FilterBarComponent({ setIssues }) {
       name: repoLabels.resolvedHCILabel.name,
       type: statusType,
       value: repoLabels.resolvedHCILabel.name
+    },
+    {
+      name: unassignedPriorityName,
+      type: priorityType,
+      value: unassignedPriorityValue
+    },
+    {
+      name: repoLabels.lowPriorityLabel.name,
+      type: priorityType,
+      value: repoLabels.lowPriorityLabel.name
+    },
+    {
+      name: repoLabels.mediumPriorityLabel.name,
+      type: priorityType,
+      value: repoLabels.highPriorityLabel.name
+    },
+    {
+      name: repoLabels.highPriorityLabel.name,
+      type: priorityType,
+      value: repoLabels.highPriorityLabel.name
     }
   ];
 
@@ -68,6 +91,10 @@ export default function FilterBarComponent({ setIssues }) {
               }
             } else if (selectedList[i].type == statusType) {
               if (issue.progressTag == selectedList[i].value) {
+                return true;
+              }
+            } else if (selectedList[i].type == priorityType) {
+              if (issue.priority == selectedList[i].value) {
                 return true;
               }
             }
