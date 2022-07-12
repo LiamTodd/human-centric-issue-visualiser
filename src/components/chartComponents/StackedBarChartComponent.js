@@ -56,6 +56,7 @@ export default function StackedBarChartComponent() {
   };
 
   const getDatesInRange = (startDate, endDate) => {
+    endDate.setDate(endDate.getDate() + 1);
     const date = new Date(startDate.getTime());
     const dates = [];
 
@@ -63,6 +64,8 @@ export default function StackedBarChartComponent() {
       dates.push(new Date(date));
       date.setDate(date.getDate() + 1);
     }
+
+    console.log(dates.map((date) => date.toDateString()));
 
     return dates;
   };

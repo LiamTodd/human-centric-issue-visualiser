@@ -28,7 +28,8 @@ export default function OverviewComponent() {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          width: '90%'
         }}
       >
         <StackedBarChartComponent></StackedBarChartComponent>
