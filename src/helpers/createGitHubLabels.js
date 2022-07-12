@@ -90,4 +90,35 @@ export const createGitHubLabels = async () => {
       color: labels.resolvedHCILabel.color
     });
   }
+
+  // Low Priority
+  if (!labelNames.includes(labels.lowPriorityLabel.name)) {
+    await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
+      owner: owner,
+      repo: repo,
+      name: labels.lowPriorityLabel.name,
+      description: labels.lowPriorityLabel.description,
+      color: labels.lowPriorityLabel.color
+    });
+  }
+  // Medium Priority
+  if (!labelNames.includes(labels.mediumPriorityLabel.name)) {
+    await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
+      owner: owner,
+      repo: repo,
+      name: labels.mediumPriorityLabel.name,
+      description: labels.mediumPriorityLabel.description,
+      color: labels.mediumPriorityLabel.color
+    });
+  }
+  // High Priority
+  if (!labelNames.includes(labels.highPriorityLabel.name)) {
+    await octokit.request(`POST /repos/${owner}/${repo}/labels`, {
+      owner: owner,
+      repo: repo,
+      name: labels.highPriorityLabel.name,
+      description: labels.highPriorityLabel.description,
+      color: labels.highPriorityLabel.color
+    });
+  }
 };
