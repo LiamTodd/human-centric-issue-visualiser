@@ -5,26 +5,18 @@ import {
   LinearScale,
   BarElement,
   Title,
-  Tooltip,
-  Legend
+  Tooltip
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import * as repoLabels from '../../helpers/labels';
 import { repo } from '../../helpers/testCredentials';
 import { ISSUES_KEY } from '../../helpers/setupLocalStorage';
 
-export default function HorizontalBarChartComponent() {
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+export default function PriorityBarChartComponent() {
+  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
   const options = {
     scales: {
-      xAxis: {
+      yAxis: {
         ticks: {
           precision: 0
         },
@@ -33,14 +25,14 @@ export default function HorizontalBarChartComponent() {
           text: 'Number of Issues'
         }
       },
-      yAxis: {
+      xAxis: {
         title: {
           display: true,
-          text: 'Issue Status'
+          text: 'Issue Priority'
         }
       }
     },
-    indexAxis: 'y',
+    indexAxis: 'x',
     elements: {
       bar: {
         borderWidth: 2
@@ -49,11 +41,11 @@ export default function HorizontalBarChartComponent() {
     responsive: true,
     plugins: {
       legend: {
-        position: 'right'
+        display: false
       },
       title: {
         display: true,
-        text: 'Issue Progress Overview'
+        text: 'Issue Priority Overview'
       }
     }
   };
@@ -69,17 +61,17 @@ export default function HorizontalBarChartComponent() {
 
   const labels = [
     'Unassigned Status',
-    repoLabels.unresolvedHCILabel.name,
-    repoLabels.resolvingHCILabel.name,
-    repoLabels.resolvedHCILabel.name
+    repoLabels.lowPriorityLabel.name,
+    repoLabels.mediumPriorityLabel.name,
+    repoLabels.highPriorityLabel.name
   ];
 
   const getProgressCount = () => {
     return [
       getCount(null),
-      getCount(repoLabels.unresolvedHCILabel.name),
-      getCount(repoLabels.resolvingHCILabel.name),
-      getCount(repoLabels.resolvedHCILabel.name)
+      getCount(repoLabels.lowPriorityLabel.name),
+      getCount(repoLabels.mediumPriorityLabel.name),
+      getCount(repoLabels.highPriorityLabel.name)
     ];
   };
 
@@ -87,7 +79,7 @@ export default function HorizontalBarChartComponent() {
     let count = 0;
     const issues = JSON.parse(localStorage.getItem(ISSUES_KEY));
     issues.forEach((issue) => {
-      if (issue.progressTag == labelName) {
+      if (issue.priority == labelName) {
         count += 1;
       }
     });
@@ -98,10 +90,14 @@ export default function HorizontalBarChartComponent() {
     labels,
     datasets: [
       {
-        label: 'Issues in ' + repo,
         data: getProgressCount(),
         borderColor: hexToRgb(repoLabels.resolvedHCILabel.color, 1),
-        backgroundColor: hexToRgb(repoLabels.resolvedHCILabel.color, 0.7)
+        backgroundColor: [
+          hexToRgb(repoLabels.resolvedHCILabel.color, 1),
+          hexToRgb(repoLabels.lowPriorityLabel.color, 1),
+          hexToRgb(repoLabels.mediumPriorityLabel.color, 1),
+          hexToRgb(repoLabels.highPriorityLabel.color, 1)
+        ]
       }
     ]
   };
