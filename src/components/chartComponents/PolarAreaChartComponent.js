@@ -99,7 +99,7 @@ export default function PolarAreaChartComponent() {
     plugins: {
       title: {
         display: true,
-        text: 'HCI Categorisation Distribution'
+        text: 'HCI Categorisation Count'
       }
     },
     scales: {

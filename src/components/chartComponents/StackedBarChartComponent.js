@@ -30,17 +30,26 @@ export default function StackedBarChartComponent() {
       }
     },
     responsive: true,
+
     scales: {
       x: {
         stacked: true,
         ticks: {
           precision: 0
+        },
+        title: {
+          display: true,
+          text: 'Date'
         }
       },
       y: {
         stacked: true,
         ticks: {
           precision: 0
+        },
+        title: {
+          display: true,
+          text: 'Number of Issues'
         }
       }
     }

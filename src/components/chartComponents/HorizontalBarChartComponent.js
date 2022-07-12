@@ -27,6 +27,16 @@ export default function HorizontalBarChartComponent() {
       xAxis: {
         ticks: {
           precision: 0
+        },
+        title: {
+          display: true,
+          text: 'Number of Issues'
+        }
+      },
+      yAxis: {
+        title: {
+          display: true,
+          text: 'Issue Status'
         }
       }
     },
