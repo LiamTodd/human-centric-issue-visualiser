@@ -35,3 +35,19 @@ export const resolvedHCILabel = {
   description: 'TODO: need to find out what goes here',
   color: 'E6E6E6'
 };
+
+export const lowPriorityLabel = {
+  name: 'Low Priority',
+  description: 'TODO: need to find out what goes here',
+  color: '00CC66'
+};
+export const mediumPriorityLabel = {
+  name: 'Medium Priority',
+  description: 'TODO: need to find out what goes here',
+  color: 'FF9933'
+};
+export const highPriorityLabel = {
+  name: 'High Priority',
+  description: 'TODO: need to find out what goes here',
+  color: 'F19C99'
+};
