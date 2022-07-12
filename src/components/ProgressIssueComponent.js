@@ -62,14 +62,6 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
     updateLocalStorage(resolvedHCILabel.name);
   };
 
-  const showConfidence = (e, HCILabel) => {
-    e.target.innerHTML =
-      HCILabel + ', ML Confidence: ' + Math.random().toPrecision(2);
-  };
-  const stopShowConfidence = (e, HCILabel) => {
-    e.target.innerHTML = HCILabel;
-  };
-
   return (
     <>
       <div
@@ -93,10 +85,8 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
                 margin: '10px'
               }}
               key={uuid.v4()}
-              onMouseOver={(e) => showConfidence(e, HCILabel)}
-              onMouseLeave={(e) => stopShowConfidence(e, HCILabel)}
             >
-              {HCILabel}
+              {HCILabel + ', ML Confidence: ' + Math.random().toPrecision(2)}
             </div>
           );
         })}

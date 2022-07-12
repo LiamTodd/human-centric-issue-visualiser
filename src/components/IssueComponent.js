@@ -12,14 +12,6 @@ export default function IssueComponent({ issue }) {
     getComments();
   }, []);
 
-  const showConfidence = (e, HCILabel) => {
-    e.target.innerHTML =
-      HCILabel + ', ML Confidence: ' + Math.random().toPrecision(2);
-  };
-  const stopShowConfidence = (e, HCILabel) => {
-    e.target.innerHTML = HCILabel;
-  };
-
   return (
     <>
       <div
@@ -63,10 +55,10 @@ export default function IssueComponent({ issue }) {
                     margin: '10px'
                   }}
                   key={uuid.v4()}
-                  onMouseOver={(e) => showConfidence(e, HCILabel)}
-                  onMouseLeave={(e) => stopShowConfidence(e, HCILabel)}
                 >
-                  {HCILabel}
+                  {HCILabel +
+                    ', ML Confidence: ' +
+                    Math.random().toPrecision(2)}
                 </div>
               );
             })}

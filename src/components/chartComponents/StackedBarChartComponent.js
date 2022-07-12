@@ -65,8 +65,6 @@ export default function StackedBarChartComponent() {
       date.setDate(date.getDate() + 1);
     }
 
-    console.log(dates.map((date) => date.toDateString()));
-
     return dates;
   };
 
