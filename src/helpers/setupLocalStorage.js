@@ -1,9 +1,19 @@
 import { getGitHubIssues } from './getGitHubIssues';
 import { getGitHubIssueComments } from './getGitHubIssueComments';
 import { assignHCILabels } from './assignHCITags';
+import * as repoLabels from './labels';
 
 export const ISSUES_KEY = 'issues';
-const statusLabels = ['Unresolved HCI', 'Resolving HCI', 'Resolved HCI'];
+const statusLabels = [
+  repoLabels.unresolvedHCILabel.name,
+  repoLabels.resolvingHCILabel.name,
+  repoLabels.resolvedHCILabel.name
+];
+const priorityLabels = [
+  repoLabels.lowPriorityLabel.name,
+  repoLabels.mediumPriorityLabel.name,
+  repoLabels.highPriorityLabel.name
+];
 
 export const setupLocalStorage = async () => {
   // get issues and comments
@@ -33,6 +43,19 @@ export const setupLocalStorage = async () => {
               }
             });
             issue.progressTag = thisLabel;
+          })
+          .then(() => {
+            const labels = issue.labels.map((label) => {
+              return label.name;
+            });
+            // uses the assumption that only one priority label is applied to each issue
+            let thisLabel = null;
+            labels.forEach((label) => {
+              if (priorityLabels.includes(label)) {
+                thisLabel = label;
+              }
+            });
+            issue.priority = thisLabel;
           })
           .then(() => {
             localStorage.setItem(ISSUES_KEY, JSON.stringify(issues));

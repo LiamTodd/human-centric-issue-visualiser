@@ -4,19 +4,19 @@ import { removeGitHubLabel } from '../helpers/removeGitHubLabel';
 import * as uuid from 'uuid';
 import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 import {
-  resolvedHCILabel,
-  resolvingHCILabel,
-  unresolvedHCILabel
+  lowPriorityLabel,
+  mediumPriorityLabel,
+  highPriorityLabel
 } from '../helpers/labels';
 
-export default function ProgressIssueComponent({ issue, setIssues }) {
-  const updateLocalStorage = (newStatusLabel) => {
+export default function PrioritiseIssueComponent({ issue, setIssues }) {
+  const updateLocalStorage = (newPriorityLabel) => {
     // update issues in local storage and trigger re-render
     const issues = JSON.parse(localStorage.getItem(ISSUES_KEY));
     // access current issue, remove its previous label
     const updatedIssues = issues.map((anIssue) => {
       if (anIssue.number == issue.number) {
-        anIssue.progressTag = newStatusLabel;
+        anIssue.priority = newPriorityLabel;
       }
       return anIssue;
     });
@@ -31,31 +31,31 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
     updateLocalStorage(null);
   };
 
-  const setUnresolved = (prev) => {
+  const setLowPriority = (prev) => {
     // remove prev label
     removeGitHubLabel(issue.number, prev);
     // add new label
-    addGitHubLabels(issue.number, [unresolvedHCILabel.name]);
+    addGitHubLabels(issue.number, [lowPriorityLabel.name]);
     // update local storage
-    updateLocalStorage(unresolvedHCILabel.name);
+    updateLocalStorage(lowPriorityLabel.name);
   };
 
-  const setResolving = (prev) => {
+  const setMediumPriority = (prev) => {
     // remove prev label
     removeGitHubLabel(issue.number, prev);
     // add new label
-    addGitHubLabels(issue.number, [resolvingHCILabel.name]);
+    addGitHubLabels(issue.number, [mediumPriorityLabel.name]);
     // update local storage
-    updateLocalStorage(resolvingHCILabel.name);
+    updateLocalStorage(mediumPriorityLabel.name);
   };
 
-  const setResolved = (prev) => {
+  const setHighPriority = (prev) => {
     // remove prev label
     removeGitHubLabel(issue.number, prev);
     // add new label
-    addGitHubLabels(issue.number, [resolvedHCILabel.name]);
+    addGitHubLabels(issue.number, [highPriorityLabel.name]);
     // update local storage
-    updateLocalStorage(resolvedHCILabel.name);
+    updateLocalStorage(highPriorityLabel.name);
   };
 
   return (
@@ -87,32 +87,32 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
           );
         })}
         <p></p>
-        {issue.progressTag == null && (
-          <button onClick={() => setUnresolved(null)}>{'>'}</button>
+        {issue.priority == null && (
+          <button onClick={() => setLowPriority(null)}>{'>'}</button>
         )}
-        {issue.progressTag == unresolvedHCILabel.name && (
+        {issue.priority == lowPriorityLabel.name && (
           <>
-            <button onClick={() => setUnassigned(unresolvedHCILabel.name)}>
+            <button onClick={() => setUnassigned(lowPriorityLabel.name)}>
               {`<`}
             </button>
-            <button onClick={() => setResolving(unresolvedHCILabel.name)}>
+            <button onClick={() => setMediumPriority(lowPriorityLabel.name)}>
               {'>'}
             </button>
           </>
         )}
-        {issue.progressTag == resolvingHCILabel.name && (
+        {issue.priority == mediumPriorityLabel.name && (
           <>
             <button
-              onClick={() => setUnresolved(resolvingHCILabel.name)}
+              onClick={() => setLowPriority(mediumPriorityLabel.name)}
             >{`<`}</button>
-            <button onClick={() => setResolved(resolvingHCILabel.name)}>
+            <button onClick={() => setHighPriority(mediumPriorityLabel.name)}>
               {'>'}
             </button>
           </>
         )}
-        {issue.progressTag == resolvedHCILabel.name && (
+        {issue.priority == highPriorityLabel.name && (
           <button
-            onClick={() => setResolving(resolvedHCILabel.name)}
+            onClick={() => setMediumPriority(highPriorityLabel.name)}
           >{`<`}</button>
         )}
       </div>
