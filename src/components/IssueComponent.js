@@ -21,6 +21,8 @@ export default function IssueComponent({ issue }) {
           borderColor: 'black'
         }}
       >
+        <h3>{issue.priority}</h3>
+
         <a href={issue.html_url}>
           <h3>{issue.title}</h3>
         </a>
