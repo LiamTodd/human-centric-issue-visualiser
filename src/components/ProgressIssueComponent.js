@@ -67,7 +67,9 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
           borderColor: 'black'
         }}
       >
-        <h3>{issue.priority}</h3>
+        <h3 style={{ backgroundColor: '#' + issue.priority.color }}>
+          {issue.priority.name}
+        </h3>
         <a href={issue.html_url}>
           <h3>{issue.title}</h3>
         </a>

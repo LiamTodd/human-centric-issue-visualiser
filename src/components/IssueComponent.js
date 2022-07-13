@@ -8,8 +8,6 @@ export default function IssueComponent({ issue }) {
     setComments(issue.cached_comments);
   };
 
-  console.log(issue.priority.color);
-
   useEffect(() => {
     getComments();
   }, []);

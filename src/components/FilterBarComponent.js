@@ -67,7 +67,7 @@ export default function FilterBarComponent({ setIssues }) {
     {
       name: repoLabels.mediumPriorityLabel.name,
       type: priorityType,
-      value: repoLabels.highPriorityLabel.name
+      value: repoLabels.mediumPriorityLabel.name
     },
     {
       name: repoLabels.highPriorityLabel.name,
@@ -94,7 +94,7 @@ export default function FilterBarComponent({ setIssues }) {
                 return true;
               }
             } else if (selectedList[i].type == priorityType) {
-              if (issue.priority == selectedList[i].value) {
+              if (issue.priority.name == selectedList[i].value) {
                 return true;
               }
             }
