@@ -86,7 +86,11 @@ export default function FilterBarComponent({ setIssues }) {
           // iterate over each selected option, return true if issue meets the criteria
           for (let i = 0; i < selectedList.length; i++) {
             if (selectedList[i].type == HCIType) {
-              if (issue.HCILabels.includes(selectedList[i].value)) {
+              if (
+                issue.HCILabels.map((label) => {
+                  return label.name;
+                }).includes(selectedList[i].value)
+              ) {
                 return true;
               }
             } else if (selectedList[i].type == statusType) {

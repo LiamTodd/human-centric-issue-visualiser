@@ -100,7 +100,9 @@ export default function StackedBarChartComponent() {
       issues.forEach((issue) => {
         if (
           date.toDateString() == new Date(issue.created_at).toDateString() &&
-          issue.HCILabels.includes(HCILabel)
+          issue.HCILabels.map((label) => {
+            return label.name;
+          }).includes(HCILabel)
         ) {
           count++;
         }

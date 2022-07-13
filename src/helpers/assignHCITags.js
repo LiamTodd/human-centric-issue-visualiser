@@ -25,25 +25,30 @@ export const assignHCILabels = async (issue) => {
     }
   }
   // use addGitHubLabels to add relevant labels to the issue
-  const labelNames = [];
+  const labels = [];
   if (HCILabels[0] == 1) {
-    labelNames.push(repoLabels.appUsageLabel.name);
+    labels.push(repoLabels.appUsageLabel);
   }
   if (HCILabels[1] == 1) {
-    labelNames.push(repoLabels.inclusivenessLabel.name);
+    labels.push(repoLabels.inclusivenessLabel);
   }
   if (HCILabels[2] == 1) {
-    labelNames.push(repoLabels.userReactionLabel.name);
+    labels.push(repoLabels.userReactionLabel);
   }
   if (HCILabels[3] == 1) {
-    labelNames.push(repoLabels.noHCIIdentifiedLabel.name);
+    labels.push(repoLabels.noHCIIdentifiedLabel);
   }
 
-  if (labelNames.length > 0) {
-    addGitHubLabels(issue.number, labelNames);
+  if (labels.length > 0) {
+    addGitHubLabels(
+      issue.number,
+      labels.map((label) => {
+        return label.name;
+      })
+    );
   }
 
-  return labelNames;
+  return labels;
 };
 
 const cleanUp = (issue) => {

@@ -56,11 +56,12 @@ export default function IssueComponent({ issue }) {
                     borderWidth: '2px',
                     borderStyle: 'solid',
                     borderColor: 'black',
-                    margin: '10px'
+                    margin: '10px',
+                    backgroundColor: '#' + HCILabel.color + '80' // change opacity
                   }}
                   key={uuid.v4()}
                 >
-                  {HCILabel +
+                  {HCILabel.name +
                     ', ML Confidence: ' +
                     Math.random().toPrecision(2)}
                 </div>
