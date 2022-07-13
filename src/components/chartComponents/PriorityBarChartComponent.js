@@ -79,7 +79,7 @@ export default function PriorityBarChartComponent() {
     let count = 0;
     const issues = JSON.parse(localStorage.getItem(ISSUES_KEY));
     issues.forEach((issue) => {
-      if (issue.priority == labelName) {
+      if (issue.priority.name == labelName) {
         count += 1;
       }
     });

@@ -8,6 +8,8 @@ export default function IssueComponent({ issue }) {
     setComments(issue.cached_comments);
   };
 
+  console.log(issue.priority.color);
+
   useEffect(() => {
     getComments();
   }, []);
@@ -21,7 +23,9 @@ export default function IssueComponent({ issue }) {
           borderColor: 'black'
         }}
       >
-        <h3>{issue.priority}</h3>
+        <h3 style={{ backgroundColor: '#' + issue.priority.color }}>
+          {issue.priority.name}
+        </h3>
 
         <a href={issue.html_url}>
           <h3>{issue.title}</h3>

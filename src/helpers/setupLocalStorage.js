@@ -10,9 +10,9 @@ const statusLabels = [
   repoLabels.resolvedHCILabel.name
 ];
 const priorityLabels = [
-  repoLabels.lowPriorityLabel.name,
-  repoLabels.mediumPriorityLabel.name,
-  repoLabels.highPriorityLabel.name
+  repoLabels.lowPriorityLabel,
+  repoLabels.mediumPriorityLabel,
+  repoLabels.highPriorityLabel
 ];
 
 export const setupLocalStorage = async () => {
@@ -32,6 +32,7 @@ export const setupLocalStorage = async () => {
             issue.HCILabels = HCIs;
           })
           .then(() => {
+            // set set status labels
             const labels = issue.labels.map((label) => {
               return label.name;
             });
@@ -45,13 +46,21 @@ export const setupLocalStorage = async () => {
             issue.progressTag = thisLabel;
           })
           .then(() => {
-            const labels = issue.labels.map((label) => {
-              return label.name;
-            });
+            // set priority labels
+            // const labels = issue.labels.map((label) => {
+            //   return label.name;
+            // });
+            const labels = issue.labels;
             // uses the assumption that only one priority label is applied to each issue
-            let thisLabel = null;
+            let thisLabel = { name: null, color: null }; // dummy label
             labels.forEach((label) => {
-              if (priorityLabels.includes(label)) {
+              if (
+                priorityLabels
+                  .map((label) => {
+                    return label.name;
+                  })
+                  .includes(label.name)
+              ) {
                 thisLabel = label;
               }
             });

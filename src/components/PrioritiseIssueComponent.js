@@ -28,7 +28,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
     // remove prev label
     removeGitHubLabel(issue.number, prev);
 
-    updateLocalStorage(null);
+    updateLocalStorage({ name: null, color: null });
   };
 
   const setLowPriority = (prev) => {
@@ -37,7 +37,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
     // add new label
     addGitHubLabels(issue.number, [lowPriorityLabel.name]);
     // update local storage
-    updateLocalStorage(lowPriorityLabel.name);
+    updateLocalStorage(lowPriorityLabel);
   };
 
   const setMediumPriority = (prev) => {
@@ -46,7 +46,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
     // add new label
     addGitHubLabels(issue.number, [mediumPriorityLabel.name]);
     // update local storage
-    updateLocalStorage(mediumPriorityLabel.name);
+    updateLocalStorage(mediumPriorityLabel);
   };
 
   const setHighPriority = (prev) => {
@@ -55,7 +55,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
     // add new label
     addGitHubLabels(issue.number, [highPriorityLabel.name]);
     // update local storage
-    updateLocalStorage(highPriorityLabel.name);
+    updateLocalStorage(highPriorityLabel);
   };
 
   return (
@@ -87,10 +87,10 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
           );
         })}
         <p></p>
-        {issue.priority == null && (
+        {issue.priority.name == null && (
           <button onClick={() => setLowPriority(null)}>{'>'}</button>
         )}
-        {issue.priority == lowPriorityLabel.name && (
+        {issue.priority.name == lowPriorityLabel.name && (
           <>
             <button onClick={() => setUnassigned(lowPriorityLabel.name)}>
               {`<`}
@@ -100,7 +100,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
             </button>
           </>
         )}
-        {issue.priority == mediumPriorityLabel.name && (
+        {issue.priority.name == mediumPriorityLabel.name && (
           <>
             <button
               onClick={() => setLowPriority(mediumPriorityLabel.name)}
@@ -110,7 +110,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
             </button>
           </>
         )}
-        {issue.priority == highPriorityLabel.name && (
+        {issue.priority.name == highPriorityLabel.name && (
           <button
             onClick={() => setMediumPriority(highPriorityLabel.name)}
           >{`<`}</button>

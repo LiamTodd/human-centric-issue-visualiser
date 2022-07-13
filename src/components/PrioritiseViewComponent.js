@@ -31,7 +31,7 @@ export default function PrioritiseViewComponent() {
         <h5>Unassigned</h5>
         <div>
           {issues
-            .filter((issue) => issue.priority == null)
+            .filter((issue) => issue.priority.name == null)
             .map((issue) => {
               return (
                 <div>
@@ -48,7 +48,7 @@ export default function PrioritiseViewComponent() {
       <div>
         <h5>Low Priority</h5>
         {issues
-          .filter((issue) => issue.priority == lowPriorityLabel.name)
+          .filter((issue) => issue.priority.name == lowPriorityLabel.name)
           .map((issue) => {
             return (
               <div>
@@ -64,7 +64,7 @@ export default function PrioritiseViewComponent() {
       <div>
         <h5>Medium Priority</h5>
         {issues
-          .filter((issue) => issue.priority == mediumPriorityLabel.name)
+          .filter((issue) => issue.priority.name == mediumPriorityLabel.name)
           .map((issue) => {
             return (
               <div>
@@ -80,7 +80,7 @@ export default function PrioritiseViewComponent() {
       <div>
         <h5>High Priority</h5>
         {issues
-          .filter((issue) => issue.priority == highPriorityLabel.name)
+          .filter((issue) => issue.priority.name == highPriorityLabel.name)
           .map((issue) => {
             return (
               <div>
