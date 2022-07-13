@@ -90,7 +90,7 @@ export default function FilterBarComponent({ setIssues }) {
                 return true;
               }
             } else if (selectedList[i].type == statusType) {
-              if (issue.progressTag == selectedList[i].value) {
+              if (issue.progressTag.name == selectedList[i].value) {
                 return true;
               }
             } else if (selectedList[i].type == priorityType) {

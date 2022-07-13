@@ -28,7 +28,7 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
     // remove prev label
     removeGitHubLabel(issue.number, prev);
 
-    updateLocalStorage(null);
+    updateLocalStorage({ name: null, color: null });
   };
 
   const setUnresolved = (prev) => {
@@ -37,7 +37,7 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
     // add new label
     addGitHubLabels(issue.number, [unresolvedHCILabel.name]);
     // update local storage
-    updateLocalStorage(unresolvedHCILabel.name);
+    updateLocalStorage(unresolvedHCILabel);
   };
 
   const setResolving = (prev) => {
@@ -46,7 +46,7 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
     // add new label
     addGitHubLabels(issue.number, [resolvingHCILabel.name]);
     // update local storage
-    updateLocalStorage(resolvingHCILabel.name);
+    updateLocalStorage(resolvingHCILabel);
   };
 
   const setResolved = (prev) => {
@@ -55,7 +55,7 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
     // add new label
     addGitHubLabels(issue.number, [resolvedHCILabel.name]);
     // update local storage
-    updateLocalStorage(resolvedHCILabel.name);
+    updateLocalStorage(resolvedHCILabel);
   };
 
   return (
@@ -90,10 +90,10 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
           );
         })}
         <p></p>
-        {issue.progressTag == null && (
+        {issue.progressTag.name == null && (
           <button onClick={() => setUnresolved(null)}>{'>'}</button>
         )}
-        {issue.progressTag == unresolvedHCILabel.name && (
+        {issue.progressTag.name == unresolvedHCILabel.name && (
           <>
             <button onClick={() => setUnassigned(unresolvedHCILabel.name)}>
               {`<`}
@@ -103,7 +103,7 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
             </button>
           </>
         )}
-        {issue.progressTag == resolvingHCILabel.name && (
+        {issue.progressTag.name == resolvingHCILabel.name && (
           <>
             <button
               onClick={() => setUnresolved(resolvingHCILabel.name)}
@@ -113,7 +113,7 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
             </button>
           </>
         )}
-        {issue.progressTag == resolvedHCILabel.name && (
+        {issue.progressTag.name == resolvedHCILabel.name && (
           <button
             onClick={() => setResolving(resolvedHCILabel.name)}
           >{`<`}</button>

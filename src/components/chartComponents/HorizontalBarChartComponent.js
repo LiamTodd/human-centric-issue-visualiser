@@ -87,7 +87,7 @@ export default function HorizontalBarChartComponent() {
     let count = 0;
     const issues = JSON.parse(localStorage.getItem(ISSUES_KEY));
     issues.forEach((issue) => {
-      if (issue.progressTag == labelName) {
+      if (issue.progressTag.name == labelName) {
         count += 1;
       }
     });

@@ -31,7 +31,7 @@ export default function ProgressViewComponent() {
         <h5>Unassigned</h5>
         <div>
           {issues
-            .filter((issue) => issue.progressTag == null)
+            .filter((issue) => issue.progressTag.name == null)
             .map((issue) => {
               return (
                 <div>
@@ -48,7 +48,7 @@ export default function ProgressViewComponent() {
       <div>
         <h5>Unresolved</h5>
         {issues
-          .filter((issue) => issue.progressTag == unresolvedHCILabel.name)
+          .filter((issue) => issue.progressTag.name == unresolvedHCILabel.name)
           .map((issue) => {
             return (
               <div>
@@ -64,7 +64,7 @@ export default function ProgressViewComponent() {
       <div>
         <h5>Resolving</h5>
         {issues
-          .filter((issue) => issue.progressTag == resolvingHCILabel.name)
+          .filter((issue) => issue.progressTag.name == resolvingHCILabel.name)
           .map((issue) => {
             return (
               <div>
@@ -80,7 +80,7 @@ export default function ProgressViewComponent() {
       <div>
         <h5>Resolved</h5>
         {issues
-          .filter((issue) => issue.progressTag == resolvedHCILabel.name)
+          .filter((issue) => issue.progressTag.name == resolvedHCILabel.name)
           .map((issue) => {
             return (
               <div>

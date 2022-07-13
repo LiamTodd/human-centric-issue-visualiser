@@ -5,15 +5,16 @@ import * as repoLabels from './labels';
 
 export const ISSUES_KEY = 'issues';
 const statusLabels = [
-  repoLabels.unresolvedHCILabel.name,
-  repoLabels.resolvingHCILabel.name,
-  repoLabels.resolvedHCILabel.name
+  repoLabels.unresolvedHCILabel,
+  repoLabels.resolvingHCILabel,
+  repoLabels.resolvedHCILabel
 ];
 const priorityLabels = [
   repoLabels.lowPriorityLabel,
   repoLabels.mediumPriorityLabel,
   repoLabels.highPriorityLabel
 ];
+const nullLabel = { name: null, color: null };
 
 export const setupLocalStorage = async () => {
   // get issues and comments
@@ -33,13 +34,17 @@ export const setupLocalStorage = async () => {
           })
           .then(() => {
             // set set status labels
-            const labels = issue.labels.map((label) => {
-              return label.name;
-            });
+            const labels = issue.labels;
             // uses the assumption that only one status label is applied to each issue
-            let thisLabel = null;
+            let thisLabel = nullLabel;
             labels.forEach((label) => {
-              if (statusLabels.includes(label)) {
+              if (
+                statusLabels
+                  .map((label) => {
+                    return label.name;
+                  })
+                  .includes(label.name)
+              ) {
                 thisLabel = label;
               }
             });
@@ -47,12 +52,9 @@ export const setupLocalStorage = async () => {
           })
           .then(() => {
             // set priority labels
-            // const labels = issue.labels.map((label) => {
-            //   return label.name;
-            // });
             const labels = issue.labels;
             // uses the assumption that only one priority label is applied to each issue
-            let thisLabel = { name: null, color: null }; // dummy label
+            let thisLabel = nullLabel;
             labels.forEach((label) => {
               if (
                 priorityLabels
