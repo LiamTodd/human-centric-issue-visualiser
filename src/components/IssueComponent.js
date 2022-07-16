@@ -36,6 +36,31 @@ export default function IssueComponent({ issue }) {
         </a>
         <h5>{issue.body}</h5>
 
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          {issue.bodyHCILabels.map((label) => {
+            return (
+              <div
+                style={{
+                  borderRadius: '100%',
+                  height: '4vh',
+                  width: '4vh',
+                  borderWidth: '2px',
+                  borderStyle: 'solid',
+                  borderColor: 'black',
+                  padding: '10px',
+                  margin: '0.2%',
+                  backgroundColor: '#' + label.color + '80'
+                }}
+              ></div>
+            );
+          })}
+        </div>
+
         <p>
           Raised by {issue.user.login}, Last updated at {issue.updated_at}
         </p>
@@ -54,7 +79,7 @@ export default function IssueComponent({ issue }) {
               margin: '10px'
             }}
           >
-            HCIs:
+            HCI Overview:
             {issue.HCILabels.map((HCILabel) => {
               return (
                 <div

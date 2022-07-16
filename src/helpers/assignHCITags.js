@@ -14,6 +14,10 @@ export const assignHCITags = async (issue) => {
   issue.confidence = result.confidence;
   let HCILabels = result.categories;
 
+  // set hci labels for body (exclude comments)
+  const mappedBodyLabels = mapToLabels(HCILabels);
+  issue.bodyHCILabels = mappedBodyLabels;
+
   // look through each issue comment on use ml tool to determine tags
   // const comments = await getGitHubIssueComments(issue.number);
   const comments = issue.cached_comments;
