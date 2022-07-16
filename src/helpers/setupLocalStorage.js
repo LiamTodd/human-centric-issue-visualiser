@@ -1,6 +1,6 @@
 import { getGitHubIssues } from './getGitHubIssues';
 import { getGitHubIssueComments } from './getGitHubIssueComments';
-import { assignHCILabels } from './assignHCITags';
+import { assignHCITags } from './assignHCITags';
 import * as repoLabels from './labels';
 
 export const ISSUES_KEY = 'issues';
@@ -27,10 +27,10 @@ export const setupLocalStorage = async () => {
       })
       .then(() => {
         // get ML response
-        console.log('assigning labels, ', issue.number);
-        assignHCILabels(issue)
+        assignHCITags(issue)
           .then((HCIs) => {
             issue.HCILabels = HCIs;
+            // R11: THIS IS WHERE TO START LOOKING
           })
           .then(() => {
             // set set status labels
