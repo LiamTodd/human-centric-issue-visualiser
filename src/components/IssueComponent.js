@@ -12,6 +12,12 @@ export default function IssueComponent({ issue }) {
     getComments();
   }, []);
 
+  const [showComments, setShowComments] = useState(false);
+
+  const toggleShowComments = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <>
       <div
@@ -68,32 +74,38 @@ export default function IssueComponent({ issue }) {
               );
             })}
           </div>
-          Comments:
-          {comments.map((comment) => {
-            return (
-              <div
-                style={{
-                  borderWidth: '2px',
-                  borderStyle: 'solid',
-                  borderColor: 'black',
-                  margin: '10px'
-                }}
-                key={uuid.v4()}
-              >
-                {comment.body}
-                <div
-                  style={{
-                    borderWidth: '2px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
-                    margin: '10px'
-                  }}
-                >
-                  By: {comment.user.login} on {comment.created_at}
-                </div>
-              </div>
-            );
-          })}
+          <button onClick={toggleShowComments}>Comments</button>
+          {showComments ? (
+            comments.length == 0 ? (
+              <div>There are no comments under this issue</div>
+            ) : (
+              comments.map((comment) => {
+                return (
+                  <div
+                    style={{
+                      borderWidth: '2px',
+                      borderStyle: 'solid',
+                      borderColor: 'black',
+                      margin: '10px'
+                    }}
+                    key={uuid.v4()}
+                  >
+                    {comment.body}
+                    <div
+                      style={{
+                        borderWidth: '2px',
+                        borderStyle: 'solid',
+                        borderColor: 'black',
+                        margin: '10px'
+                      }}
+                    >
+                      By: {comment.user.login} on {comment.created_at}
+                    </div>
+                  </div>
+                );
+              })
+            )
+          ) : null}
         </div>
       </div>
       <p></p>
