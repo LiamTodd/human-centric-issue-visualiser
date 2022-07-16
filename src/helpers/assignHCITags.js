@@ -10,7 +10,9 @@ export const assignHCITags = async (issue) => {
   // return [];
 
   // look through issue body and use ml tool to determine tags
-  let HCILabels = predict(issue.body).categories;
+  let result = predict(issue.body);
+  issue.confidence = result.confidence;
+  let HCILabels = result.categories;
 
   // look through each issue comment on use ml tool to determine tags
   // const comments = await getGitHubIssueComments(issue.number);
@@ -25,10 +27,13 @@ export const assignHCITags = async (issue) => {
     for (let j = 0; j < commentLabels.length - 1; j++) {
       if (commentLabels[j] == 1) {
         HCILabels[j] = commentLabels[j];
+        // if a label is identified, it means the 'no HCIs' tag must not be set
+        HCILabels[HCILabels.length - 1] = 0;
       }
     }
-    console.log(HCILabels);
   }
+
+  // console.log(HCILabels);
 
   const labels = mapToLabels(HCILabels);
   // use addGitHubLabels to add relevant labels to the issue

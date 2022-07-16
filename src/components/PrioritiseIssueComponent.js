@@ -83,9 +83,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
               }}
               key={uuid.v4()}
             >
-              {HCILabel.name +
-                ', ML Confidence: ' +
-                Math.random().toPrecision(2)}
+              {HCILabel.name + ', ML Confidence: ' + issue.confidence}
             </div>
           );
         })}

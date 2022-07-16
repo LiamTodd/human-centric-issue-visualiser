@@ -3,7 +3,7 @@ export const predict = (body) => {
   const numberOfCategories = 3;
   let categories = [];
   for (let i = 0; i < numberOfCategories; i++) {
-    const rand = Math.floor(Math.random() * 5); // 1/5 chance to be assigned each HCI tag
+    const rand = Math.floor(Math.random() * 4); // 1/4 chance to be assigned each HCI tag
     if (rand == 1) {
       categories[i] = 1;
     } else {
@@ -22,5 +22,5 @@ export const predict = (body) => {
   } else {
     categories.push(1);
   }
-  return { categories: categories };
+  return { categories: categories, confidence: Math.random().toPrecision(2) };
 };
