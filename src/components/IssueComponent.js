@@ -67,9 +67,7 @@ export default function IssueComponent({ issue }) {
                   }}
                   key={uuid.v4()}
                 >
-                  {HCILabel.name +
-                    ', ML Confidence: ' +
-                    Math.random().toPrecision(2)}
+                  {HCILabel.name + ', ML Confidence: ' + issue.confidence}
                 </div>
               );
             })}
@@ -91,6 +89,32 @@ export default function IssueComponent({ issue }) {
                     key={uuid.v4()}
                   >
                     {comment.body}
+
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      {comment.HCILabels.map((label) => {
+                        return (
+                          <div
+                            style={{
+                              borderRadius: '100%',
+                              height: '4vh',
+                              width: '4vh',
+                              borderWidth: '2px',
+                              borderStyle: 'solid',
+                              borderColor: 'black',
+                              padding: '10px',
+                              margin: '0.2%',
+                              backgroundColor: '#' + label.color + '80'
+                            }}
+                          ></div>
+                        );
+                      })}
+                    </div>
+
                     <div
                       style={{
                         borderWidth: '2px',
