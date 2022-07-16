@@ -86,10 +86,11 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
               }}
               key={uuid.v4()}
             >
-              {HCILabel.name + ', ML Confidence: ' + issue.confidence}
+              {HCILabel.name}
             </div>
           );
         })}
+        ML Confidence: {issue.confidence}
         <p></p>
         {issue.progressTag.name == null && (
           <button onClick={() => setUnresolved(null)}>{'>'}</button>

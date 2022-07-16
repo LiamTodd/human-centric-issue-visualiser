@@ -92,10 +92,11 @@ export default function IssueComponent({ issue }) {
                   }}
                   key={uuid.v4()}
                 >
-                  {HCILabel.name + ', ML Confidence: ' + issue.confidence}
+                  {HCILabel.name}
                 </div>
               );
             })}
+            ML Confidence: {issue.confidence}
           </div>
           <button onClick={toggleShowComments}>Comments</button>
           {showComments ? (

@@ -83,10 +83,11 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
               }}
               key={uuid.v4()}
             >
-              {HCILabel.name + ', ML Confidence: ' + issue.confidence}
+              {HCILabel.name}
             </div>
           );
         })}
+        ML Confidence: {issue.confidence}
         <p></p>
         {issue.priority.name == null && (
           <button onClick={() => setLowPriority(null)}>{'>'}</button>
