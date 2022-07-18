@@ -39,29 +39,17 @@ export default function AuthenticateComponent() {
       <div style={{ textAlign: 'left' }}>
         <div>
           <label for="username">GitHub Username:</label>
-          <input
-            type="text"
-            // value={credentials.username}
-            onChange={updateUsername}
-          ></input>
+          <input type="text" onChange={updateUsername}></input>
         </div>
 
         <div>
           <label for="repo">GitHub Repository Name:</label>
-          <input
-            type="text"
-            // value={credentials.repoName}
-            onChange={updateRepoName}
-          ></input>
+          <input type="text" onChange={updateRepoName}></input>
         </div>
 
         <div>
           <label for="token">GitHub Access Token:</label>
-          <input
-            type="text"
-            // value={credentials.token}
-            onChange={updateToken}
-          ></input>
+          <input type="password" onChange={updateToken}></input>
         </div>
 
         <input

@@ -48,7 +48,6 @@ export const assignHCITags = async (issue) => {
     return labels;
   });
 
-  console.log(res);
   return res;
 };
 
@@ -73,15 +72,21 @@ const cleanUp = async (issue) => {
   // remove labels so double ups don't happen
 
   let x = []; // this is used to ensure .then works as expected in assignHCITags above
-  x += await removeGitHubLabel(issue.number, repoLabels.appUsageLabel.name);
+  x += await removeGitHubLabel(
+    issue.number,
+    repoLabels.appUsageLabel.name
+  ).catch(() => {});
   x += await removeGitHubLabel(
     issue.number,
     repoLabels.inclusivenessLabel.name
-  );
-  x += await removeGitHubLabel(issue.number, repoLabels.userReactionLabel.name);
+  ).catch(() => {});
+  x += await removeGitHubLabel(
+    issue.number,
+    repoLabels.userReactionLabel.name
+  ).catch(() => {});
   x += await removeGitHubLabel(
     issue.number,
     repoLabels.noHCIIdentifiedLabel.name
-  );
+  ).catch(() => {});
   return x;
 };
