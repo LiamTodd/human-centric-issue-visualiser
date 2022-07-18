@@ -30,7 +30,6 @@ export const setupLocalStorage = async () => {
         assignHCITags(issue)
           .then((HCIs) => {
             issue.HCILabels = HCIs;
-            // R11: THIS IS WHERE TO START LOOKING
           })
           .then(() => {
             // set set status labels

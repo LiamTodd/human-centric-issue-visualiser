@@ -1,56 +1,56 @@
 import { predict } from './mockMLTool';
 import { addGitHubLabels } from './addGitHubLabels';
-import { getGitHubIssueComments } from './getGitHubIssueComments';
 import * as repoLabels from './labels';
 import { removeGitHubLabel } from './removeGitHubLabel';
 
 export const assignHCITags = async (issue) => {
   // cleanup for testing purposes
-  cleanUp(issue);
-  // return [];
+  const res = cleanUp(issue).then(() => {
+    // look through issue body and use ml tool to determine tags
+    let result = predict(issue.body);
+    issue.confidence = result.confidence;
+    let HCILabels = result.categories;
 
-  // look through issue body and use ml tool to determine tags
-  let result = predict(issue.body);
-  issue.confidence = result.confidence;
-  let HCILabels = result.categories;
+    // set hci labels for body (exclude comments)
+    const mappedBodyLabels = mapToLabels(HCILabels);
+    issue.bodyHCILabels = mappedBodyLabels;
 
-  // set hci labels for body (exclude comments)
-  const mappedBodyLabels = mapToLabels(HCILabels);
-  issue.bodyHCILabels = mappedBodyLabels;
+    // look through each issue comment on use ml tool to determine tags
+    // const comments = await getGitHubIssueComments(issue.number);
+    const comments = issue.cached_comments;
+    for (let i = 0; i < comments.length; i++) {
+      const commentLabels = predict(comments[i].body).categories;
+      const mappedCommentLabels = mapToLabels(commentLabels);
+      comments[i].HCILabels = mappedCommentLabels;
 
-  // look through each issue comment on use ml tool to determine tags
-  // const comments = await getGitHubIssueComments(issue.number);
-  const comments = issue.cached_comments;
-  for (let i = 0; i < comments.length; i++) {
-    const commentLabels = predict(comments[i].body).categories;
-    const mappedCommentLabels = mapToLabels(commentLabels);
-    comments[i].HCILabels = mappedCommentLabels;
-
-    // update HCILabels by 'ORing' over first 3 elements of HCILabels and commentLabels
-    // only iterate over first 3
-    for (let j = 0; j < commentLabels.length - 1; j++) {
-      if (commentLabels[j] == 1) {
-        HCILabels[j] = commentLabels[j];
-        // if a label is identified, it means the 'no HCIs' tag must not be set
-        HCILabels[HCILabels.length - 1] = 0;
+      // update HCILabels by 'ORing' over first 3 elements of HCILabels and commentLabels
+      // only iterate over first 3
+      for (let j = 0; j < commentLabels.length - 1; j++) {
+        if (commentLabels[j] == 1) {
+          HCILabels[j] = commentLabels[j];
+          // if a label is identified, it means the 'no HCIs' tag must not be set
+          HCILabels[HCILabels.length - 1] = 0;
+        }
       }
     }
-  }
 
-  // console.log(HCILabels);
+    // console.log(HCILabels);
 
-  const labels = mapToLabels(HCILabels);
-  // use addGitHubLabels to add relevant labels to the issue
-  if (labels.length > 0) {
-    addGitHubLabels(
-      issue.number,
-      labels.map((label) => {
-        return label.name;
-      })
-    );
-  }
+    const labels = mapToLabels(HCILabels);
+    // use addGitHubLabels to add relevant labels to the issue
+    if (labels.length > 0) {
+      addGitHubLabels(
+        issue.number,
+        labels.map((label) => {
+          return label.name;
+        })
+      );
+    }
 
-  return labels;
+    return labels;
+  });
+
+  return res;
 };
 
 const mapToLabels = (HCILabels) => {
@@ -70,23 +70,19 @@ const mapToLabels = (HCILabels) => {
   return labels;
 };
 
-const cleanUp = (issue) => {
-  // for mocking purposes
+const cleanUp = async (issue) => {
   // remove labels so double ups don't happen
-  const labelNames = issue.labels.map((label) => {
-    return label.name;
-  });
 
-  if (labelNames.includes(repoLabels.appUsageLabel.name)) {
-    removeGitHubLabel(issue.number, repoLabels.appUsageLabel.name);
-  }
-  if (labelNames.includes(repoLabels.inclusivenessLabel.name)) {
-    removeGitHubLabel(issue.number, repoLabels.inclusivenessLabel.name);
-  }
-  if (labelNames.includes(repoLabels.userReactionLabel.name)) {
-    removeGitHubLabel(issue.number, repoLabels.userReactionLabel.name);
-  }
-  if (labelNames.includes(repoLabels.noHCIIdentifiedLabel.name)) {
-    removeGitHubLabel(issue.number, repoLabels.noHCIIdentifiedLabel.name);
-  }
+  let x = []; // this is used to ensure .then works as expected in assignHCITags above
+  x += await removeGitHubLabel(issue.number, repoLabels.appUsageLabel.name);
+  x += await removeGitHubLabel(
+    issue.number,
+    repoLabels.inclusivenessLabel.name
+  );
+  x += await removeGitHubLabel(issue.number, repoLabels.userReactionLabel.name);
+  x += await removeGitHubLabel(
+    issue.number,
+    repoLabels.noHCIIdentifiedLabel.name
+  );
+  return x;
 };
