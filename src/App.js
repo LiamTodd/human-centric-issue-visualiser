@@ -11,31 +11,37 @@ import { setupLocalStorage } from './helpers/setupLocalStorage';
 import { createGitHubLabels } from './helpers/createGitHubLabels';
 
 function App() {
-  setupLocalStorage();
-  createGitHubLabels();
   return (
     <div className="App">
-      {/* <AuthenticateComponent></AuthenticateComponent> */}
-      <HashRouter>
-        <Navbar></Navbar>
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<OverviewComponent></OverviewComponent>} />
-            <Route
-              path="/list"
-              element={<ListViewComponent></ListViewComponent>}
-            />
-            <Route
-              path="/prioritise"
-              element={<PrioritiseViewComponent></PrioritiseViewComponent>}
-            />
-            <Route
-              path="/progress"
-              element={<ProgressViewComponent></ProgressViewComponent>}
-            />
-          </Routes>
-        </div>
-      </HashRouter>
+      {
+        <HashRouter>
+          <Navbar></Navbar>
+          <div className="content">
+            <Routes>
+              <Route
+                path="/overview"
+                element={<OverviewComponent></OverviewComponent>}
+              />
+              <Route
+                path="/list"
+                element={<ListViewComponent></ListViewComponent>}
+              />
+              <Route
+                path="/prioritise"
+                element={<PrioritiseViewComponent></PrioritiseViewComponent>}
+              />
+              <Route
+                path="/progress"
+                element={<ProgressViewComponent></ProgressViewComponent>}
+              />
+              <Route
+                path="/"
+                element={<AuthenticateComponent></AuthenticateComponent>}
+              />
+            </Routes>
+          </div>
+        </HashRouter>
+      }
     </div>
   );
 }

@@ -1,17 +1,20 @@
-import { repo, owner, token } from './testCredentials';
+// import { repo, owner, token } from './testCredentials';
 
 const { Octokit } = require('@octokit/rest');
+const CREDENTIALS_KEY = 'credentials';
 
 export const getGitHubIssueComments = async (issueNumber) => {
   const octokit = new Octokit({
-    auth: token
+    auth: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).token
   });
 
   const response = await octokit.request(
-    `GET /repos/${owner}/${repo}/issues/${issueNumber}/comments`,
+    `GET /repos/${JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).userName}/${
+      JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName
+    }/issues/${issueNumber}/comments`,
     {
-      owner: owner,
-      repo: repo,
+      owner: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).userName,
+      repo: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName,
       issue_number: issueNumber
     }
   );

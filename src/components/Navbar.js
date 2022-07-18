@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+const CREDENTIALS = 'credentials';
+
 export default function Navbar() {
   return (
     <div
@@ -8,8 +10,9 @@ export default function Navbar() {
       style={{ width: '100%', fontSize: '24px', padding: '20px' }}
     >
       <NavLink exact="true" to="/">
-        Overview
+        Link Repository
       </NavLink>
+      <NavLink to="/overview">Overview</NavLink>
       <NavLink to="/list">List</NavLink>
       <NavLink to="/prioritise">Prioritise</NavLink>
       <NavLink to="/progress">Progress</NavLink>

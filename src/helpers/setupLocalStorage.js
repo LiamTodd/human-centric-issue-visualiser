@@ -68,7 +68,9 @@ export const setupLocalStorage = async () => {
             issue.priority = thisLabel;
           })
           .then(() => {
+            console.log('setting issues in LS');
             localStorage.setItem(ISSUES_KEY, JSON.stringify(issues));
+            console.log(JSON.parse(localStorage.getItem(ISSUES_KEY)));
           });
       });
   });

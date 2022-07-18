@@ -1,17 +1,18 @@
-import { repo, owner, token } from './testCredentials';
+// import { repo, owner, token } from './testCredentials';
 
 const { Octokit } = require('@octokit/rest');
+const CREDENTIALS_KEY = 'credentials';
 
 export const removeGitHubLabel = async (issueNumber, name) => {
   const octokit = new Octokit({
-    auth: token
+    auth: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).token
   });
 
   await octokit.request(
     `DELETE /repos/{owner}/{repo}/issues/{issue_number}/labels/{name}`,
     {
-      owner: owner,
-      repo: repo,
+      owner: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).userName,
+      repo: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName,
       issue_number: issueNumber,
       name: name
     }
