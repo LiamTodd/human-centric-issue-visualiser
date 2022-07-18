@@ -1,5 +1,4 @@
 export const predict = (body) => {
-  // console.log(body);
   const numberOfCategories = 3;
   let categories = [];
   for (let i = 0; i < numberOfCategories; i++) {

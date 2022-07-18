@@ -1,5 +1,4 @@
 import { getGitHubLabels } from './getGitHubLabels';
-// import { repo, owner, token } from './testCredentials';
 import * as labels from './labels';
 
 const { Octokit } = require('@octokit/rest');

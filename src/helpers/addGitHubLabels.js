@@ -1,5 +1,3 @@
-// import { repo, owner, token } from './testCredentials';
-
 const { Octokit } = require('@octokit/rest');
 
 const CREDENTIALS_KEY = 'credentials';
