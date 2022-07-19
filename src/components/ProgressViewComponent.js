@@ -33,7 +33,13 @@ export default function ProgressViewComponent() {
             gridGap: 20
           }}
         >
-          <div>
+          <div
+            style={{
+              backgroundColor: '#E6E6E6',
+              padding: '10px',
+              borderRadius: '10px'
+            }}
+          >
             <h5>Unassigned</h5>
             <div>
               {issues
@@ -46,12 +52,19 @@ export default function ProgressViewComponent() {
                         key={uuid.v4()}
                         setIssues={setIssues}
                       ></ProgressIssueComponent>
+                      <br></br>
                     </div>
                   );
                 })}
             </div>
           </div>
-          <div>
+          <div
+            style={{
+              backgroundColor: '#E6E6E6',
+              padding: '10px',
+              borderRadius: '10px'
+            }}
+          >
             <h5>Unresolved</h5>
             {issues
               .filter(
@@ -65,11 +78,18 @@ export default function ProgressViewComponent() {
                       key={uuid.v4()}
                       setIssues={setIssues}
                     ></ProgressIssueComponent>
+                    <br></br>
                   </div>
                 );
               })}
           </div>
-          <div>
+          <div
+            style={{
+              backgroundColor: '#E6E6E6',
+              padding: '10px',
+              borderRadius: '10px'
+            }}
+          >
             <h5>Resolving</h5>
             {issues
               .filter(
@@ -83,11 +103,18 @@ export default function ProgressViewComponent() {
                       key={uuid.v4()}
                       setIssues={setIssues}
                     ></ProgressIssueComponent>
+                    <br></br>
                   </div>
                 );
               })}
           </div>
-          <div>
+          <div
+            style={{
+              backgroundColor: '#E6E6E6',
+              padding: '10px',
+              borderRadius: '10px'
+            }}
+          >
             <h5>Resolved</h5>
             {issues
               .filter(
@@ -101,6 +128,7 @@ export default function ProgressViewComponent() {
                       key={uuid.v4()}
                       setIssues={setIssues}
                     ></ProgressIssueComponent>
+                    <br></br>
                   </div>
                 );
               })}

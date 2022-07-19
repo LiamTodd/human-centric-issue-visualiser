@@ -33,8 +33,16 @@ export default function PrioritiseViewComponent() {
             gridGap: 20
           }}
         >
-          <div>
-            <h5 style={{ backgroundColor: 'lightgrey' }}>Unassigned</h5>
+          <div
+            style={{
+              backgroundColor: '#E6E6E6',
+              padding: '10px',
+              borderRadius: '10px'
+            }}
+          >
+            <h5 style={{ backgroundColor: 'lightgrey', borderRadius: '10px' }}>
+              Unassigned
+            </h5>
             <div>
               {issues
                 .filter((issue) => issue.priority.name == null)
@@ -46,13 +54,25 @@ export default function PrioritiseViewComponent() {
                         key={uuid.v4()}
                         setIssues={setIssues}
                       ></PrioritiseIssueComponent>
+                      <br></br>
                     </div>
                   );
                 })}
             </div>
           </div>
-          <div>
-            <h5 style={{ backgroundColor: '#' + lowPriorityLabel.color }}>
+          <div
+            style={{
+              backgroundColor: '#' + lowPriorityLabel.color + '40',
+              padding: '10px',
+              borderRadius: '10px'
+            }}
+          >
+            <h5
+              style={{
+                backgroundColor: '#' + lowPriorityLabel.color,
+                borderRadius: '10px'
+              }}
+            >
               Low Priority
             </h5>
             {issues
@@ -65,12 +85,24 @@ export default function PrioritiseViewComponent() {
                       key={uuid.v4()}
                       setIssues={setIssues}
                     ></PrioritiseIssueComponent>
+                    <br></br>
                   </div>
                 );
               })}
           </div>
-          <div>
-            <h5 style={{ backgroundColor: '#' + mediumPriorityLabel.color }}>
+          <div
+            style={{
+              backgroundColor: '#' + mediumPriorityLabel.color + '60',
+              padding: '10px',
+              borderRadius: '10px'
+            }}
+          >
+            <h5
+              style={{
+                backgroundColor: '#' + mediumPriorityLabel.color,
+                borderRadius: '10px'
+              }}
+            >
               Medium Priority
             </h5>
             {issues
@@ -85,12 +117,24 @@ export default function PrioritiseViewComponent() {
                       key={uuid.v4()}
                       setIssues={setIssues}
                     ></PrioritiseIssueComponent>
+                    <br></br>
                   </div>
                 );
               })}
           </div>
-          <div>
-            <h5 style={{ backgroundColor: '#' + highPriorityLabel.color }}>
+          <div
+            style={{
+              backgroundColor: '#' + highPriorityLabel.color + '60',
+              padding: '10px',
+              borderRadius: '10px'
+            }}
+          >
+            <h5
+              style={{
+                backgroundColor: '#' + highPriorityLabel.color,
+                borderRadius: '10px'
+              }}
+            >
               High Priority
             </h5>
             {issues
@@ -103,6 +147,7 @@ export default function PrioritiseViewComponent() {
                       key={uuid.v4()}
                       setIssues={setIssues}
                     ></PrioritiseIssueComponent>
+                    <br></br>
                   </div>
                 );
               })}
