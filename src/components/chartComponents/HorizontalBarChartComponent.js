@@ -10,8 +10,9 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import * as repoLabels from '../../helpers/labels';
-import { repo } from '../../helpers/testCredentials';
 import { ISSUES_KEY } from '../../helpers/setupLocalStorage';
+
+const CREDENTIALS_KEY = 'credentials';
 
 export default function HorizontalBarChartComponent() {
   ChartJS.register(
@@ -98,7 +99,9 @@ export default function HorizontalBarChartComponent() {
     labels,
     datasets: [
       {
-        label: 'Issues in ' + repo,
+        label:
+          'Issues in ' +
+          JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName,
         data: getProgressCount(),
         borderColor: hexToRgb(repoLabels.resolvedHCILabel.color, 1),
         backgroundColor: hexToRgb(repoLabels.resolvedHCILabel.color, 0.7)
