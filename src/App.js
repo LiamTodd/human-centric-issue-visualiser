@@ -1,6 +1,6 @@
 import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/NavbarComponent';
 import AuthenticateComponent from './components/AuthenticateComponent';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import OverviewComponent from './components/OverviewComponent';
