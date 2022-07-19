@@ -5,7 +5,7 @@ import { removeGitHubLabel } from './removeGitHubLabel';
 
 export const assignHCITags = async (issue) => {
   // cleanup for testing purposes
-  const res = cleanUp(issue).then(() => {
+  const labels = cleanUp(issue).then(() => {
     // look through issue body and use ml tool to determine tags
     let result = predict(issue.body);
     issue.confidence = result.confidence;
@@ -48,7 +48,7 @@ export const assignHCITags = async (issue) => {
     return labels;
   });
 
-  return res;
+  return labels;
 };
 
 const mapToLabels = (HCILabels) => {
@@ -71,22 +71,22 @@ const mapToLabels = (HCILabels) => {
 const cleanUp = async (issue) => {
   // remove labels so double ups don't happen
 
-  let x = []; // this is used to ensure .then works as expected in assignHCITags above
-  x += await removeGitHubLabel(
+  let flag = []; // this is used to ensure .then works as expected in assignHCITags above
+  flag += await removeGitHubLabel(
     issue.number,
     repoLabels.appUsageLabel.name
   ).catch(() => {});
-  x += await removeGitHubLabel(
+  flag += await removeGitHubLabel(
     issue.number,
     repoLabels.inclusivenessLabel.name
   ).catch(() => {});
-  x += await removeGitHubLabel(
+  flag += await removeGitHubLabel(
     issue.number,
     repoLabels.userReactionLabel.name
   ).catch(() => {});
-  x += await removeGitHubLabel(
+  flag += await removeGitHubLabel(
     issue.number,
     repoLabels.noHCIIdentifiedLabel.name
   ).catch(() => {});
-  return x;
+  return flag;
 };
