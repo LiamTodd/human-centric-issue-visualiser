@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { createGitHubLabels } from '../helpers/createGitHubLabels';
-import { CREDENTIALS_KEY } from '../helpers/localStorageKeys';
+import { CREDENTIALS_KEY, READY_KEY } from '../helpers/localStorageKeys';
 import { setupLocalStorage } from '../helpers/setupLocalStorage';
+
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export default function AuthenticateComponent() {
   const [credentials, setCredentials] = useState({
@@ -38,30 +41,50 @@ export default function AuthenticateComponent() {
 
   return (
     <div>
-      <div style={{ textAlign: 'left' }}>
-        <div>
-          <label for="username">GitHub Username:</label>
-          <input type="text" onChange={updateUsername}></input>
-        </div>
+      <br></br>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>GitHub Repository Name</Form.Label>
+          <br></br>
+          <input
+            style={{ width: '30%' }}
+            type="text"
+            onChange={updateRepoName}
+            placeholder="Enter GitHub Repository Name"
+          ></input>
+        </Form.Group>
 
-        <div>
-          <label for="repo">GitHub Repository Name:</label>
-          <input type="text" onChange={updateRepoName}></input>
-        </div>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>GitHub Repository Owner</Form.Label>
+          <br></br>
+          <input
+            style={{ width: '30%' }}
+            type="text"
+            onChange={updateUsername}
+            placeholder="Enter GitHub Username of the Repository Owner"
+          ></input>
+        </Form.Group>
 
-        <div>
-          <label for="token">GitHub Access Token:</label>
-          <input type="password" onChange={updateToken}></input>
-        </div>
-
-        <input
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>GitHub Access Token</Form.Label>
+          <br></br>
+          <input
+            style={{ width: '30%' }}
+            type="password"
+            placeholder="Enter GitHub Access Token"
+            onChange={updateToken}
+          ></input>
+        </Form.Group>
+        <Button
+          variant="outline-secondary"
           type="submit"
-          value="Link to repository"
           onClick={() => {
             authenticateAndSetUp();
           }}
-        ></input>
-      </div>
+        >
+          Link to Repository
+        </Button>
+      </Form>
     </div>
   );
 }
