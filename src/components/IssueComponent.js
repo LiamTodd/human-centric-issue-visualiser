@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as uuid from 'uuid';
 
+import Card from 'react-bootstrap/Card';
+
 export default function IssueComponent({ issue }) {
   const [comments, setComments] = useState([]);
 
@@ -20,84 +22,56 @@ export default function IssueComponent({ issue }) {
 
   return (
     <>
-      <div
-        style={{
-          borderWidth: '2px',
-          borderStyle: 'solid',
-          borderColor: 'black'
-        }}
-      >
-        <h3 style={{ backgroundColor: '#' + issue.priority.color }}>
+      <Card border="secondary">
+        <Card.Header style={{ backgroundColor: '#' + issue.priority.color }}>
           {issue.priority.name}
-        </h3>
-
-        <a href={issue.html_url}>
-          <h3>{issue.title}</h3>
-        </a>
-        <h5>{issue.body}</h5>
-
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center'
-          }}
-        >
-          {issue.bodyHCILabels.map((label) => {
-            return (
-              <div
-                style={{
-                  borderRadius: '100%',
-                  height: '4vh',
-                  width: '4vh',
-                  borderWidth: '2px',
-                  borderStyle: 'solid',
-                  borderColor: 'black',
-                  padding: '10px',
-                  margin: '0.2%',
-                  backgroundColor: '#' + label.color + '80'
-                }}
-              ></div>
-            );
-          })}
-        </div>
-
-        <p>
-          Raised by {issue.user.login}, Last updated at {issue.updated_at}
-        </p>
-
-        <div
-          style={{
-            paddingLeft: '10%',
-            paddingRight: '10%',
-            margin: '10px'
-          }}
-        >
-          <div
-            style={{
-              paddingLeft: '10%',
-              paddingRight: '10%',
-              margin: '10px'
-            }}
-          >
-            HCI Overview:
-            {issue.HCILabels.map((HCILabel) => {
+        </Card.Header>
+        <Card.Body>
+          <a href={issue.html_url} style={{ color: 'black' }}>
+            <Card.Title>{issue.title}</Card.Title>
+          </a>
+          {issue.body}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {issue.bodyHCILabels.map((label) => {
               return (
                 <div
                   style={{
+                    borderRadius: '100%',
+                    height: '4vh',
+                    width: '4vh',
                     borderWidth: '2px',
                     borderStyle: 'solid',
                     borderColor: 'black',
-                    margin: '10px',
-                    backgroundColor: '#' + HCILabel.color + '80' // change opacity
+                    padding: '10px',
+                    margin: '0.2%',
+                    backgroundColor: '#' + label.color + '80'
                   }}
-                  key={uuid.v4()}
-                >
-                  {HCILabel.name}
-                </div>
+                ></div>
               );
             })}
-            ML Confidence: {issue.confidence}
           </div>
+          <br></br>
+          Raised by {issue.user.login}, Last updated at{' '}
+          {Date(issue.updated_at).toLocaleString()}
+          <br></br>
+          HCIs:
+          {issue.HCILabels.map((HCILabel) => {
+            return (
+              <div
+                style={{
+                  borderWidth: '2px',
+                  borderStyle: 'solid',
+                  borderColor: 'black',
+                  margin: '10px',
+                  backgroundColor: '#' + HCILabel.color + '80' // change opacity
+                }}
+                key={uuid.v4()}
+              >
+                {HCILabel.name}
+              </div>
+            );
+          })}
+          <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
           <button onClick={toggleShowComments}>Comments</button>
           {showComments ? (
             comments.length == 0 ? (
@@ -156,9 +130,9 @@ export default function IssueComponent({ issue }) {
               })
             )
           ) : null}
-        </div>
-      </div>
-      <p></p>
+        </Card.Body>
+      </Card>
+      <br></br>
     </>
   );
 }
