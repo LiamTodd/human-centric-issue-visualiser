@@ -3,6 +3,7 @@ import * as uuid from 'uuid';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 
 export default function IssueComponent({ issue }) {
   const [comments, setComments] = useState([]);
@@ -40,9 +41,7 @@ export default function IssueComponent({ issue }) {
                     borderRadius: '100%',
                     height: '4vh',
                     width: '4vh',
-                    borderWidth: '2px',
-                    borderStyle: 'solid',
-                    borderColor: 'black',
+                    borderColor: 'grey',
                     padding: '10px',
                     margin: '0.2%',
                     backgroundColor: '#' + label.color + '80'
@@ -55,22 +54,23 @@ export default function IssueComponent({ issue }) {
           Raised by {issue.user.login}, {issue.created_at.slice(0, 10)}
           <br></br>
           HCIs:
-          {issue.HCILabels.map((HCILabel) => {
-            return (
-              <div
-                style={{
-                  borderWidth: '2px',
-                  borderStyle: 'solid',
-                  borderColor: 'black',
-                  margin: '10px',
-                  backgroundColor: '#' + HCILabel.color + '80' // change opacity
-                }}
-                key={uuid.v4()}
-              >
-                {HCILabel.name}
-              </div>
-            );
-          })}
+          <div style={{ justifyContent: 'center', display: 'flex' }}>
+            {issue.HCILabels.map((HCILabel) => {
+              return (
+                <div
+                  style={{
+                    margin: '10px',
+                    width: '20%',
+                    borderRadius: '20px',
+                    backgroundColor: '#' + HCILabel.color + '80' // change opacity
+                  }}
+                  key={uuid.v4()}
+                >
+                  {HCILabel.name}
+                </div>
+              );
+            })}
+          </div>
           <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
           <Button variant="outline-secondary" onClick={toggleShowComments}>
             Comments
@@ -100,9 +100,6 @@ export default function IssueComponent({ issue }) {
                                     borderRadius: '100%',
                                     height: '4vh',
                                     width: '4vh',
-                                    borderWidth: '2px',
-                                    borderStyle: 'solid',
-                                    borderColor: 'black',
                                     padding: '10px',
                                     margin: '0.2%',
                                     backgroundColor: '#' + label.color + '80'

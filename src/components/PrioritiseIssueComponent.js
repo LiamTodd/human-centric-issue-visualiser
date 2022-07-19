@@ -71,22 +71,23 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
             <Card.Title>{issue.title}</Card.Title>
           </a>
           HCIs:
-          {issue.HCILabels.map((HCILabel) => {
-            return (
-              <div
-                style={{
-                  borderWidth: '2px',
-                  borderStyle: 'solid',
-                  borderColor: 'black',
-                  margin: '10px',
-                  backgroundColor: '#' + HCILabel.color + '80' // change opacity
-                }}
-                key={uuid.v4()}
-              >
-                {HCILabel.name}
-              </div>
-            );
-          })}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {issue.HCILabels.map((HCILabel) => {
+              return (
+                <div
+                  style={{
+                    margin: '10px',
+                    width: '30%',
+                    borderRadius: '20px',
+                    backgroundColor: '#' + HCILabel.color + '80' // change opacity
+                  }}
+                  key={uuid.v4()}
+                >
+                  {HCILabel.name}
+                </div>
+              );
+            })}
+          </div>
           <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
           {issue.priority.name == null && (
             <button onClick={() => setLowPriority(null)}>{'>'}</button>
