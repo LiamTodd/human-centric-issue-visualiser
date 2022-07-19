@@ -10,6 +10,7 @@ import {
 import { ISSUES_KEY } from '../helpers/localStorageKeys';
 
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 export default function PrioritiseIssueComponent({ issue, setIssues }) {
   const updateLocalStorage = (newPriorityLabel) => {
@@ -63,9 +64,6 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
   return (
     <>
       <Card border="secondary">
-        <Card.Header style={{ backgroundColor: '#' + issue.priority.color }}>
-          {issue.priority.name}
-        </Card.Header>
         <Card.Body>
           <a href={issue.html_url} style={{ color: 'black' }}>
             <Card.Title>{issue.title}</Card.Title>
@@ -90,32 +88,53 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
           </div>
           <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
           {issue.priority.name == null && (
-            <button onClick={() => setLowPriority(null)}>{'>'}</button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => setLowPriority(null)}
+            >
+              {'>'}
+            </Button>
           )}
           {issue.priority.name == lowPriorityLabel.name && (
             <>
-              <button onClick={() => setUnassigned(lowPriorityLabel.name)}>
-                {`<`}
-              </button>
-              <button onClick={() => setMediumPriority(lowPriorityLabel.name)}>
+              <Button
+                variant="outline-secondary"
+                onClick={() => setUnassigned(lowPriorityLabel.name)}
+              >
+                {'<'}
+              </Button>
+
+              <Button
+                variant="outline-secondary"
+                onClick={() => setMediumPriority(lowPriorityLabel.name)}
+              >
                 {'>'}
-              </button>
+              </Button>
             </>
           )}
           {issue.priority.name == mediumPriorityLabel.name && (
             <>
-              <button
+              <Button
+                variant="outline-secondary"
                 onClick={() => setLowPriority(mediumPriorityLabel.name)}
-              >{`<`}</button>
-              <button onClick={() => setHighPriority(mediumPriorityLabel.name)}>
+              >
+                {'<'}
+              </Button>
+              <Button
+                variant="outline-secondary"
+                onClick={() => setHighPriority(lowPriorityLabel.name)}
+              >
                 {'>'}
-              </button>
+              </Button>
             </>
           )}
           {issue.priority.name == highPriorityLabel.name && (
-            <button
+            <Button
+              variant="outline-secondary"
               onClick={() => setMediumPriority(highPriorityLabel.name)}
-            >{`<`}</button>
+            >
+              {'<'}
+            </Button>
           )}
         </Card.Body>
       </Card>

@@ -10,6 +10,7 @@ import {
 import { ISSUES_KEY } from '../helpers/localStorageKeys';
 
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 export default function ProgressIssueComponent({ issue, setIssues }) {
   const updateLocalStorage = (newStatusLabel) => {
@@ -90,32 +91,52 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
           </div>
           <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
           {issue.progressTag.name == null && (
-            <button onClick={() => setUnresolved(null)}>{'>'}</button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => setUnresolved(null)}
+            >
+              {'>'}
+            </Button>
           )}
           {issue.progressTag.name == unresolvedHCILabel.name && (
             <>
-              <button onClick={() => setUnassigned(unresolvedHCILabel.name)}>
-                {`<`}
-              </button>
-              <button onClick={() => setResolving(unresolvedHCILabel.name)}>
+              <Button
+                variant="outline-secondary"
+                onClick={() => setUnassigned(unresolvedHCILabel.name)}
+              >
+                {'<'}
+              </Button>
+              <Button
+                variant="outline-secondary"
+                onClick={() => setResolving(unresolvedHCILabel.name)}
+              >
                 {'>'}
-              </button>
+              </Button>
             </>
           )}
           {issue.progressTag.name == resolvingHCILabel.name && (
             <>
-              <button
+              <Button
+                variant="outline-secondary"
                 onClick={() => setUnresolved(resolvingHCILabel.name)}
-              >{`<`}</button>
-              <button onClick={() => setResolved(resolvingHCILabel.name)}>
+              >
+                {'<'}
+              </Button>
+              <Button
+                variant="outline-secondary"
+                onClick={() => setResolved(resolvingHCILabel.name)}
+              >
                 {'>'}
-              </button>
+              </Button>
             </>
           )}
           {issue.progressTag.name == resolvedHCILabel.name && (
-            <button
+            <Button
+              variant="outline-secondary"
               onClick={() => setResolving(resolvedHCILabel.name)}
-            >{`<`}</button>
+            >
+              {'<'}
+            </Button>
           )}
         </Card.Body>
       </Card>
