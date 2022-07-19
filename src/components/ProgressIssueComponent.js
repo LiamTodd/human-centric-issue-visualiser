@@ -7,7 +7,9 @@ import {
   resolvingHCILabel,
   unresolvedHCILabel
 } from '../helpers/labels';
-import { ISSUES_KEY, READY_KEY } from '../helpers/localStorageKeys';
+import { ISSUES_KEY } from '../helpers/localStorageKeys';
+
+import Card from 'react-bootstrap/Card';
 
 export default function ProgressIssueComponent({ issue, setIssues }) {
   const updateLocalStorage = (newStatusLabel) => {
@@ -60,68 +62,62 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
 
   return (
     <>
-      <div
-        style={{
-          borderWidth: '2px',
-          borderStyle: 'solid',
-          borderColor: 'black'
-        }}
-      >
-        <h3 style={{ backgroundColor: '#' + issue.priority.color }}>
+      <Card border="secondary">
+        <Card.Header style={{ backgroundColor: '#' + issue.priority.color }}>
           {issue.priority.name}
-        </h3>
-        <a href={issue.html_url}>
-          <h3>{issue.title}</h3>
-        </a>
-        HCIs:
-        {issue.HCILabels.map((HCILabel) => {
-          return (
-            <div
-              style={{
-                borderWidth: '2px',
-                borderStyle: 'solid',
-                borderColor: 'black',
-                margin: '10px',
-                backgroundColor: '#' + HCILabel.color + '80' // change opacity
-              }}
-              key={uuid.v4()}
-            >
-              {HCILabel.name}
-            </div>
-          );
-        })}
-        ML Confidence: {issue.confidence}
-        <p></p>
-        {issue.progressTag.name == null && (
-          <button onClick={() => setUnresolved(null)}>{'>'}</button>
-        )}
-        {issue.progressTag.name == unresolvedHCILabel.name && (
-          <>
-            <button onClick={() => setUnassigned(unresolvedHCILabel.name)}>
-              {`<`}
-            </button>
-            <button onClick={() => setResolving(unresolvedHCILabel.name)}>
-              {'>'}
-            </button>
-          </>
-        )}
-        {issue.progressTag.name == resolvingHCILabel.name && (
-          <>
+        </Card.Header>
+        <Card.Body>
+          <a href={issue.html_url} style={{ color: 'black' }}>
+            <Card.Title>{issue.title}</Card.Title>
+          </a>
+          HCIs:
+          {issue.HCILabels.map((HCILabel) => {
+            return (
+              <div
+                style={{
+                  borderWidth: '2px',
+                  borderStyle: 'solid',
+                  borderColor: 'black',
+                  margin: '10px',
+                  backgroundColor: '#' + HCILabel.color + '80' // change opacity
+                }}
+                key={uuid.v4()}
+              >
+                {HCILabel.name}
+              </div>
+            );
+          })}
+          <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
+          {issue.progressTag.name == null && (
+            <button onClick={() => setUnresolved(null)}>{'>'}</button>
+          )}
+          {issue.progressTag.name == unresolvedHCILabel.name && (
+            <>
+              <button onClick={() => setUnassigned(unresolvedHCILabel.name)}>
+                {`<`}
+              </button>
+              <button onClick={() => setResolving(unresolvedHCILabel.name)}>
+                {'>'}
+              </button>
+            </>
+          )}
+          {issue.progressTag.name == resolvingHCILabel.name && (
+            <>
+              <button
+                onClick={() => setUnresolved(resolvingHCILabel.name)}
+              >{`<`}</button>
+              <button onClick={() => setResolved(resolvingHCILabel.name)}>
+                {'>'}
+              </button>
+            </>
+          )}
+          {issue.progressTag.name == resolvedHCILabel.name && (
             <button
-              onClick={() => setUnresolved(resolvingHCILabel.name)}
+              onClick={() => setResolving(resolvedHCILabel.name)}
             >{`<`}</button>
-            <button onClick={() => setResolved(resolvingHCILabel.name)}>
-              {'>'}
-            </button>
-          </>
-        )}
-        {issue.progressTag.name == resolvedHCILabel.name && (
-          <button
-            onClick={() => setResolving(resolvedHCILabel.name)}
-          >{`<`}</button>
-        )}
-      </div>
-      <p></p>
+          )}
+        </Card.Body>
+      </Card>
     </>
   );
 }
