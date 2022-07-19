@@ -1,6 +1,6 @@
-const { Octokit } = require('@octokit/rest');
+import { CREDENTIALS_KEY } from './localStorageKeys';
 
-const CREDENTIALS_KEY = 'credentials';
+const { Octokit } = require('@octokit/rest');
 
 export const addGitHubLabels = async (issueNumber, labels = []) => {
   const octokit = new Octokit({

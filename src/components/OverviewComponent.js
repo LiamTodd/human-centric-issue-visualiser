@@ -1,11 +1,10 @@
 import React from 'react';
+import { READY_KEY } from '../helpers/localStorageKeys';
 import HorizontalBarChartComponent from './chartComponents/HorizontalBarChartComponent';
 import PolarAreaChartComponent from './chartComponents/PolarAreaChartComponent';
 import PriorityBarChartComponent from './chartComponents/PriorityBarChartComponent';
 import StackedBarChartComponent from './chartComponents/StackedBarChartComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
-
-const READY_KEY = 'ready';
 
 export default function OverviewComponent() {
   return (

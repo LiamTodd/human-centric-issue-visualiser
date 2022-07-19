@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { createGitHubLabels } from '../helpers/createGitHubLabels';
+import { CREDENTIALS_KEY } from '../helpers/localStorageKeys';
 import { setupLocalStorage } from '../helpers/setupLocalStorage';
-
-const CREDENTIALS_KEY = 'credentials';
 
 export default function AuthenticateComponent() {
   const [credentials, setCredentials] = useState({
