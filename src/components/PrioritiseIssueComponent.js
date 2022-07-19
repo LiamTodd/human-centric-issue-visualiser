@@ -9,6 +9,8 @@ import {
 } from '../helpers/labels';
 import { ISSUES_KEY } from '../helpers/localStorageKeys';
 
+import Card from 'react-bootstrap/Card';
+
 export default function PrioritiseIssueComponent({ issue, setIssues }) {
   const updateLocalStorage = (newPriorityLabel) => {
     // update issues in local storage and trigger re-render
@@ -60,65 +62,62 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
 
   return (
     <>
-      <div
-        style={{
-          borderWidth: '2px',
-          borderStyle: 'solid',
-          borderColor: 'black'
-        }}
-      >
-        <a href={issue.html_url}>
-          <h3>{issue.title}</h3>
-        </a>
-        HCIs:
-        {issue.HCILabels.map((HCILabel) => {
-          return (
-            <div
-              style={{
-                borderWidth: '2px',
-                borderStyle: 'solid',
-                borderColor: 'black',
-                margin: '10px',
-                backgroundColor: '#' + HCILabel.color + '80' // change opacity
-              }}
-              key={uuid.v4()}
-            >
-              {HCILabel.name}
-            </div>
-          );
-        })}
-        ML Confidence: {issue.confidence}
-        <p></p>
-        {issue.priority.name == null && (
-          <button onClick={() => setLowPriority(null)}>{'>'}</button>
-        )}
-        {issue.priority.name == lowPriorityLabel.name && (
-          <>
-            <button onClick={() => setUnassigned(lowPriorityLabel.name)}>
-              {`<`}
-            </button>
-            <button onClick={() => setMediumPriority(lowPriorityLabel.name)}>
-              {'>'}
-            </button>
-          </>
-        )}
-        {issue.priority.name == mediumPriorityLabel.name && (
-          <>
+      <Card border="secondary">
+        <Card.Header style={{ backgroundColor: '#' + issue.priority.color }}>
+          {issue.priority.name}
+        </Card.Header>
+        <Card.Body>
+          <a href={issue.html_url} style={{ color: 'black' }}>
+            <Card.Title>{issue.title}</Card.Title>
+          </a>
+          HCIs:
+          {issue.HCILabels.map((HCILabel) => {
+            return (
+              <div
+                style={{
+                  borderWidth: '2px',
+                  borderStyle: 'solid',
+                  borderColor: 'black',
+                  margin: '10px',
+                  backgroundColor: '#' + HCILabel.color + '80' // change opacity
+                }}
+                key={uuid.v4()}
+              >
+                {HCILabel.name}
+              </div>
+            );
+          })}
+          <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
+          {issue.priority.name == null && (
+            <button onClick={() => setLowPriority(null)}>{'>'}</button>
+          )}
+          {issue.priority.name == lowPriorityLabel.name && (
+            <>
+              <button onClick={() => setUnassigned(lowPriorityLabel.name)}>
+                {`<`}
+              </button>
+              <button onClick={() => setMediumPriority(lowPriorityLabel.name)}>
+                {'>'}
+              </button>
+            </>
+          )}
+          {issue.priority.name == mediumPriorityLabel.name && (
+            <>
+              <button
+                onClick={() => setLowPriority(mediumPriorityLabel.name)}
+              >{`<`}</button>
+              <button onClick={() => setHighPriority(mediumPriorityLabel.name)}>
+                {'>'}
+              </button>
+            </>
+          )}
+          {issue.priority.name == highPriorityLabel.name && (
             <button
-              onClick={() => setLowPriority(mediumPriorityLabel.name)}
+              onClick={() => setMediumPriority(highPriorityLabel.name)}
             >{`<`}</button>
-            <button onClick={() => setHighPriority(mediumPriorityLabel.name)}>
-              {'>'}
-            </button>
-          </>
-        )}
-        {issue.priority.name == highPriorityLabel.name && (
-          <button
-            onClick={() => setMediumPriority(highPriorityLabel.name)}
-          >{`<`}</button>
-        )}
-      </div>
-      <p></p>
+          )}
+        </Card.Body>
+      </Card>
     </>
   );
 }
