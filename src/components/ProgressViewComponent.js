@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import * as uuid from 'uuid';
 import ProgressIssueComponent from './ProgressIssueComponent';
-import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 import {
   resolvedHCILabel,
   resolvingHCILabel,
   unresolvedHCILabel
 } from '../helpers/labels';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
+import { ISSUES_KEY, READY_KEY } from '../helpers/localStorageKeys';
 
 export default function ProgressViewComponent() {
   const [issues, setIssues] = useState([]);
@@ -22,10 +22,10 @@ export default function ProgressViewComponent() {
 
   return (
     <>
-      {!JSON.parse(localStorage.getItem(ISSUES_KEY)) && (
+      {!JSON.parse(localStorage.getItem(READY_KEY)) && (
         <UnAuthenticatedDefault></UnAuthenticatedDefault>
       )}
-      {JSON.parse(localStorage.getItem(ISSUES_KEY)) && (
+      {JSON.parse(localStorage.getItem(READY_KEY)) && (
         <div
           style={{
             display: 'grid',

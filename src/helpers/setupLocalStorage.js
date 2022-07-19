@@ -2,8 +2,8 @@ import { getGitHubIssues } from './getGitHubIssues';
 import { getGitHubIssueComments } from './getGitHubIssueComments';
 import { assignHCITags } from './assignHCITags';
 import * as repoLabels from './labels';
+import { ISSUES_KEY } from './localStorageKeys';
 
-export const ISSUES_KEY = 'issues';
 const statusLabels = [
   repoLabels.unresolvedHCILabel,
   repoLabels.resolvingHCILabel,
@@ -72,4 +72,5 @@ export const setupLocalStorage = async () => {
           });
       });
   });
+  return issues;
 };

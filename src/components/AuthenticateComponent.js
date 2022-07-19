@@ -30,7 +30,10 @@ export default function AuthenticateComponent() {
   const authenticateAndSetUp = () => {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels().then(() => {
-      setupLocalStorage();
+      setupLocalStorage().then(() => {
+        // a flag to tell other Views that LS is ready
+        localStorage.setItem(READY_KEY, true);
+      });
     });
   };
 
@@ -54,7 +57,7 @@ export default function AuthenticateComponent() {
 
         <input
           type="submit"
-          value="Submit"
+          value="Link to repository"
           onClick={() => {
             authenticateAndSetUp();
           }}

@@ -2,12 +2,12 @@ import React from 'react';
 import { addGitHubLabels } from '../helpers/addGitHubLabels';
 import { removeGitHubLabel } from '../helpers/removeGitHubLabel';
 import * as uuid from 'uuid';
-import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 import {
   resolvedHCILabel,
   resolvingHCILabel,
   unresolvedHCILabel
 } from '../helpers/labels';
+import { ISSUES_KEY, READY_KEY } from '../helpers/localStorageKeys';
 
 export default function ProgressIssueComponent({ issue, setIssues }) {
   const updateLocalStorage = (newStatusLabel) => {

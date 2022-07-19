@@ -9,7 +9,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import * as repoLabels from '../../helpers/labels';
-import { ISSUES_KEY } from '../../helpers/setupLocalStorage';
+import { ISSUES_KEY } from '../../helpers/localStorageKeys';
 
 export default function PriorityBarChartComponent() {
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);

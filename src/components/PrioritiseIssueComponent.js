@@ -2,12 +2,12 @@ import React from 'react';
 import { addGitHubLabels } from '../helpers/addGitHubLabels';
 import { removeGitHubLabel } from '../helpers/removeGitHubLabel';
 import * as uuid from 'uuid';
-import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 import {
   lowPriorityLabel,
   mediumPriorityLabel,
   highPriorityLabel
 } from '../helpers/labels';
+import { ISSUES_KEY } from '../helpers/localStorageKeys';
 
 export default function PrioritiseIssueComponent({ issue, setIssues }) {
   const updateLocalStorage = (newPriorityLabel) => {

@@ -1,7 +1,7 @@
 import Multiselect from 'multiselect-react-dropdown';
 import React from 'react';
 import * as repoLabels from '../helpers/labels';
-import { ISSUES_KEY } from '../helpers/setupLocalStorage';
+import { ISSUES_KEY } from '../helpers/localStorageKeys';
 
 const HCIType = 'HCI';
 const statusType = 'status';

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import * as uuid from 'uuid';
-import { ISSUES_KEY } from '../helpers/setupLocalStorage';
 import {
   lowPriorityLabel,
   mediumPriorityLabel,
   highPriorityLabel
 } from '../helpers/labels';
+import { ISSUES_KEY, READY_KEY } from '../helpers/localStorageKeys';
 import PrioritiseIssueComponent from './PrioritiseIssueComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
 
@@ -22,10 +22,10 @@ export default function PrioritiseViewComponent() {
 
   return (
     <>
-      {!JSON.parse(localStorage.getItem(ISSUES_KEY)) && (
+      {!JSON.parse(localStorage.getItem(READY_KEY)) && (
         <UnAuthenticatedDefault></UnAuthenticatedDefault>
       )}
-      {JSON.parse(localStorage.getItem(ISSUES_KEY)) && (
+      {JSON.parse(localStorage.getItem(READY_KEY)) && (
         <div
           style={{
             display: 'grid',

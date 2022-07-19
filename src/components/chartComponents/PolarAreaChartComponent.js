@@ -8,7 +8,7 @@ import {
 } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
 import * as repoLabels from '../../helpers/labels';
-import { ISSUES_KEY } from '../../helpers/setupLocalStorage';
+import { ISSUES_KEY } from '../../helpers/localStorageKeys';
 
 export default function PolarAreaChartComponent() {
   ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
