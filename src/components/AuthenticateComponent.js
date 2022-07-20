@@ -77,7 +77,7 @@ export default function AuthenticateComponent() {
         </Form.Group>
         <Button
           variant="outline-secondary"
-          type="submit"
+          // type="submit"
           onClick={() => {
             authenticateAndSetUp();
           }}
