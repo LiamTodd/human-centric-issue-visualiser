@@ -12,7 +12,8 @@ export default function NavbarComponent() {
         borderBottom: '2px solid lightgrey',
         height: '10vh',
         paddingTop: '3vh',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        backgroundColor: '#9AC7BF'
       }}
     >
       <Container>

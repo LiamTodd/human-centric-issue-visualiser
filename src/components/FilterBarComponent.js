@@ -122,6 +122,15 @@ export default function FilterBarComponent({ setIssues }) {
         placeholder="Filter issues by..."
         avoidHighlightFirstOption={true}
         showArrow={true}
+        style={{
+          chips: {
+            background: '#9AC7BF'
+          },
+          option: {
+            backgroundColor: 'white',
+            color: 'black'
+          }
+        }}
       ></Multiselect>
     </>
   );
