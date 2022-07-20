@@ -47,12 +47,14 @@ export default function CorrectionIssueComponent({ issue }) {
           <br></br>
           Click to assign to this issue:
           <div style={{ justifyContent: 'center', display: 'flex' }}>
-            {allHCILabels.map((HCILabel) => {
-              if (
-                !issue.HCILabels.map((label) => {
-                  return label.name;
-                }).includes(HCILabel.name)
-              ) {
+            {allHCILabels
+              .filter(
+                (HCILabel) =>
+                  !issue.HCILabels.map((label) => {
+                    return label.name;
+                  }).includes(HCILabel.name)
+              )
+              .map((HCILabel) => {
                 return (
                   <button
                     style={{
@@ -67,8 +69,7 @@ export default function CorrectionIssueComponent({ issue }) {
                     {HCILabel.name}
                   </button>
                 );
-              }
-            })}
+              })}
           </div>
           <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
         </Card.Body>
