@@ -10,8 +10,8 @@ export default function NavbarComponent() {
     <div
       style={{
         borderBottom: '2px solid lightgrey',
-        height: '10vh',
-        paddingTop: '3vh',
+        height: 'fit-content',
+        padding: '3vh',
         marginBottom: '10px',
         backgroundColor: '#9AC7BF'
       }}
