@@ -7,8 +7,7 @@ import OverviewComponent from './components/OverviewComponent';
 import PrioritiseViewComponent from './components/PrioritiseViewComponent';
 import ProgressViewComponent from './components/ProgressViewComponent';
 import ListViewComponent from './components/ListViewComponent';
-import { setupLocalStorage } from './helpers/setupLocalStorage';
-import { createGitHubLabels } from './helpers/createGitHubLabels';
+import ManualCorrectionViewComponent from './components/ManualCorrectionViewComponent';
 
 function App() {
   return (
@@ -37,6 +36,12 @@ function App() {
               <Route
                 path="/"
                 element={<AuthenticateComponent></AuthenticateComponent>}
+              />
+              <Route
+                path="/correction"
+                element={
+                  <ManualCorrectionViewComponent></ManualCorrectionViewComponent>
+                }
               />
             </Routes>
           </div>

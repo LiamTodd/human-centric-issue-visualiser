@@ -27,3 +27,6 @@ yarn-error.log*
 
 # test credentials
 testCredentials.txt
+
+# mock data
+mockData.txt

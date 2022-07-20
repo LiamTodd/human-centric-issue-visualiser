@@ -42,7 +42,6 @@ export default function NavbarComponent() {
               Overview
             </NavLink>
           </Col>
-
           <Col>
             <NavLink
               to="/list"
@@ -77,6 +76,18 @@ export default function NavbarComponent() {
               }}
             >
               Progress
+            </NavLink>
+          </Col>
+          <Col>
+            <NavLink
+              to="/correction"
+              style={{
+                textDecoration: 'none',
+                color: 'black',
+                fontSize: '24px'
+              }}
+            >
+              Correction Tool
             </NavLink>
           </Col>
         </Row>

@@ -3,7 +3,6 @@ import * as uuid from 'uuid';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
 
 export default function IssueComponent({ issue }) {
   const [comments, setComments] = useState([]);
