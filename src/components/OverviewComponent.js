@@ -18,40 +18,106 @@ export default function OverviewComponent() {
           <div
             style={{
               display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
+              borderBottom: '2px solid lightgrey',
+              paddingBottom: '25px',
+              paddingTop: '25px'
             }}
           >
-            <PolarAreaChartComponent></PolarAreaChartComponent>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '70%'
+              }}
+            >
+              <PolarAreaChartComponent></PolarAreaChartComponent>
+            </div>
+            <div
+              style={{
+                paddingTop: '5vh',
+                width: '25%'
+              }}
+            >
+              test test test testtest testtest testtest testtest testtest
+              testtest testtest test test testtest testtest testtest testtest
+              testtest testtest testtest testtest testtest testtest test
+            </div>
           </div>
+
           <div
             style={{
               display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
+              paddingTop: '25px',
+              paddingBottom: '25px',
+              borderBottom: '2px solid lightgrey'
             }}
           >
-            <HorizontalBarChartComponent></HorizontalBarChartComponent>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '80%'
+              }}
+            >
+              <HorizontalBarChartComponent></HorizontalBarChartComponent>
+            </div>
+            <div style={{ width: '15%', paddingTop: '5vh' }}>
+              test test test testtest testtest testtest testtest testtest
+              testtest testtest test test testtest testtest testtest testtest
+              testtest testtest testtest testtest testtest testtest test
+            </div>
           </div>
+
           <div
             style={{
               display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '90%'
+              borderBottom: '2px solid lightgrey',
+              paddingBottom: '25px',
+              paddingTop: '25px'
             }}
           >
-            <StackedBarChartComponent></StackedBarChartComponent>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '75%'
+              }}
+            >
+              <StackedBarChartComponent></StackedBarChartComponent>
+            </div>
+            <div style={{ width: '20%', paddingTop: '5vh', paddingLeft: '5%' }}>
+              test test test testtest testtest testtest testtest testtest
+              testtest testtest test test testtest testtest testtest testtest
+              testtest testtest testtest testtest testtest testtest test
+            </div>
           </div>
+
           <div
             style={{
               display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '90%'
+              borderBottom: '2px solid lightgrey',
+              paddingBottom: '25px',
+              paddingTop: '25px'
             }}
           >
-            <PriorityBarChartComponent></PriorityBarChartComponent>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '80%'
+              }}
+            >
+              <PriorityBarChartComponent></PriorityBarChartComponent>
+            </div>
+            <div style={{ width: '15%', paddingTop: '5vh' }}>
+              test test test testtest testtest testtest testtest testtest
+              testtest testtest test test testtest testtest testtest testtest
+              testtest testtest testtest testtest testtest testtest test
+            </div>
           </div>
         </div>
       )}
