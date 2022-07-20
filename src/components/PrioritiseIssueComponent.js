@@ -123,7 +123,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
               </Button>
               <Button
                 variant="outline-secondary"
-                onClick={() => setHighPriority(lowPriorityLabel.name)}
+                onClick={() => setHighPriority(mediumPriorityLabel.name)}
               >
                 {'>'}
               </Button>
