@@ -30,6 +30,7 @@ export const setupLocalStorage = async () => {
         assignHCITags(issue)
           .then((HCIs) => {
             issue.HCILabels = HCIs;
+            issue.originalMLLabels = HCIs;
           })
           .then(() => {
             // set set status labels
