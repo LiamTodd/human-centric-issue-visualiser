@@ -32,6 +32,7 @@ export default function ManualCorrectionViewComponent() {
             return (
               <CorrectionIssueComponent
                 issue={issue}
+                setIssues={setIssues}
               ></CorrectionIssueComponent>
             );
           })}

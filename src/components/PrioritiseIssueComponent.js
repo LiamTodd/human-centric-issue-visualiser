@@ -27,6 +27,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
     localStorage.setItem(ISSUES_KEY, JSON.stringify(updatedIssues));
     setIssues(updatedIssues);
   };
+
   const setUnassigned = (prev) => {
     // remove prev label
     removeGitHubLabel(issue.number, prev);
