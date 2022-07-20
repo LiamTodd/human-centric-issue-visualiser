@@ -17,17 +17,26 @@ export default function PriorityBarChartComponent() {
     scales: {
       yAxis: {
         ticks: {
-          precision: 0
+          precision: 0,
+          font: {
+            size: 16
+          }
         },
         title: {
           display: true,
-          text: 'Number of Issues'
+          text: 'Number of Issues',
+          font: {
+            size: 24
+          }
         }
       },
       xAxis: {
         title: {
           display: true,
-          text: 'Issue Priority'
+          text: 'Issue Priority',
+          font: {
+            size: 24
+          }
         }
       }
     },
@@ -44,7 +53,10 @@ export default function PriorityBarChartComponent() {
       },
       title: {
         display: true,
-        text: 'Issue Priority Overview'
+        text: 'Issue Priority Overview',
+        font: {
+          size: 24
+        }
       }
     }
   };

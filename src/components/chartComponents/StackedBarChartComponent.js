@@ -26,7 +26,10 @@ export default function StackedBarChartComponent() {
     plugins: {
       title: {
         display: true,
-        text: 'HCIs against time'
+        text: 'HCIs against time',
+        font: {
+          size: 24
+        }
       }
     },
     responsive: true,
@@ -35,11 +38,17 @@ export default function StackedBarChartComponent() {
       x: {
         stacked: true,
         ticks: {
-          precision: 0
+          precision: 0,
+          font: {
+            size: 16
+          }
         },
         title: {
           display: true,
-          text: 'Date'
+          text: 'Date',
+          font: {
+            size: 24
+          }
         }
       },
       y: {
@@ -49,7 +58,10 @@ export default function StackedBarChartComponent() {
         },
         title: {
           display: true,
-          text: 'Number of Issues'
+          text: 'Number of Issues',
+          font: {
+            size: 24
+          }
         }
       }
     }

@@ -25,17 +25,26 @@ export default function HorizontalBarChartComponent() {
     scales: {
       xAxis: {
         ticks: {
-          precision: 0
+          precision: 0,
+          font: {
+            size: 16
+          }
         },
         title: {
           display: true,
-          text: 'Number of Issues'
+          text: 'Number of Issues',
+          font: {
+            size: 24
+          }
         }
       },
       yAxis: {
         title: {
           display: true,
-          text: 'Issue Status'
+          text: 'Issue Status',
+          font: {
+            size: 24
+          }
         }
       }
     },
@@ -52,7 +61,10 @@ export default function HorizontalBarChartComponent() {
       },
       title: {
         display: true,
-        text: 'Issue Progress Overview'
+        text: 'Issue Progress Overview',
+        font: {
+          size: 24
+        }
       }
     }
   };

@@ -103,13 +103,19 @@ export default function PolarAreaChartComponent() {
     plugins: {
       title: {
         display: true,
-        text: 'HCI Categorisation Count'
+        text: 'HCI Categorisation Count',
+        font: {
+          size: 24
+        }
       }
     },
     scales: {
       r: {
         ticks: {
-          precision: 0
+          precision: 0,
+          font: {
+            size: 16
+          }
         }
       }
     }
