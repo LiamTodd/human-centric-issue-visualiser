@@ -8,8 +8,12 @@ import PrioritiseViewComponent from './components/PrioritiseViewComponent';
 import ProgressViewComponent from './components/ProgressViewComponent';
 import ListViewComponent from './components/ListViewComponent';
 import ManualCorrectionViewComponent from './components/ManualCorrectionViewComponent';
+import { useState } from 'react';
+import * as linkStatuses from './helpers/linkStatuses';
 
 function App() {
+  const [linkStatus, setLinkStatus] = useState(linkStatuses.unlinkedState);
+
   return (
     <div className="App">
       {
@@ -19,28 +23,50 @@ function App() {
             <Routes>
               <Route
                 path="/overview"
-                element={<OverviewComponent></OverviewComponent>}
+                element={
+                  <OverviewComponent
+                    linkStatus={linkStatus}
+                  ></OverviewComponent>
+                }
               />
               <Route
                 path="/list"
-                element={<ListViewComponent></ListViewComponent>}
+                element={
+                  <ListViewComponent
+                    linkStatus={linkStatus}
+                  ></ListViewComponent>
+                }
               />
               <Route
                 path="/prioritise"
-                element={<PrioritiseViewComponent></PrioritiseViewComponent>}
+                element={
+                  <PrioritiseViewComponent
+                    linkStatus={linkStatus}
+                  ></PrioritiseViewComponent>
+                }
               />
               <Route
                 path="/progress"
-                element={<ProgressViewComponent></ProgressViewComponent>}
+                element={
+                  <ProgressViewComponent
+                    linkStatus={linkStatus}
+                  ></ProgressViewComponent>
+                }
               />
               <Route
                 path="/"
-                element={<AuthenticateComponent></AuthenticateComponent>}
+                element={
+                  <AuthenticateComponent
+                    setLinkStatus={setLinkStatus}
+                  ></AuthenticateComponent>
+                }
               />
               <Route
                 path="/correction"
                 element={
-                  <ManualCorrectionViewComponent></ManualCorrectionViewComponent>
+                  <ManualCorrectionViewComponent
+                    linkStatus={linkStatus}
+                  ></ManualCorrectionViewComponent>
                 }
               />
             </Routes>

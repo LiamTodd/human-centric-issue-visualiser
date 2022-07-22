@@ -5,11 +5,13 @@ import {
   mediumPriorityLabel,
   highPriorityLabel
 } from '../helpers/labels';
-import { ISSUES_KEY, READY_KEY } from '../helpers/localStorageKeys';
+import { ISSUES_KEY } from '../helpers/localStorageKeys';
 import PrioritiseIssueComponent from './PrioritiseIssueComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
+import * as linkStatuses from '../helpers/linkStatuses';
+import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 
-export default function PrioritiseViewComponent() {
+export default function PrioritiseViewComponent({ linkStatus }) {
   const [issues, setIssues] = useState([]);
 
   const getIssues = async () => {
@@ -22,10 +24,13 @@ export default function PrioritiseViewComponent() {
 
   return (
     <>
-      {!JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.unlinkedState && (
         <UnAuthenticatedDefault></UnAuthenticatedDefault>
       )}
-      {JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.loadingState && (
+        <LoadingDefaultViewComponent></LoadingDefaultViewComponent>
+      )}
+      {linkStatus == linkStatuses.readyState && (
         <div
           style={{
             display: 'grid',

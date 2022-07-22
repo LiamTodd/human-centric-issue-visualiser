@@ -1,12 +1,13 @@
 import React from 'react';
-import { READY_KEY } from '../helpers/localStorageKeys';
 import HorizontalBarChartComponent from './chartComponents/HorizontalBarChartComponent';
 import PolarAreaChartComponent from './chartComponents/PolarAreaChartComponent';
 import PriorityBarChartComponent from './chartComponents/PriorityBarChartComponent';
 import StackedBarChartComponent from './chartComponents/StackedBarChartComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
+import * as linkStatuses from '../helpers/linkStatuses';
+import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 
-export default function OverviewComponent() {
+export default function OverviewComponent({ linkStatus }) {
   const polarChartDescription =
     'This chart provides a visualisation of the relative amounts of different Human Centric Issues identified in the GitHub repository. The colours correspond to the different Human Centric Issue categories, while the radius corresponds to the number of times a type of Human Centric Issue has been identified within the repository. Note that each issue in the repository may be assigned more than one Human Centric Issue tag.';
   const polarChartUseCase =
@@ -29,11 +30,15 @@ export default function OverviewComponent() {
 
   return (
     <>
-      {!JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.unlinkedState && (
         <UnAuthenticatedDefault></UnAuthenticatedDefault>
       )}
 
-      {JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.loadingState && (
+        <LoadingDefaultViewComponent></LoadingDefaultViewComponent>
+      )}
+
+      {linkStatus == linkStatuses.readyState && (
         <div>
           <div
             style={{

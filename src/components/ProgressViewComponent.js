@@ -7,9 +7,11 @@ import {
   unresolvedHCILabel
 } from '../helpers/labels';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
-import { ISSUES_KEY, READY_KEY } from '../helpers/localStorageKeys';
+import { ISSUES_KEY } from '../helpers/localStorageKeys';
+import * as linkStatuses from '../helpers/linkStatuses';
+import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 
-export default function ProgressViewComponent() {
+export default function ProgressViewComponent({ linkStatus }) {
   const [issues, setIssues] = useState([]);
 
   const getIssues = async () => {
@@ -22,10 +24,13 @@ export default function ProgressViewComponent() {
 
   return (
     <>
-      {!JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.unlinkedState && (
         <UnAuthenticatedDefault></UnAuthenticatedDefault>
       )}
-      {JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.loadingState && (
+        <LoadingDefaultViewComponent></LoadingDefaultViewComponent>
+      )}
+      {linkStatus == linkStatuses.readyState && (
         <div
           style={{
             display: 'grid',

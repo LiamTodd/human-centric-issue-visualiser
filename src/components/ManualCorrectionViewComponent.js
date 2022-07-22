@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ISSUES_KEY, READY_KEY } from '../helpers/localStorageKeys';
+import { ISSUES_KEY } from '../helpers/localStorageKeys';
 import CorrectionIssueComponent from './CorrectionIssueComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
+import * as linkStatuses from '../helpers/linkStatuses';
+import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 
-export default function ManualCorrectionViewComponent() {
+export default function ManualCorrectionViewComponent({ linkStatus }) {
   const [issues, setIssues] = useState([]);
 
   const getIssues = async () => {
@@ -16,11 +18,14 @@ export default function ManualCorrectionViewComponent() {
 
   return (
     <>
-      {!JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.unlinkedState && (
         <UnAuthenticatedDefault></UnAuthenticatedDefault>
       )}
+      {linkStatus == linkStatuses.loadingState && (
+        <LoadingDefaultViewComponent></LoadingDefaultViewComponent>
+      )}
 
-      {JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.readyState && (
         <div
           style={{
             textAlign: 'center',

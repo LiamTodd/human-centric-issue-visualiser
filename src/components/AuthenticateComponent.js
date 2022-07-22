@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { createGitHubLabels } from '../helpers/createGitHubLabels';
-import { CREDENTIALS_KEY, READY_KEY } from '../helpers/localStorageKeys';
+import { CREDENTIALS_KEY } from '../helpers/localStorageKeys';
 import { setupLocalStorage } from '../helpers/setupLocalStorage';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import * as linkStatuses from '../helpers/linkStatuses';
 
-export default function AuthenticateComponent() {
+export default function AuthenticateComponent({ setLinkStatus }) {
   const [credentials, setCredentials] = useState({
     userName: null,
     repoName: null,
@@ -29,12 +30,18 @@ export default function AuthenticateComponent() {
     setCredentials(newCred);
   };
 
+  const alertReady = () => {
+    setLinkStatus(linkStatuses.loadingState);
+    setTimeout(() => {
+      setLinkStatus(linkStatuses.readyState);
+    }, 5000);
+  };
+
   const authenticateAndSetUp = () => {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels().then(() => {
       setupLocalStorage().then(() => {
-        // a flag to tell other Views that LS is ready
-        localStorage.setItem(READY_KEY, true);
+        alertReady();
       });
     });
   };

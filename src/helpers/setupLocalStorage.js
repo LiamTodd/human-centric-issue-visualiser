@@ -72,5 +72,6 @@ export const setupLocalStorage = async () => {
           });
       });
   });
+
   return issues;
 };

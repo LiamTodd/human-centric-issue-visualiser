@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ISSUES_KEY, READY_KEY } from '../helpers/localStorageKeys';
+import { ISSUES_KEY } from '../helpers/localStorageKeys';
 import FilterBarComponent from './FilterBarComponent';
 import IssueList from './IssueList';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
+import * as linkStatuses from '../helpers/linkStatuses';
+import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 
-export default function ListViewComponent() {
+export default function ListViewComponent({ linkStatus }) {
   const [issues, setIssues] = useState([]);
 
   const getIssues = async () => {
@@ -16,10 +18,15 @@ export default function ListViewComponent() {
   }, []);
   return (
     <>
-      {!JSON.parse(localStorage.getItem(READY_KEY)) && (
+      {linkStatus == linkStatuses.unlinkedState && (
         <UnAuthenticatedDefault></UnAuthenticatedDefault>
       )}
-      {JSON.parse(localStorage.getItem(READY_KEY)) && (
+
+      {linkStatus == linkStatuses.loadingState && (
+        <LoadingDefaultViewComponent></LoadingDefaultViewComponent>
+      )}
+
+      {linkStatus == linkStatuses.readyState && (
         <>
           <FilterBarComponent setIssues={setIssues}></FilterBarComponent>
           <p></p>

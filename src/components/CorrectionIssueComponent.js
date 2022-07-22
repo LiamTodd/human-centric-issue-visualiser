@@ -94,7 +94,7 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
             </div>
           </div>
           <br></br>
-          <div style={{ border: '2px solid green', borderRadius: '20px' }}>
+          <div style={{ border: '2px solid #9AC7BF', borderRadius: '20px' }}>
             <h5>Click to assign to this issue:</h5>
             <div style={{ justifyContent: 'center', display: 'flex' }}>
               {allHCILabels
