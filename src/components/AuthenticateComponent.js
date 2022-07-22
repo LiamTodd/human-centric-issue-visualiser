@@ -6,8 +6,9 @@ import { setupLocalStorage } from '../helpers/setupLocalStorage';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import * as linkStatuses from '../helpers/linkStatuses';
+import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 
-export default function AuthenticateComponent({ setLinkStatus }) {
+export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
   const [credentials, setCredentials] = useState({
     userName: null,
     repoName: null,
@@ -34,7 +35,7 @@ export default function AuthenticateComponent({ setLinkStatus }) {
     setLinkStatus(linkStatuses.loadingState);
     setTimeout(() => {
       setLinkStatus(linkStatuses.readyState);
-    }, 5000);
+    }, 7000); // perhaps there's a better way to do this
   };
 
   const authenticateAndSetUp = () => {
@@ -92,6 +93,14 @@ export default function AuthenticateComponent({ setLinkStatus }) {
           Link to Repository
         </Button>
       </Form>
+      <br></br>
+
+      {linkStatus == linkStatuses.loadingState && (
+        <LoadingDefaultViewComponent></LoadingDefaultViewComponent>
+      )}
+      {linkStatus == linkStatuses.readyState && (
+        <h5>Successfully linked to a repository!</h5>
+      )}
     </div>
   );
 }

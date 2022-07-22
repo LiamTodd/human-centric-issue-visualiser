@@ -57,6 +57,7 @@ function App() {
                 path="/"
                 element={
                   <AuthenticateComponent
+                    linkStatus={linkStatus}
                     setLinkStatus={setLinkStatus}
                   ></AuthenticateComponent>
                 }

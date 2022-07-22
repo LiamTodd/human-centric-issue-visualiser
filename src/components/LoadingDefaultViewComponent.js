@@ -13,8 +13,8 @@ export default function LoadingDefaultViewComponent() {
           backgroundColor: '#9AC7BF',
           borderWidth: '0px',
           color: 'black',
-          fontSize: '16px',
-          padding: '3px'
+          fontSize: '20px',
+          padding: '10px'
         }}
         disabled
       >
@@ -25,7 +25,7 @@ export default function LoadingDefaultViewComponent() {
           role="status"
           aria-hidden="true"
         />
-        Linking to GitHub
+        <div>Linking to GitHub...</div>
       </Button>
     </>
   );
