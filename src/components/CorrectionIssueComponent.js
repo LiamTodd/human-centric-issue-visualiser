@@ -81,9 +81,7 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
                       margin: '10px',
                       width: '20%',
                       borderRadius: '20px',
-                      borderWidth: '3px',
-                      borderColor: '#' + HCILabel.color,
-                      borderStyle: 'solid',
+                      borderWidth: '0',
                       backgroundColor: '#' + HCILabel.color + '80' // change opacity
                     }}
                     key={uuid.v4()}
@@ -113,9 +111,7 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
                         margin: '10px',
                         width: '20%',
                         borderRadius: '20px',
-                        borderWidth: '3px',
-                        borderColor: '#' + HCILabel.color,
-                        borderStyle: 'solid',
+                        borderWidth: '0',
                         backgroundColor: '#' + HCILabel.color + '80' // change opacity
                       }}
                       key={uuid.v4()}
@@ -127,29 +123,6 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
                 })}
             </div>
           </div>
-          <br></br>
-          <div style={{ border: '2px solid lightgrey', borderRadius: '20px' }}>
-            <h5>Original ML-Assigned tags:</h5>
-            <div style={{ justifyContent: 'center', display: 'flex' }}>
-              {issue.originalMLLabels.map((HCILabel) => {
-                return (
-                  <div
-                    style={{
-                      margin: '10px',
-                      width: '20%',
-                      borderRadius: '20px',
-                      borderWidth: '0px',
-                      backgroundColor: '#' + HCILabel.color + '40' // change opacity
-                    }}
-                    key={uuid.v4()}
-                  >
-                    {HCILabel.name}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
         </Card.Body>
       </Card>
       <br></br>
