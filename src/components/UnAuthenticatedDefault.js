@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 export default function UnAuthenticatedDefault() {
   return (
     <>
+      <br></br>
       <h3>Currently not linked to a GitHub repository!</h3>
 
       <NavLink exact="true" to="/">

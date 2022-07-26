@@ -22,11 +22,20 @@ export default function NavbarComponent() {
             <NavLink
               exact="true"
               to="/"
-              style={{
-                textDecoration: 'none',
-                color: 'black',
-                fontSize: '24px'
-              }}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px',
+                      fontWeight: 'bold'
+                    }
+                  : {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px'
+                    }
+              }
             >
               Link Repository
             </NavLink>
@@ -34,11 +43,20 @@ export default function NavbarComponent() {
           <Col>
             <NavLink
               to="/overview"
-              style={{
-                textDecoration: 'none',
-                color: 'black',
-                fontSize: '24px'
-              }}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px',
+                      fontWeight: 'bold'
+                    }
+                  : {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px'
+                    }
+              }
             >
               Overview
             </NavLink>
@@ -46,11 +64,20 @@ export default function NavbarComponent() {
           <Col>
             <NavLink
               to="/list"
-              style={{
-                textDecoration: 'none',
-                color: 'black',
-                fontSize: '24px'
-              }}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px',
+                      fontWeight: 'bold'
+                    }
+                  : {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px'
+                    }
+              }
             >
               List
             </NavLink>
@@ -58,11 +85,20 @@ export default function NavbarComponent() {
           <Col>
             <NavLink
               to="/prioritise"
-              style={{
-                textDecoration: 'none',
-                color: 'black',
-                fontSize: '24px'
-              }}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px',
+                      fontWeight: 'bold'
+                    }
+                  : {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px'
+                    }
+              }
             >
               Prioritise
             </NavLink>
@@ -70,11 +106,20 @@ export default function NavbarComponent() {
           <Col>
             <NavLink
               to="/progress"
-              style={{
-                textDecoration: 'none',
-                color: 'black',
-                fontSize: '24px'
-              }}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px',
+                      fontWeight: 'bold'
+                    }
+                  : {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px'
+                    }
+              }
             >
               Progress
             </NavLink>
@@ -82,11 +127,20 @@ export default function NavbarComponent() {
           <Col>
             <NavLink
               to="/correction"
-              style={{
-                textDecoration: 'none',
-                color: 'black',
-                fontSize: '24px'
-              }}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px',
+                      fontWeight: 'bold'
+                    }
+                  : {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '24px'
+                    }
+              }
             >
               Correction Tool
             </NavLink>
