@@ -18,12 +18,12 @@ const nullLabel = { name: null, color: null };
 
 export const setupLocalStorage = async () => {
   // get issues and comments
-  const issues = (await getGitHubIssues()).data;
+  const issues = await getGitHubIssues();
   issues.forEach((issue) => {
     getGitHubIssueComments(issue.number)
       .then((commentsResponse) => {
         // set comments
-        issue.cached_comments = commentsResponse.data;
+        issue.cached_comments = commentsResponse;
       })
       .then(() => {
         // get ML response

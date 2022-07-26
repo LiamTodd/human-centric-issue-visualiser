@@ -7,7 +7,7 @@ export const getGitHubIssueComments = async (issueNumber) => {
     auth: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).token
   });
 
-  const response = await octokit.request(
+  const response = await octokit.paginate(
     `GET /repos/${JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).userName}/${
       JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName
     }/issues/${issueNumber}/comments`,

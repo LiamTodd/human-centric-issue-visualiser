@@ -7,7 +7,7 @@ export const getGitHubIssues = async () => {
     auth: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).token
   });
 
-  const response = await octokit.request(
+  const response = await octokit.paginate(
     `GET /repos/${JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).userName}/${
       JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName
     }/issues`,
@@ -16,6 +16,8 @@ export const getGitHubIssues = async () => {
       repo: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName
     }
   );
+
+  // Add logic to handle pagination/page limits
 
   return response;
 };

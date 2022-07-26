@@ -10,7 +10,7 @@ export const createGitHubLabels = async () => {
   });
 
   const repoLabels = await getGitHubLabels();
-  const labelNames = repoLabels.data.map((element) => {
+  const labelNames = repoLabels.map((element) => {
     return element.name;
   });
 
