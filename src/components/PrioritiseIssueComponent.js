@@ -71,19 +71,19 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
           </a>
           HCIs:
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {issue.HCILabels.map((HCILabel) => {
+            {issue.HCILabels.map((label) => {
               return (
                 <div
                   style={{
-                    margin: '10px',
-                    width: '30%',
-                    borderRadius: '20px',
-                    backgroundColor: '#' + HCILabel.color + '80' // change opacity
+                    borderRadius: '100%',
+                    height: '4vh',
+                    width: '4vh',
+                    borderColor: 'grey',
+                    padding: '10px',
+                    margin: '0.2%',
+                    backgroundColor: '#' + label.color + '80'
                   }}
-                  key={uuid.v4()}
-                >
-                  {HCILabel.name}
-                </div>
+                ></div>
               );
             })}
           </div>
