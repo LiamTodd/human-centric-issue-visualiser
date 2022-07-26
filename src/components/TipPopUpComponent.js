@@ -4,14 +4,22 @@ import Popover from 'react-bootstrap/Popover';
 import {
   appUsageLabel,
   inclusivenessLabel,
+  noHCIIdentifiedLabel,
   userReactionLabel
 } from '../helpers/labels';
 
 export default function TipPopUpComponent() {
-  const allHCILabels = [appUsageLabel, userReactionLabel, inclusivenessLabel];
+  const allHCILabels = [
+    appUsageLabel,
+    userReactionLabel,
+    inclusivenessLabel,
+    noHCIIdentifiedLabel
+  ];
   const popover = (
     <Popover id="popover-basic">
-      <Popover.Header as="h3">Human Centric Issue Categories</Popover.Header>
+      <Popover.Header as="h3" style={{ backgroundColor: '#9AC7BF' }}>
+        Human Centric Issue Categories
+      </Popover.Header>
       <Popover.Body>
         <div style={{}}>
           {allHCILabels.map((label) => {
