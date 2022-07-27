@@ -66,6 +66,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
         setupLocalStorage().then(() => {
           alertReady();
         });
+        setCredentialAlert('');
       })
       .catch((error) => {
         if (error.message == badCredentialsMessage) {
@@ -113,6 +114,13 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
             placeholder="Enter GitHub Access Token"
             onChange={updateToken}
           ></input>
+          <br></br>
+          <Form.Label>
+            Go to Github{'>'}Settings{'>'}Developer settings{'>'}Personal access
+            tokens{'>'}Generate new token{'>'}Generate token
+          </Form.Label>
+          <br></br>
+          <Form.Label>Ensure to check the 'repo' scope</Form.Label>
         </Form.Group>
         <Button
           variant="outline-secondary"
