@@ -59,6 +59,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
           message={invalidInputAlert}
         ></DangerAlertComponent>
       );
+      return;
     }
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels()
@@ -84,7 +85,9 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
       <br></br>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>GitHub Repository Name</Form.Label>
+          <Form.Label style={{ fontSize: '20px' }}>
+            GitHub Repository Name
+          </Form.Label>
           <br></br>
           <input
             style={{ width: '30%' }}
@@ -95,7 +98,9 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>GitHub Repository Owner</Form.Label>
+          <Form.Label style={{ fontSize: '20px' }}>
+            GitHub Repository Owner
+          </Form.Label>
           <br></br>
           <input
             style={{ width: '30%' }}
@@ -106,7 +111,9 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>GitHub Access Token</Form.Label>
+          <Form.Label style={{ fontSize: '20px' }}>
+            GitHub Access Token
+          </Form.Label>
           <br></br>
           <input
             style={{ width: '30%' }}
