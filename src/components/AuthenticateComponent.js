@@ -7,6 +7,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import * as linkStatuses from '../helpers/linkStatuses';
 import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
+import DangerAlertComponent from './DangerAlertComponent';
+
+const badCredentialsMessage = 'Bad credentials';
+const badCredentialsAlert = 'Invalid GitHub Credentials';
+const invalidInputAlert = 'Please enter all three fields';
 
 export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
   const [credentials, setCredentials] = useState({
@@ -38,13 +43,39 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
     }, 7000); // perhaps there's a better way to do this
   };
 
+  const [credentialAlert, setCredentialAlert] = useState('');
+
   const authenticateAndSetUp = () => {
+    if (
+      credentials.repoName == null ||
+      credentials.userName == null ||
+      credentials.token == null ||
+      credentials.repoName.length == 0 ||
+      credentials.userName.length == 0 ||
+      credentials.token.length == 0
+    ) {
+      setCredentialAlert(
+        <DangerAlertComponent
+          message={invalidInputAlert}
+        ></DangerAlertComponent>
+      );
+    }
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
-    createGitHubLabels().then(() => {
-      setupLocalStorage().then(() => {
-        alertReady();
+    createGitHubLabels()
+      .then(() => {
+        setupLocalStorage().then(() => {
+          alertReady();
+        });
+      })
+      .catch((error) => {
+        if (error.message == badCredentialsMessage) {
+          setCredentialAlert(
+            <DangerAlertComponent
+              message={badCredentialsAlert}
+            ></DangerAlertComponent>
+          );
+        }
       });
-    });
   };
 
   return (
@@ -94,6 +125,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
         </Button>
       </Form>
       <br></br>
+      <div>{credentialAlert}</div>
 
       {linkStatus == linkStatuses.loadingState && (
         <LoadingDefaultViewComponent></LoadingDefaultViewComponent>
