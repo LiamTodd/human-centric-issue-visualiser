@@ -1,22 +1,26 @@
 export const noHCIIdentifiedLabel = {
   name: 'No HCIs Identified',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This tag is assigned to issues which have been identified to be associated with none of the three human centric issue categories. This label was created by the Human Centric Issues dashboard.',
   color: '9AC7BF'
 };
 
 export const userReactionLabel = {
   name: 'User Reaction',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This category covers the issues users have when accessing the application due to their specific preferences, interests, and emotional reactions. This label was created by the Human Centric Issues dashboard.',
   color: 'FF66FF'
 };
 export const inclusivenessLabel = {
   name: 'Inclusiveness',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This category covers the issues related to the inclusion, exclusion or discrimination toward a specific groups of users. It includes issues related to the age, gender, and socioeconomic status of the users. This label was created by the Human Centric Issues dashboard.',
   color: '6666FF'
 };
 export const appUsageLabel = {
   name: 'App Usage',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'The App Usage category covers all the issues related to the app itself and how it impacts users experiences. This label was created by the Human Centric Issues dashboard.',
   color: '66B2FF'
 };
 
