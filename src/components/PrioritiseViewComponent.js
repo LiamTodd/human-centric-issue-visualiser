@@ -10,7 +10,6 @@ import PrioritiseIssueComponent from './PrioritiseIssueComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
 import * as linkStatuses from '../helpers/linkStatuses';
 import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
-import TipPopUpComponent from './TipPopUpComponent';
 
 export default function PrioritiseViewComponent({ linkStatus }) {
   const [issues, setIssues] = useState([]);
@@ -33,16 +32,6 @@ export default function PrioritiseViewComponent({ linkStatus }) {
       )}
       {linkStatus == linkStatuses.readyState && (
         <>
-          <div
-            style={{
-              position: 'fixed',
-              bottom: '5%',
-              right: '5%',
-              zIndex: '100'
-            }}
-          >
-            <TipPopUpComponent></TipPopUpComponent>
-          </div>
           <div
             style={{
               display: 'grid',

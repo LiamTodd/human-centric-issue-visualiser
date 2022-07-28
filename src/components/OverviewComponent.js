@@ -39,129 +39,133 @@ export default function OverviewComponent({ linkStatus }) {
       )}
 
       {linkStatus == linkStatuses.readyState && (
-        <div>
-          <div
-            style={{
-              display: 'flex',
-              borderBottom: '2px solid lightgrey',
-              paddingBottom: '25px',
-              paddingTop: '25px'
-            }}
-          >
+        <>
+          <div>
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '70%'
+                borderBottom: '2px solid lightgrey',
+                paddingBottom: '25px',
+                paddingTop: '25px'
               }}
             >
-              <PolarAreaChartComponent></PolarAreaChartComponent>
-            </div>
-            <div
-              style={{
-                paddingTop: '5vh',
-                width: '30%',
-                paddingRight: '5%'
-              }}
-            >
-              <div style={{ fontSize: 'larger' }}>{polarChartDescription}</div>
-              <p></p>
-              {polarChartUseCase}
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: 'flex',
-              paddingTop: '25px',
-              paddingBottom: '25px',
-              borderBottom: '2px solid lightgrey'
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '70%'
-              }}
-            >
-              <HorizontalBarChartComponent></HorizontalBarChartComponent>
-            </div>
-            <div
-              style={{ width: '30%', paddingTop: '5vh', paddingRight: '5%' }}
-            >
-              <div style={{ fontSize: 'larger' }}>
-                {horizontalChartDescription}
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '70%'
+                }}
+              >
+                <PolarAreaChartComponent></PolarAreaChartComponent>
               </div>
-              <p></p>
-              {horizontalChartUseCase}
+              <div
+                style={{
+                  paddingTop: '5vh',
+                  width: '30%',
+                  paddingRight: '5%'
+                }}
+              >
+                <div style={{ fontSize: 'larger' }}>
+                  {polarChartDescription}
+                </div>
+                <p></p>
+                {polarChartUseCase}
+              </div>
             </div>
-          </div>
 
-          <div
-            style={{
-              // display: 'flex',
-              borderBottom: '2px solid lightgrey',
-              paddingBottom: '25px',
-              paddingTop: '25px'
-            }}
-          >
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '90%'
+                paddingTop: '25px',
+                paddingBottom: '25px',
+                borderBottom: '2px solid lightgrey'
               }}
             >
-              <StackedBarChartComponent></StackedBarChartComponent>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '70%'
+                }}
+              >
+                <HorizontalBarChartComponent></HorizontalBarChartComponent>
+              </div>
+              <div
+                style={{ width: '30%', paddingTop: '5vh', paddingRight: '5%' }}
+              >
+                <div style={{ fontSize: 'larger' }}>
+                  {horizontalChartDescription}
+                </div>
+                <p></p>
+                {horizontalChartUseCase}
+              </div>
             </div>
+
             <div
               style={{
-                paddingTop: '5vh',
-                paddingLeft: '5%',
-                paddingRight: '5%'
+                // display: 'flex',
+                borderBottom: '2px solid lightgrey',
+                paddingBottom: '25px',
+                paddingTop: '25px'
               }}
             >
-              <div style={{ fontSize: 'larger' }}>
-                {stackedBarChartDescription}
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '90%'
+                }}
+              >
+                <StackedBarChartComponent></StackedBarChartComponent>
               </div>
-              <p></p>
-              {stackedBarChartUseCase}
+              <div
+                style={{
+                  paddingTop: '5vh',
+                  paddingLeft: '5%',
+                  paddingRight: '5%'
+                }}
+              >
+                <div style={{ fontSize: 'larger' }}>
+                  {stackedBarChartDescription}
+                </div>
+                <p></p>
+                {stackedBarChartUseCase}
+              </div>
             </div>
-          </div>
 
-          <div
-            style={{
-              display: 'flex',
-              borderBottom: '2px solid lightgrey',
-              paddingBottom: '25px',
-              paddingTop: '25px'
-            }}
-          >
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '80%'
+                borderBottom: '2px solid lightgrey',
+                paddingBottom: '25px',
+                paddingTop: '25px'
               }}
             >
-              <PriorityBarChartComponent></PriorityBarChartComponent>
-            </div>
-            <div
-              style={{ width: '30%', paddingTop: '5vh', paddingRight: '5%' }}
-            >
-              <div style={{ fontSize: 'larger' }}>
-                {verticalBarChartDescription}
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '80%'
+                }}
+              >
+                <PriorityBarChartComponent></PriorityBarChartComponent>
               </div>
-              <p></p>
-              {verticalBarChartUseCase}
+              <div
+                style={{ width: '30%', paddingTop: '5vh', paddingRight: '5%' }}
+              >
+                <div style={{ fontSize: 'larger' }}>
+                  {verticalBarChartDescription}
+                </div>
+                <p></p>
+                {verticalBarChartUseCase}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );

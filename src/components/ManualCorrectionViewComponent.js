@@ -26,22 +26,24 @@ export default function ManualCorrectionViewComponent({ linkStatus }) {
       )}
 
       {linkStatus == linkStatuses.readyState && (
-        <div
-          style={{
-            textAlign: 'center',
-            paddingLeft: '20%',
-            paddingRight: '20%'
-          }}
-        >
-          {issues.map((issue) => {
-            return (
-              <CorrectionIssueComponent
-                issue={issue}
-                setIssues={setIssues}
-              ></CorrectionIssueComponent>
-            );
-          })}
-        </div>
+        <>
+          <div
+            style={{
+              textAlign: 'center',
+              paddingLeft: '20%',
+              paddingRight: '20%'
+            }}
+          >
+            {issues.map((issue) => {
+              return (
+                <CorrectionIssueComponent
+                  issue={issue}
+                  setIssues={setIssues}
+                ></CorrectionIssueComponent>
+              );
+            })}
+          </div>
+        </>
       )}
     </>
   );

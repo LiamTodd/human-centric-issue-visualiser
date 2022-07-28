@@ -25,12 +25,12 @@ export default function TipPopUpComponent() {
     ''
   ];
   const popover = (
-    <Popover id="popover-basic" style={{ maxWidth: '70vw' }}>
+    <Popover id="popover-basic" style={{ maxWidth: '80vw' }}>
       <Popover.Header as="h3" style={{ backgroundColor: '#9AC7BF' }}>
         Human Centric Issue Categories
       </Popover.Header>
       <Popover.Body>
-        <div style={{}}>
+        <div>
           {allHCILabels.map((label, i) => {
             return (
               <div>
@@ -51,15 +51,21 @@ export default function TipPopUpComponent() {
                       backgroundColor: '#' + label.color + '80'
                     }}
                   ></div>
-                  <div style={{ fontSize: '20px', paddingLeft: '20px' }}>
+                  <div style={{ fontSize: '18px', paddingLeft: '20px' }}>
                     {label.name}
                   </div>
                 </div>
                 <br></br>
-                <p style={{ fontSize: '16px' }}>{extendedDescriptions[i]}</p>
+                <p style={{ fontSize: '15px' }}>{extendedDescriptions[i]}</p>
               </div>
             );
           })}
+
+          <p>
+            Khalajzadeh, H., Shahin, M., Obie, H. O., Agrawal, P., & Grundy, J.
+            (2022). Supporting Developers in Addressing Human-centric Issues in
+            Mobile Apps. arXiv preprint arXiv:2203.12212.
+          </p>
         </div>
       </Popover.Body>
     </Popover>

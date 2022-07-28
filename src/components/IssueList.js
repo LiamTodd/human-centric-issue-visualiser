@@ -1,14 +1,9 @@
 import IssueComponent from './IssueComponent';
 import * as uuid from 'uuid';
-import TipPopUpComponent from './TipPopUpComponent';
 
 export default function IssueList({ issues }) {
   return (
     <>
-      <div style={{ position: 'fixed', bottom: '5%', right: '5%' }}>
-        <TipPopUpComponent></TipPopUpComponent>
-      </div>
-
       <div
         style={{
           textAlign: 'center',

@@ -10,12 +10,18 @@ import ListViewComponent from './components/ListViewComponent';
 import ManualCorrectionViewComponent from './components/ManualCorrectionViewComponent';
 import { useState } from 'react';
 import * as linkStatuses from './helpers/linkStatuses';
+import TipPopUpComponent from './components/TipPopUpComponent';
 
 function App() {
   const [linkStatus, setLinkStatus] = useState(linkStatuses.unlinkedState);
 
   return (
     <div className="App">
+      <div
+        style={{ position: 'fixed', bottom: '5%', right: '5%', zIndex: '100' }}
+      >
+        <TipPopUpComponent></TipPopUpComponent>
+      </div>
       {
         <HashRouter>
           <Navbar></Navbar>
