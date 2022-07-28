@@ -22,32 +22,38 @@ export const appUsageLabel = {
 
 export const unresolvedHCILabel = {
   name: 'Unresolved HCI',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This issue is unresolved. This label was created by the Human Centric Issues dashboard.',
   color: 'E6E6E6'
 };
 export const resolvingHCILabel = {
   name: 'Resolving HCI',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This issue is currently being resolved. This label was created by the Human Centric Issues dashboard.',
   color: 'E6E6E6'
 };
 export const resolvedHCILabel = {
   name: 'Resolved HCI',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This issue has been resolved. This label was created by the Human Centric Issues dashboard.',
   color: 'E6E6E6'
 };
 
 export const lowPriorityLabel = {
   name: 'Low Priority',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This issue is a low priority item. This label was created by the Human Centric Issues dashboard.',
   color: '00CC66'
 };
 export const mediumPriorityLabel = {
   name: 'Medium Priority',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This issue is a medium priority item. This label was created by the Human Centric Issues dashboard..',
   color: 'FF9933'
 };
 export const highPriorityLabel = {
   name: 'High Priority',
-  description: 'TODO: need to find out what goes here',
+  description:
+    'This issue is a high priority item. This label was created by the Human Centric Issues dashboard.',
   color: 'F19C99'
 };
