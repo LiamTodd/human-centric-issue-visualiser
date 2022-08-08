@@ -1,40 +1,46 @@
-import { predict } from './mockMLTool';
+import { predict } from './mlToolClient';
 import { addGitHubLabels } from './addGitHubLabels';
 import * as repoLabels from './labels';
 import { removeGitHubLabel } from './removeGitHubLabel';
 
 export const assignHCITags = async (issue) => {
-  // cleanup for testing purposes
-  const labels = cleanUp(issue).then(() => {
-    // look through issue body and use ml tool to determine tags
-    let result = predict(issue.body);
-    issue.confidence = result.confidence;
-    let HCILabels = result.categories;
+  // cleanup for testing purposes: NEED TO CLEAN THIS
+  const labels = cleanUp(issue).then(async () => {
+    // create a list of comments and issue body
+    let allComments = [];
+    if (issue.body == null) {
+      allComments.push('');
+    } else {
+      allComments.push(issue.body);
+    }
+    issue.cached_comments.forEach((comment) => {
+      allComments.push(comment.body);
+    });
 
-    // set hci labels for body (exclude comments)
-    const mappedBodyLabels = mapToLabels(HCILabels);
-    issue.bodyHCILabels = mappedBodyLabels;
+    const res = await predict(allComments);
+    // set body HCI labels
+    let bodyHCILabels = mapToLabels(res[0]); // exclude comments
+    issue.bodyHCILabels = bodyHCILabels;
+    let accumulatedResult = res[0];
+    if (res.length > 1) {
+      const comments_1 = issue.cached_comments;
+      for (let j = 1; j < res.length; j++) {
+        // iterate over comments
+        const mappedCommentLabels = mapToLabels(res[j]);
+        comments_1[j - 1].HCILabels = mappedCommentLabels; // offset by 1 index as predictions includes body + comments
 
-    // look through each issue comment on use ml tool to determine tags
-    // const comments = await getGitHubIssueComments(issue.number);
-    const comments = issue.cached_comments;
-    for (let i = 0; i < comments.length; i++) {
-      const commentLabels = predict(comments[i].body).categories;
-      const mappedCommentLabels = mapToLabels(commentLabels);
-      comments[i].HCILabels = mappedCommentLabels;
-
-      // update HCILabels by 'ORing' over first 3 elements of HCILabels and commentLabels
-      // only iterate over first 3
-      for (let j = 0; j < commentLabels.length - 1; j++) {
-        if (commentLabels[j] == 1) {
-          HCILabels[j] = commentLabels[j];
-          // if a label is identified, it means the 'no HCIs' tag must not be set
-          HCILabels[HCILabels.length - 1] = 0;
+        // update HCILabels by 'ORing' over first 3 elements of HCILabels and commentLabels
+        // only iterate over first 3
+        for (let k = 0; k < res[j].length - 1; k++) {
+          if (res[j][k] == 1) {
+            accumulatedResult[k] = res[j][k];
+            // if a label is identified, it means the 'no HCIs' tag must not be set
+            accumulatedResult[accumulatedResult.length - 1] = 0;
+          }
         }
       }
     }
-
-    const labels = mapToLabels(HCILabels);
+    const labels = mapToLabels(accumulatedResult);
     // use addGitHubLabels to add relevant labels to the issue
     if (labels.length > 0) {
       addGitHubLabels(
@@ -44,10 +50,8 @@ export const assignHCITags = async (issue) => {
         })
       );
     }
-
     return labels;
   });
-
   return labels;
 };
 
