@@ -11,9 +11,14 @@ import ManualCorrectionViewComponent from './components/ManualCorrectionViewComp
 import { useState } from 'react';
 import * as linkStatuses from './helpers/linkStatuses';
 import TipPopUpComponent from './components/TipPopUpComponent';
+import * as localStorageKeys from './helpers/localStorageKeys';
 
 function App() {
-  const [linkStatus, setLinkStatus] = useState(linkStatuses.unlinkedState);
+  let initStatus = linkStatuses.unlinkedState;
+  if (localStorage.getItem(localStorageKeys.CREDENTIALS_KEY) != null) {
+    initStatus = linkStatuses.readyState;
+  }
+  const [linkStatus, setLinkStatus] = useState(initStatus);
 
   return (
     <div className="App">
