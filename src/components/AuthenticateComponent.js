@@ -61,6 +61,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
       );
       return;
     }
+
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels()
       .then(() => {

@@ -29,7 +29,6 @@ export const setupLocalStorage = async () => {
         // get ML response
         assignHCITags(issue)
           .then((HCIs) => {
-            console.log('hello', HCIs);
             issue.HCILabels = HCIs;
           })
           .then(() => {

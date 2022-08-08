@@ -17,7 +17,5 @@ export const getGitHubLabels = async () => {
     }
   );
 
-  // Add logic to handle pagination/page limits
-
   return response;
 };
