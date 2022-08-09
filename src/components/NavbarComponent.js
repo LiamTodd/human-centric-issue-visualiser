@@ -27,13 +27,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px',
+                      fontSize: '20px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px'
+                      fontSize: '20px'
                     }
               }
             >
@@ -48,13 +48,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px',
+                      fontSize: '20px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px'
+                      fontSize: '20px'
                     }
               }
             >
@@ -69,13 +69,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px',
+                      fontSize: '20px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px'
+                      fontSize: '20px'
                     }
               }
             >
@@ -90,13 +90,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px',
+                      fontSize: '20px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px'
+                      fontSize: '20px'
                     }
               }
             >
@@ -111,13 +111,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px',
+                      fontSize: '20px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px'
+                      fontSize: '20px'
                     }
               }
             >
@@ -132,13 +132,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px',
+                      fontSize: '20px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '24px'
+                      fontSize: '20px'
                     }
               }
             >

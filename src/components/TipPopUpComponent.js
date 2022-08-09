@@ -25,7 +25,7 @@ export default function TipPopUpComponent() {
     ''
   ];
   const popover = (
-    <Popover id="popover-basic" style={{ maxWidth: '80vw' }}>
+    <Popover id="popover-basic" style={{ maxWidth: '80vw', maxHeight: '80vh' }}>
       <Popover.Header as="h3" style={{ backgroundColor: '#9AC7BF' }}>
         Human Centric Issue Categories
       </Popover.Header>
@@ -51,12 +51,12 @@ export default function TipPopUpComponent() {
                       backgroundColor: '#' + label.color + '80'
                     }}
                   ></div>
-                  <div style={{ fontSize: '18px', paddingLeft: '20px' }}>
+                  <div style={{ fontSize: '16px', paddingLeft: '20px' }}>
                     {label.name}
                   </div>
                 </div>
                 <br></br>
-                <p style={{ fontSize: '15px' }}>{extendedDescriptions[i]}</p>
+                <p style={{ fontSize: '13px' }}>{extendedDescriptions[i]}</p>
               </div>
             );
           })}
