@@ -10,6 +10,7 @@ import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 import DangerAlertComponent from './DangerAlertComponent';
 
 const badCredentialsMessage = 'Bad credentials';
+const notFoundMessage = 'Not Found';
 const badCredentialsAlert = 'Invalid GitHub Credentials';
 const invalidInputAlert = 'Please enter all three fields';
 
@@ -40,6 +41,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
     setLinkStatus(linkStatuses.loadingState);
     setTimeout(() => {
       setLinkStatus(linkStatuses.readyState);
+      console.log('link status set');
     }, 7000); // perhaps there's a better way to do this
   };
 
@@ -62,6 +64,9 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
       return;
     }
 
+    let cachedCredentials = localStorage.getItem(CREDENTIALS_KEY);
+    console.log(cachedCredentials);
+
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels()
       .then(() => {
@@ -70,14 +75,16 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
         });
         setCredentialAlert('');
       })
-      .catch((error) => {
-        if (error.message == badCredentialsMessage) {
-          setCredentialAlert(
-            <DangerAlertComponent
-              message={badCredentialsAlert}
-            ></DangerAlertComponent>
-          );
+      .catch(() => {
+        // bug-proofind for when invalid credentials are inputted
+        if (cachedCredentials != null) {
+          localStorage.setItem(CREDENTIALS_KEY, cachedCredentials);
         }
+        setCredentialAlert(
+          <DangerAlertComponent
+            message={badCredentialsAlert}
+          ></DangerAlertComponent>
+        );
       });
   };
 
