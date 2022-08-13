@@ -15,7 +15,10 @@ import * as localStorageKeys from './helpers/localStorageKeys';
 
 function App() {
   let initStatus = linkStatuses.unlinkedState;
-  if (localStorage.getItem(localStorageKeys.ISSUES_KEY) != null) {
+  if (
+    localStorage.getItem(localStorageKeys.ISSUES_KEY) != null &&
+    localStorage.getItem(localStorageKeys.CREDENTIALS_KEY) != null
+  ) {
     initStatus = linkStatuses.readyState;
   }
   const [linkStatus, setLinkStatus] = useState(initStatus);
