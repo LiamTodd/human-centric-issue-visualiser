@@ -73,11 +73,11 @@ export const assignHCITags = async (issue) => {
     // set body HCI labels to EXISTING LABELS
     issue.bodyHCILabels = existingLabelNames;
     if (res.length > 1) {
-      const comments_1 = issue.cached_comments;
+      const commentsAssigned = issue.cached_comments;
       for (let j = 1; j < res.length; j++) {
         // iterate over comments
         const mappedCommentLabels = mapToLabels(res[j]);
-        comments_1[j - 1].HCILabels = mappedCommentLabels; // offset by 1 index as predictions includes body + comments
+        commentsAssigned[j - 1].HCILabels = mappedCommentLabels; // offset by 1 index as predictions includes body + comments
       }
     }
     return issue.labels.filter(
