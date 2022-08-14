@@ -58,6 +58,7 @@ export const assignHCITags = async (issue) => {
       }
     }
     const labels = mapToLabels(accumulatedResult);
+
     // use addGitHubLabels to add relevant labels to the issue
     if (labels.length > 0) {
       addGitHubLabels(

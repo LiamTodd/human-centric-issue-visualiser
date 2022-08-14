@@ -25,19 +25,19 @@ export const appUsageLabel = {
 };
 
 export const unresolvedHCILabel = {
-  name: 'Unresolved HCI',
+  name: 'Unresolved',
   description:
     'This issue is unresolved. This label was created by the Human Centric Issues dashboard.',
   color: 'E6E6E6'
 };
 export const resolvingHCILabel = {
-  name: 'Resolving HCI',
+  name: 'Resolving',
   description:
     'This issue is currently being resolved - Human Centric Issues dashboard.',
   color: 'E6E6E6'
 };
 export const resolvedHCILabel = {
-  name: 'Resolved HCI',
+  name: 'Resolved',
   description: 'This issue has been resolved - Human Centric Issues dashboard.',
   color: 'E6E6E6'
 };
