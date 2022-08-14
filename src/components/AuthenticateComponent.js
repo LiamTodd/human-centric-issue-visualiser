@@ -39,7 +39,6 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
     setLinkStatus(linkStatuses.loadingState);
     setTimeout(() => {
       setLinkStatus(linkStatuses.readyState);
-      console.log('link status set');
     }, 7000); // perhaps there's a better way to do this
   };
 
@@ -63,7 +62,6 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
     }
 
     let cachedCredentials = localStorage.getItem(CREDENTIALS_KEY);
-    console.log(cachedCredentials);
 
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels()
