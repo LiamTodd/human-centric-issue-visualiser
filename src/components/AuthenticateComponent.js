@@ -9,8 +9,6 @@ import * as linkStatuses from '../helpers/linkStatuses';
 import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 import DangerAlertComponent from './DangerAlertComponent';
 
-const badCredentialsMessage = 'Bad credentials';
-const notFoundMessage = 'Not Found';
 const badCredentialsAlert = 'Invalid GitHub Credentials';
 const invalidInputAlert = 'Please enter all three fields';
 
