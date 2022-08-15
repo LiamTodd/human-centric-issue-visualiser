@@ -66,7 +66,7 @@ export default function ProgressViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#E6E6E6',
+                backgroundColor: '#C1867B' + '70',
                 padding: '10px',
                 borderRadius: '10px'
               }}
@@ -91,7 +91,7 @@ export default function ProgressViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#E6E6E6',
+                backgroundColor: '#9AB5C1' + '70',
                 padding: '10px',
                 borderRadius: '10px'
               }}
@@ -116,7 +116,7 @@ export default function ProgressViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#E6E6E6',
+                backgroundColor: '#EBEDC8' + '70',
                 padding: '10px',
                 borderRadius: '10px'
               }}

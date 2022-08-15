@@ -28,18 +28,18 @@ export const unresolvedHCILabel = {
   name: 'Unresolved',
   description:
     'This issue is unresolved. This label was created by the Human Centric Issues dashboard.',
-  color: 'E6E6E6'
+  color: 'C1867B'
 };
 export const resolvingHCILabel = {
   name: 'Resolving',
   description:
     'This issue is currently being resolved - Human Centric Issues dashboard.',
-  color: 'E6E6E6'
+  color: '9AB5C1'
 };
 export const resolvedHCILabel = {
   name: 'Resolved',
   description: 'This issue has been resolved - Human Centric Issues dashboard.',
-  color: 'E6E6E6'
+  color: 'EBEDC8'
 };
 
 export const lowPriorityLabel = {

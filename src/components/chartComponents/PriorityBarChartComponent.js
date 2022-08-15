@@ -102,9 +102,9 @@ export default function PriorityBarChartComponent() {
     datasets: [
       {
         data: getProgressCount(),
-        borderColor: hexToRgb(repoLabels.resolvedHCILabel.color, 1),
+        borderColor: '#E6E6E6',
         backgroundColor: [
-          hexToRgb(repoLabels.resolvedHCILabel.color, 1),
+          '#E6E6E6',
           hexToRgb(repoLabels.lowPriorityLabel.color, 1),
           hexToRgb(repoLabels.mediumPriorityLabel.color, 1),
           hexToRgb(repoLabels.highPriorityLabel.color, 1)

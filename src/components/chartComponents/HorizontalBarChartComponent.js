@@ -113,8 +113,13 @@ export default function HorizontalBarChartComponent() {
           'Issues in ' +
           JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName,
         data: getProgressCount(),
-        borderColor: hexToRgb(repoLabels.resolvedHCILabel.color, 1),
-        backgroundColor: hexToRgb(repoLabels.resolvedHCILabel.color, 0.7)
+        borderColor: 'white',
+        backgroundColor: [
+          '#E6E6E6',
+          hexToRgb(repoLabels.unresolvedHCILabel.color, 0.7),
+          hexToRgb(repoLabels.resolvingHCILabel.color, 0.7),
+          hexToRgb(repoLabels.resolvedHCILabel.color, 0.7)
+        ]
       }
     ]
   };
