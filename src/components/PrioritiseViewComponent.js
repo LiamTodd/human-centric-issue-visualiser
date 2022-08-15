@@ -47,7 +47,7 @@ export default function PrioritiseViewComponent({ linkStatus }) {
               }}
             >
               <h5
-                style={{ backgroundColor: 'lightgrey', borderRadius: '10px' }}
+              // style={{ backgroundColor: 'lightgrey', borderRadius: '10px' }}
               >
                 Unassigned
               </h5>
@@ -76,10 +76,10 @@ export default function PrioritiseViewComponent({ linkStatus }) {
               }}
             >
               <h5
-                style={{
-                  backgroundColor: '#' + lowPriorityLabel.color,
-                  borderRadius: '10px'
-                }}
+              // style={{
+              //   backgroundColor: '#' + lowPriorityLabel.color,
+              //   borderRadius: '10px'
+              // }}
               >
                 Low Priority
               </h5>
@@ -106,10 +106,10 @@ export default function PrioritiseViewComponent({ linkStatus }) {
               }}
             >
               <h5
-                style={{
-                  backgroundColor: '#' + mediumPriorityLabel.color,
-                  borderRadius: '10px'
-                }}
+              // style={{
+              //   backgroundColor: '#' + mediumPriorityLabel.color,
+              //   borderRadius: '10px'
+              // }}
               >
                 Medium Priority
               </h5>
@@ -138,10 +138,10 @@ export default function PrioritiseViewComponent({ linkStatus }) {
               }}
             >
               <h5
-                style={{
-                  backgroundColor: '#' + highPriorityLabel.color,
-                  borderRadius: '10px'
-                }}
+              // style={{
+              //   backgroundColor: '#' + highPriorityLabel.color,
+              //   borderRadius: '10px'
+              // }}
               >
                 High Priority
               </h5>

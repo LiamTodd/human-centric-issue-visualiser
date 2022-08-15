@@ -46,7 +46,11 @@ export default function ProgressViewComponent({ linkStatus }) {
                 borderRadius: '10px'
               }}
             >
-              <h5>Unassigned</h5>
+              <h5
+              // style={{ backgroundColor: 'lightgrey', borderRadius: '10px' }}
+              >
+                Unassigned
+              </h5>
               <div>
                 {issues
                   .filter((issue) => issue.progressTag.name == null)
