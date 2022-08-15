@@ -71,7 +71,13 @@ export const assignHCITags = async (issue) => {
     return labels;
   } else {
     // set body HCI labels to EXISTING LABELS
-    issue.bodyHCILabels = existingLabelNames;
+    issue.bodyHCILabels = issue.labels.filter(
+      (label) =>
+        label.name == repoLabels.noHCIIdentifiedLabel.name ||
+        label.name == repoLabels.inclusivenessLabel.name ||
+        label.name == repoLabels.userReactionLabel.name ||
+        label.name == repoLabels.appUsageLabel.name
+    );
     if (res.length > 1) {
       const commentsAssigned = issue.cached_comments;
       for (let j = 1; j < res.length; j++) {

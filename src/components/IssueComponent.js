@@ -46,6 +46,7 @@ export default function IssueComponent({ issue }) {
                     margin: '0.2%',
                     backgroundColor: '#' + label.color + '80'
                   }}
+                  key={uuid.v4()}
                 ></div>
               );
             })}
@@ -71,7 +72,6 @@ export default function IssueComponent({ issue }) {
               );
             })}
           </div>
-          <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
           <Button variant="outline-secondary" onClick={toggleShowComments}>
             Comments
           </Button>
