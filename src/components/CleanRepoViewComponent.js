@@ -24,6 +24,14 @@ export default function CleanRepoViewComponent({ linkStatus, setLinkStatus }) {
 
       {linkStatus == linkStatuses.readyState && (
         <>
+          <p>
+            Clicking this button will remove all labels added to the issues in
+            the GitHub repository by this app, and will delete said labels from
+            the repo entirely.
+            <br></br>
+            You can use this app with the repository again by simply entering
+            the repo's credentials again.
+          </p>
           <Button
             variant="outline-danger"
             onClick={async () => {
