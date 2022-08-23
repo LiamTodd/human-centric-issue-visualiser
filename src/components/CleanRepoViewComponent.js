@@ -3,6 +3,8 @@ import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
 import * as linkStatuses from '../helpers/linkStatuses';
 import { cleanRepo } from '../helpers/cleanRepo';
+import Button from 'react-bootstrap/Button';
+import { CREDENTIALS_KEY } from '../helpers/localStorageKeys';
 
 export default function CleanRepoViewComponent({ linkStatus, setLinkStatus }) {
   const purgeRepo = async () => {
@@ -22,13 +24,15 @@ export default function CleanRepoViewComponent({ linkStatus, setLinkStatus }) {
 
       {linkStatus == linkStatuses.readyState && (
         <>
-          <button
+          <Button
+            variant="outline-danger"
             onClick={async () => {
               purgeRepo();
             }}
           >
-            PURGE
-          </button>
+            Undo Changes to{' '}
+            {JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName}
+          </Button>
         </>
       )}
     </>
