@@ -90,6 +90,7 @@ function App() {
                 element={
                   <CleanRepoViewComponent
                     linkStatus={linkStatus}
+                    setLinkStatus={setLinkStatus}
                   ></CleanRepoViewComponent>
                 }
               />
