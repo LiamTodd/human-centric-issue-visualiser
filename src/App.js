@@ -12,6 +12,7 @@ import { useState } from 'react';
 import * as linkStatuses from './helpers/linkStatuses';
 import TipPopUpComponent from './components/TipPopUpComponent';
 import * as localStorageKeys from './helpers/localStorageKeys';
+import CleanRepoViewComponent from './components/CleanRepoViewComponent';
 
 function App() {
   let initStatus = linkStatuses.unlinkedState;
@@ -82,6 +83,14 @@ function App() {
                   <ManualCorrectionViewComponent
                     linkStatus={linkStatus}
                   ></ManualCorrectionViewComponent>
+                }
+              />
+              <Route
+                path="/clear"
+                element={
+                  <CleanRepoViewComponent
+                    linkStatus={linkStatus}
+                  ></CleanRepoViewComponent>
                 }
               />
             </Routes>

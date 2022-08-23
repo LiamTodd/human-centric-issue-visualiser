@@ -145,6 +145,27 @@ export default function NavbarComponent() {
               Correction Tool
             </NavLink>
           </Col>
+          <Col>
+            <NavLink
+              to="/clear"
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '20px',
+                      fontWeight: 'bold'
+                    }
+                  : {
+                      textDecoration: 'none',
+                      color: 'black',
+                      fontSize: '20px'
+                    }
+              }
+            >
+              Reset Repo
+            </NavLink>
+          </Col>
         </Row>
       </Container>
     </div>

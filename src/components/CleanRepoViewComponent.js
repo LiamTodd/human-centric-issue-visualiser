@@ -3,7 +3,7 @@ import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
 import * as linkStatuses from '../helpers/linkStatuses';
 
-export default function CleanRepoView({ linkStatus }) {
+export default function CleanRepoViewComponent({ linkStatus }) {
   return (
     <>
       {linkStatus == linkStatuses.unlinkedState && (
