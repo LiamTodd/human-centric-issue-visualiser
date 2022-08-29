@@ -1,4 +1,4 @@
-const prefix = 'HCI: ';
+const prefix = 'HCIV: ';
 export const noHCIIdentifiedLabel = {
   name: prefix + 'Non Human-Centric',
   description:
