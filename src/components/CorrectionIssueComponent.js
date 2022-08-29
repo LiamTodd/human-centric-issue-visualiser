@@ -57,9 +57,11 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
   return (
     <>
       <Card border="secondary">
-        <Card.Header style={{ backgroundColor: '#' + issue.priority.color }}>
+        <Card.Header
+          style={{ backgroundColor: '#' + issue.priority.color + '70' }}
+        >
           {issue.priority.name && <div>{issue.priority.name}</div>}
-          {!issue.priority.name && <div>Unassigned Priority</div>}
+          {!issue.priority.name && <></>}
         </Card.Header>
         <Card.Body>
           <a href={issue.html_url} style={{ color: 'black' }}>
@@ -69,7 +71,7 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
           Raised by {issue.user.login}, {issue.created_at.slice(0, 10)}
           <br></br>
           <br></br>
-          <div style={{ border: '2px solid red', borderRadius: '20px' }}>
+          <div style={{ border: '2px solid #DF678C', borderRadius: '20px' }}>
             <h5>Click to unassign from this issue:</h5>
             <div style={{ justifyContent: 'center', display: 'flex' }}>
               {issue.HCILabels.filter(

@@ -64,9 +64,11 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
   return (
     <>
       <Card border="secondary">
-        <Card.Header style={{ backgroundColor: '#' + issue.priority.color }}>
+        <Card.Header
+          style={{ backgroundColor: '#' + issue.priority.color + '70' }}
+        >
           {issue.priority.name && <div>{issue.priority.name}</div>}
-          {!issue.priority.name && <div>Unassigned Priority</div>}
+          {!issue.priority.name && <></>}
         </Card.Header>
         <Card.Body>
           <a href={issue.html_url} style={{ color: 'black' }}>

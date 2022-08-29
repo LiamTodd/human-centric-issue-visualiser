@@ -47,17 +47,17 @@ export const lowPriorityLabel = {
   name: prefix + 'Low Priority',
   description:
     'This issue is a low priority item - Human Centric Issues dashboard.',
-  color: '00CC66'
+  color: 'FFF474'
 };
 export const mediumPriorityLabel = {
   name: prefix + 'Medium Priority',
   description:
     'This issue is a medium priority item - Human Centric Issues dashboard..',
-  color: 'FF9933'
+  color: 'F06553'
 };
 export const highPriorityLabel = {
   name: prefix + 'High Priority',
   description:
     'This issue is a high priority item - Human Centric Issues dashboard.',
-  color: 'F19C99'
+  color: '3C3B5f'
 };
