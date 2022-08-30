@@ -21,7 +21,7 @@ export default function NavbarComponent() {
       <Container style={{ paddingLeft: '0px' }}>
         <Row>
           <Col>
-            <img src={logo} style={{ height: '10vh' }}></img>
+            <img src={logo} style={{ height: '15vh' }}></img>
           </Col>
           <Col>
             <NavLink
@@ -38,7 +38,7 @@ export default function NavbarComponent() {
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '16px'
+                      fontSize: '12px'
                     }
               }
             >
@@ -59,7 +59,7 @@ export default function NavbarComponent() {
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '16px'
+                      fontSize: '12px'
                     }
               }
             >
@@ -80,7 +80,7 @@ export default function NavbarComponent() {
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '16px'
+                      fontSize: '12px'
                     }
               }
             >
@@ -101,7 +101,7 @@ export default function NavbarComponent() {
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '16px'
+                      fontSize: '12px'
                     }
               }
             >
@@ -122,7 +122,7 @@ export default function NavbarComponent() {
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '16px'
+                      fontSize: '12px'
                     }
               }
             >
@@ -143,7 +143,7 @@ export default function NavbarComponent() {
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '16px'
+                      fontSize: '12px'
                     }
               }
             >
@@ -164,7 +164,7 @@ export default function NavbarComponent() {
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '16px'
+                      fontSize: '12px'
                     }
               }
             >
