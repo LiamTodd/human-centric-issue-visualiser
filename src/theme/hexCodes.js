@@ -1,1 +1,14 @@
-export const mainTheme = '9AC7BF';
+// export const mainTheme = '9AC7BF'; // green
+// export const mainTheme = '5165A8'; // blue
+export const mainTheme = 'F2EEE3'; // beige
+export const defaultGrey = 'E6E6E6';
+export const unresolvedColour = 'C1867B';
+export const resolvingColour = '9AB5C1';
+export const resolvedColour = 'EBEDC8';
+export const noHCIIdentifiedColour = '9AC7BF';
+export const userReactionColour = 'FF66FF';
+export const inclusivenessColour = '6666FF';
+export const appUsageColour = '66B2FF';
+export const lowPriorityColour = 'FFF474';
+export const mediumPriorityColour = 'F06553';
+export const highPriorityColour = '3C3B5f';

@@ -10,6 +10,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import * as repoLabels from '../../helpers/labels';
 import { ISSUES_KEY } from '../../helpers/localStorageKeys';
+import { defaultGrey } from '../../theme/hexCodes';
 
 export default function PriorityBarChartComponent() {
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
@@ -102,9 +103,9 @@ export default function PriorityBarChartComponent() {
     datasets: [
       {
         data: getProgressCount(),
-        borderColor: '#E6E6E6',
+        borderColor: `#${defaultGrey}`,
         backgroundColor: [
-          '#E6E6E6',
+          `#${defaultGrey}`,
           hexToRgb(repoLabels.lowPriorityLabel.color, 1),
           hexToRgb(repoLabels.mediumPriorityLabel.color, 1),
           hexToRgb(repoLabels.highPriorityLabel.color, 1)

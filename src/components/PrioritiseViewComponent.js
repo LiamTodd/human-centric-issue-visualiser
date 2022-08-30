@@ -10,6 +10,7 @@ import PrioritiseIssueComponent from './PrioritiseIssueComponent';
 import UnAuthenticatedDefault from './UnAuthenticatedDefault';
 import * as linkStatuses from '../helpers/linkStatuses';
 import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
+import { defaultGrey } from '../theme/hexCodes';
 
 export default function PrioritiseViewComponent({ linkStatus }) {
   const [issues, setIssues] = useState([]);
@@ -41,7 +42,7 @@ export default function PrioritiseViewComponent({ linkStatus }) {
           >
             <div
               style={{
-                backgroundColor: '#E6E6E6',
+                backgroundColor: `#${defaultGrey}`,
                 padding: '10px',
                 borderRadius: '10px'
               }}

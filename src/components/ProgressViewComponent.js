@@ -10,6 +10,12 @@ import UnAuthenticatedDefault from './UnAuthenticatedDefault';
 import { ISSUES_KEY } from '../helpers/localStorageKeys';
 import * as linkStatuses from '../helpers/linkStatuses';
 import LoadingDefaultViewComponent from './LoadingDefaultViewComponent';
+import {
+  defaultGrey,
+  resolvedColour,
+  resolvingColour,
+  unresolvedColour
+} from '../theme/hexCodes';
 
 export default function ProgressViewComponent({ linkStatus }) {
   const [issues, setIssues] = useState([]);
@@ -41,7 +47,7 @@ export default function ProgressViewComponent({ linkStatus }) {
           >
             <div
               style={{
-                backgroundColor: '#E6E6E6',
+                backgroundColor: `#${defaultGrey}`,
                 padding: '10px',
                 borderRadius: '10px'
               }}
@@ -70,7 +76,7 @@ export default function ProgressViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#C1867B' + '70',
+                backgroundColor: `#${unresolvedColour}` + '70',
                 padding: '10px',
                 borderRadius: '10px'
               }}
@@ -95,7 +101,7 @@ export default function ProgressViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#9AB5C1' + '70',
+                backgroundColor: `#${resolvingColour}` + '70',
                 padding: '10px',
                 borderRadius: '10px'
               }}
@@ -120,7 +126,7 @@ export default function ProgressViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#EBEDC8' + '70',
+                backgroundColor: `#${resolvedColour}` + '70',
                 padding: '10px',
                 borderRadius: '10px'
               }}

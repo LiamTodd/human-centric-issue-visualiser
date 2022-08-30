@@ -81,7 +81,7 @@ export default function TipPopUpComponent() {
           height: '10vh',
           borderWidth: '0px',
           fontSize: '30px',
-          backgroundColor: '#9AC7BF'
+          backgroundColor: `#${mainTheme}`
         }}
       >
         ?

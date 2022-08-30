@@ -11,6 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import * as repoLabels from '../../helpers/labels';
 import { CREDENTIALS_KEY, ISSUES_KEY } from '../../helpers/localStorageKeys';
+import { defaultGrey } from '../../theme/hexCodes';
 
 export default function HorizontalBarChartComponent() {
   ChartJS.register(
@@ -115,7 +116,7 @@ export default function HorizontalBarChartComponent() {
         data: getProgressCount(),
         borderColor: 'white',
         backgroundColor: [
-          '#E6E6E6',
+          `#${defaultGrey}`,
           hexToRgb(repoLabels.unresolvedHCILabel.color, 0.7),
           hexToRgb(repoLabels.resolvingHCILabel.color, 0.7),
           hexToRgb(repoLabels.resolvedHCILabel.color, 0.7)

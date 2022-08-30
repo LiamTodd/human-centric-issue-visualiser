@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { mainTheme } from '../theme/hexCodes';
+import logo from '../logos/logo.png';
 
 export default function NavbarComponent() {
   return (
@@ -11,13 +13,16 @@ export default function NavbarComponent() {
       style={{
         borderBottom: '2px solid lightgrey',
         height: 'fit-content',
-        padding: '3vh',
+        padding: '2vh',
         marginBottom: '10px',
-        backgroundColor: '#9AC7BF'
+        backgroundColor: `#${mainTheme}`
       }}
     >
-      <Container>
+      <Container style={{ paddingLeft: '0px' }}>
         <Row>
+          <Col>
+            <img src={logo} style={{ height: '10vh' }}></img>
+          </Col>
           <Col>
             <NavLink
               exact="true"
@@ -27,13 +32,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px'
+                      fontSize: '16px'
                     }
               }
             >
@@ -48,13 +53,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px'
+                      fontSize: '16px'
                     }
               }
             >
@@ -69,13 +74,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px'
+                      fontSize: '16px'
                     }
               }
             >
@@ -90,13 +95,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px'
+                      fontSize: '16px'
                     }
               }
             >
@@ -111,13 +116,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px'
+                      fontSize: '16px'
                     }
               }
             >
@@ -132,13 +137,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px'
+                      fontSize: '16px'
                     }
               }
             >
@@ -153,13 +158,13 @@ export default function NavbarComponent() {
                   ? {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }
                   : {
                       textDecoration: 'none',
                       color: 'black',
-                      fontSize: '20px'
+                      fontSize: '16px'
                     }
               }
             >
