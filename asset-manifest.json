@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/human-centric-issues-dashboard/static/css/main.0b4e74b4.css",
-    "main.js": "/human-centric-issues-dashboard/static/js/main.293d6490.js",
+    "main.js": "/human-centric-issues-dashboard/static/js/main.f9d6a6da.js",
     "static/js/787.7f9c0fb5.chunk.js": "/human-centric-issues-dashboard/static/js/787.7f9c0fb5.chunk.js",
+    "static/media/logo.png": "/human-centric-issues-dashboard/static/media/logo.4539a69aa0f1692422b6.png",
     "index.html": "/human-centric-issues-dashboard/index.html",
     "main.0b4e74b4.css.map": "/human-centric-issues-dashboard/static/css/main.0b4e74b4.css.map",
-    "main.293d6490.js.map": "/human-centric-issues-dashboard/static/js/main.293d6490.js.map",
+    "main.f9d6a6da.js.map": "/human-centric-issues-dashboard/static/js/main.f9d6a6da.js.map",
     "787.7f9c0fb5.chunk.js.map": "/human-centric-issues-dashboard/static/js/787.7f9c0fb5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0b4e74b4.css",
-    "static/js/main.293d6490.js"
+    "static/js/main.f9d6a6da.js"
   ]
 }
