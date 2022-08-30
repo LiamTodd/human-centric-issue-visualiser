@@ -3,7 +3,7 @@ import * as uuid from 'uuid';
 import * as repoLabels from '../helpers/labels';
 import { removeGitHubLabel } from '../helpers/removeGitHubLabel';
 import { addGitHubLabels } from '../helpers/addGitHubLabels';
-import { mainTheme } from '../theme/hexCodes';
+import { accentColour, mainTheme } from '../theme/hexCodes';
 
 import Card from 'react-bootstrap/Card';
 import { ISSUES_KEY } from '../helpers/localStorageKeys';
@@ -72,7 +72,12 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
           Raised by {issue.user.login}, {issue.created_at.slice(0, 10)}
           <br></br>
           <br></br>
-          <div style={{ border: '2px solid #DF678C', borderRadius: '20px' }}>
+          <div
+            style={{
+              border: `2px solid #${accentColour}`,
+              borderRadius: '20px'
+            }}
+          >
             <h5>Click to unassign from this issue:</h5>
             <div style={{ justifyContent: 'center', display: 'flex' }}>
               {issue.HCILabels.filter(

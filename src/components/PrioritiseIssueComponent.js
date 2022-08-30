@@ -64,7 +64,7 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
 
   return (
     <>
-      <Card border="secondary">
+      <Card border="secondary" style={{ borderWidth: '0px' }}>
         <Card.Body>
           <a href={issue.html_url} style={{ color: 'black' }}>
             <Card.Title>{issue.title}</Card.Title>

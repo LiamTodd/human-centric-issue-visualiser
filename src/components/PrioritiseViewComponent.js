@@ -37,7 +37,8 @@ export default function PrioritiseViewComponent({ linkStatus }) {
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
-              gridGap: 20
+              gridGap: 20,
+              padding: '1vw'
             }}
           >
             <div

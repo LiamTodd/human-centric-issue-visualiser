@@ -63,7 +63,7 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
 
   return (
     <>
-      <Card border="secondary">
+      <Card border="secondary" style={{ borderWidth: '0px' }}>
         <Card.Header
           style={{ backgroundColor: '#' + issue.priority.color + '70' }}
         >

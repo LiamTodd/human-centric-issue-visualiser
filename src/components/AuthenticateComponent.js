@@ -89,7 +89,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
       <br></br>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label style={{ fontSize: '20px' }}>
+          <Form.Label style={{ fontSize: '16px' }}>
             GitHub Repository Name
           </Form.Label>
           <br></br>
@@ -102,7 +102,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label style={{ fontSize: '20px' }}>
+          <Form.Label style={{ fontSize: '16px' }}>
             GitHub Repository Owner Username
           </Form.Label>
           <br></br>
@@ -115,7 +115,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label style={{ fontSize: '20px' }}>
+          <Form.Label style={{ fontSize: '16px' }}>
             GitHub Access Token
           </Form.Label>
           <br></br>
@@ -143,6 +143,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
           Link to Repository
         </Button>
       </Form>
+
       <br></br>
       <div>{credentialAlert}</div>
 
@@ -150,7 +151,10 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
         <LoadingDefaultViewComponent></LoadingDefaultViewComponent>
       )}
       {linkStatus == linkStatuses.readyState && (
-        <h5>Successfully linked to a repository!</h5>
+        <h5>
+          Successfully linked to{' '}
+          {JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).repoName}!
+        </h5>
       )}
     </div>
   );

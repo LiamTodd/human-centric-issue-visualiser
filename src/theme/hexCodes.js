@@ -1,5 +1,5 @@
 // export const mainTheme = '9AC7BF'; // green
-// export const mainTheme = '5165A8'; // blue
+export const accentColour = '5165A8'; // blue
 export const mainTheme = 'F2EEE3'; // beige
 export const defaultGrey = 'E6E6E6';
 export const unresolvedColour = 'C1867B';
