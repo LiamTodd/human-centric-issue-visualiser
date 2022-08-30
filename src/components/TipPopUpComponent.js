@@ -7,6 +7,7 @@ import {
   noHCIIdentifiedLabel,
   userReactionLabel
 } from '../helpers/labels';
+import { mainTheme } from '../theme/hexCodes';
 
 export default function TipPopUpComponent() {
   const allHCILabels = [
@@ -26,7 +27,7 @@ export default function TipPopUpComponent() {
   ];
   const popover = (
     <Popover id="popover-basic" style={{ maxWidth: '80vw', maxHeight: '80vh' }}>
-      <Popover.Header as="h3" style={{ backgroundColor: '#9AC7BF' }}>
+      <Popover.Header as="h3" style={{ backgroundColor: `#${mainTheme}` }}>
         Human Centric Issue Categories
       </Popover.Header>
       <Popover.Body>

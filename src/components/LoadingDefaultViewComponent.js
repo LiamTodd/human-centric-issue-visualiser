@@ -1,6 +1,7 @@
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
+import { mainTheme } from '../theme/hexCodes';
 
 export default function LoadingDefaultViewComponent() {
   return (
@@ -10,7 +11,7 @@ export default function LoadingDefaultViewComponent() {
       <Button
         variant="primary"
         style={{
-          backgroundColor: '#9AC7BF',
+          backgroundColor: `#${mainTheme}`,
           borderWidth: '0px',
           color: 'black',
           fontSize: '20px',

@@ -3,6 +3,7 @@ import * as uuid from 'uuid';
 import * as repoLabels from '../helpers/labels';
 import { removeGitHubLabel } from '../helpers/removeGitHubLabel';
 import { addGitHubLabels } from '../helpers/addGitHubLabels';
+import { mainTheme } from '../theme/hexCodes';
 
 import Card from 'react-bootstrap/Card';
 import { ISSUES_KEY } from '../helpers/localStorageKeys';
@@ -96,7 +97,9 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
             </div>
           </div>
           <br></br>
-          <div style={{ border: '2px solid #9AC7BF', borderRadius: '20px' }}>
+          <div
+            style={{ border: `2px solid #${mainTheme}`, borderRadius: '20px' }}
+          >
             <h5>Click to assign to this issue:</h5>
             <div style={{ justifyContent: 'center', display: 'flex' }}>
               {allHCILabels

@@ -1,9 +1,11 @@
+import { mainTheme } from '../theme/hexCodes';
+
 const prefix = 'HCIV: ';
 export const noHCIIdentifiedLabel = {
   name: prefix + 'Non Human-Centric',
   description:
     'This issue does not contain human-centric discussion - Human Centric Issues dashboard.',
-  color: '9AC7BF'
+  color: mainTheme
 };
 
 export const userReactionLabel = {
