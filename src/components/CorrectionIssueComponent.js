@@ -74,7 +74,7 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
           <br></br>
           <div
             style={{
-              border: `2px solid #${accentColour}`,
+              border: `2px solid #${accentColour}70`,
               borderRadius: '20px'
             }}
           >

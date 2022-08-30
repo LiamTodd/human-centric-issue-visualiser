@@ -72,7 +72,7 @@ export default function PrioritiseViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#' + lowPriorityLabel.color + '40',
+                backgroundColor: '#' + lowPriorityLabel.color + '80',
                 padding: '10px',
                 borderRadius: '10px'
               }}
@@ -102,7 +102,7 @@ export default function PrioritiseViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#' + mediumPriorityLabel.color + '60',
+                backgroundColor: '#' + mediumPriorityLabel.color + '80',
                 padding: '10px',
                 borderRadius: '10px'
               }}
@@ -134,7 +134,7 @@ export default function PrioritiseViewComponent({ linkStatus }) {
             </div>
             <div
               style={{
-                backgroundColor: '#' + highPriorityLabel.color + '60',
+                backgroundColor: '#' + highPriorityLabel.color + '80',
                 padding: '10px',
                 borderRadius: '10px'
               }}
