@@ -34,6 +34,7 @@ export default function PolarAreaChartComponent() {
   const getCount = (labelName) => {
     let count = 0;
     const issues = JSON.parse(localStorage.getItem(ISSUES_KEY));
+    console.log(issues);
     issues.forEach((issue) => {
       if (
         issue.HCILabels.map((label) => {

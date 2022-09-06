@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createGitHubLabels } from '../helpers/createGitHubLabels';
 import { CREDENTIALS_KEY } from '../helpers/localStorageKeys';
 import { setupLocalStorage } from '../helpers/setupLocalStorage';
+import { setupLocalStorage2 } from '../helpers/setupLocalStorageREFACTOR';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -66,6 +67,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels()
       .then(() => {
+        setupLocalStorage2();
         setupLocalStorage().then(() => {
           alertReady();
         });
