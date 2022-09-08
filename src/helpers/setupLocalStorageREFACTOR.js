@@ -17,49 +17,48 @@ const priorityLabels = [
 const nullLabel = { name: null, color: null };
 
 export const setupLocalStorage2 = async () => {
+  const issues = await asyncProcessedIssues();
+  const processedIssues = synchronousProcess(issues);
+  console.log(processedIssues);
+  localStorage.setItem('refactored-issues', JSON.stringify(processedIssues));
+  return;
+};
+
+const asyncProcessedIssues = async () => {
   // get issues
   const issues = await getGitHubIssues();
+  issues.forEach(async (issue) => {
+    // get comments
+    issue.cached_comments = await getGitHubIssueComments(issue.number);
 
-  // for each issue:
-  const processedIssuesPromise = new Promise((resolve) => {
-    const processedIssues = issues.map((issue) => {
-      // get comments
-      getGitHubIssueComments(issue.number).then((comments) => {
-        // set comments
-        issue.cached_comments = comments;
+    // get/set ML response
+    issue.HCILabels = await assignHCITags(issue);
+  });
+  return issues;
+};
 
-        // get/set ML response
-        issue.HCILabels = assignHCITags(issue);
-
-        // set status label
-        // uses the assumption that only one priority label is applied to each issue
-        const labels = issue.labels;
-        const thisStatusLabel = nullLabel;
-        labels.forEach((label) => {
-          if (statusLabels.map((label) => label.name).includes(label.name)) {
-            thisStatusLabel = label;
-          }
-        });
-        issue.progressTag = thisStatusLabel;
-
-        // set priority label
-        // uses the assumption that only one priority label is applied to each issue
-        const thisPriorityLabel = nullLabel;
-        labels.forEach((label) => {
-          if (priorityLabels.map((label) => label.name).includes(label.name)) {
-            thisPriorityLabel = label;
-          }
-        });
-        issue.priority = thisPriorityLabel;
-      });
+const synchronousProcess = (issues) => {
+  issues.forEach((issue) => {
+    // set status label
+    // uses the assumption that only one priority label is applied to each issue
+    const labels = issue.labels;
+    const thisStatusLabel = nullLabel;
+    labels.forEach((label) => {
+      if (statusLabels.map((label) => label.name).includes(label.name)) {
+        thisStatusLabel = label;
+      }
     });
-    resolve(processedIssues);
-  });
+    issue.progressTag = thisStatusLabel;
 
-  // put into local storage
-  processedIssuesPromise.then((res) => {
-    localStorage.setItem('refactored_issues', JSON.stringify(res));
+    // set priority label
+    // uses the assumption that only one priority label is applied to each issue
+    const thisPriorityLabel = nullLabel;
+    labels.forEach((label) => {
+      if (priorityLabels.map((label) => label.name).includes(label.name)) {
+        thisPriorityLabel = label;
+      }
+    });
+    issue.priority = thisPriorityLabel;
   });
-
-  return;
+  return issues;
 };

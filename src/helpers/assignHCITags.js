@@ -10,7 +10,7 @@ const allHCILabels = [
 ];
 
 export const assignHCITags = async (issue) => {
-  // cleanup for testing purposes: NEED TO CLEAN THIS
+  // NEED TO CLEAN THIS!
   const existingLabelNames = issue.labels.map((label) => label.name);
   let assigned = false;
   existingLabelNames.forEach((existingLabelName) => {
@@ -38,6 +38,7 @@ export const assignHCITags = async (issue) => {
     // set body HCI labels
     let bodyHCILabels = mapToLabels(res[0]); // exclude comments
     issue.bodyHCILabels = bodyHCILabels;
+    console.log('unassigned', issue.bodyHCILabels, issue.number);
     let accumulatedResult = res[0];
     if (res.length > 1) {
       const comments_1 = issue.cached_comments;
@@ -86,6 +87,7 @@ export const assignHCITags = async (issue) => {
         commentsAssigned[j - 1].HCILabels = mappedCommentLabels; // offset by 1 index as predictions includes body + comments
       }
     }
+    console.log('assigned', issue.bodyHCILabels, issue.number);
     return issue.labels.filter(
       (label) =>
         label.name == repoLabels.noHCIIdentifiedLabel.name ||
@@ -112,26 +114,3 @@ const mapToLabels = (HCILabels) => {
   }
   return labels;
 };
-
-// const cleanUp = async (issue) => {
-//   // remove labels so double ups don't happen
-
-//   let flag = []; // this is used to ensure .then works as expected in assignHCITags above
-//   flag += await removeGitHubLabel(
-//     issue.number,
-//     repoLabels.appUsageLabel.name
-//   ).catch(() => {});
-//   flag += await removeGitHubLabel(
-//     issue.number,
-//     repoLabels.inclusivenessLabel.name
-//   ).catch(() => {});
-//   flag += await removeGitHubLabel(
-//     issue.number,
-//     repoLabels.userReactionLabel.name
-//   ).catch(() => {});
-//   flag += await removeGitHubLabel(
-//     issue.number,
-//     repoLabels.noHCIIdentifiedLabel.name
-//   ).catch(() => {});
-//   return flag;
-// };
