@@ -69,6 +69,7 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
             <Card.Title>{issue.title}</Card.Title>
           </a>
           {issue.body}
+          <br></br>
           Raised by {issue.user.login}, {issue.created_at.slice(0, 10)}
           <br></br>
           <br></br>

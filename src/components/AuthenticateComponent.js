@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { createGitHubLabels } from '../helpers/createGitHubLabels';
 import { CREDENTIALS_KEY } from '../helpers/localStorageKeys';
 import { setupLocalStorage } from '../helpers/setupLocalStorage';
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import * as linkStatuses from '../helpers/linkStatuses';
