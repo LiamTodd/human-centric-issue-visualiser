@@ -76,14 +76,16 @@ const generateIssues = async () => {
             issue.priority = thisLabel;
           })
           .then(() => {
+            // validation
             if (!validFound) {
+              // only have the possibility of recursion of a valid copy has NOT been set yet
               if (validateIssues(issues)) {
                 validFound = true; // stop recursive calls
                 console.log('its ait', issues);
                 localStorage.setItem(ISSUES_KEY, JSON.stringify(issues));
               } else if (!validateIssues(issues)) {
                 console.log('it aint ait', issues);
-                setupLocalStorage(); // recursive call
+                generateIssues(); // recursive call
               }
             }
           });
