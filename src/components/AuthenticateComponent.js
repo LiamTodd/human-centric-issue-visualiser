@@ -13,9 +13,7 @@ const invalidInputAlert = 'Please enter all three fields';
 
 export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
   // for debugging
-  setInterval(() => {
-    console.log(JSON.parse(localStorage.getItem('issues')));
-  }, 500);
+  setInterval(() => {}, 500);
 
   const [credentials, setCredentials] = useState({
     userName: null,
@@ -71,10 +69,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
     createGitHubLabels()
       .then(() => {
         setupLocalStorage().then(() => {
-          // sussy fix
-          setupLocalStorage().then(() => {
-            alertReady();
-          });
+          alertReady();
         });
         setCredentialAlert('');
       })

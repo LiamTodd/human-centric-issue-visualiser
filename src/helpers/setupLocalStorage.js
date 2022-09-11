@@ -16,7 +16,15 @@ const priorityLabels = [
 ];
 const nullLabel = { name: null, color: null };
 
+let validFound = false;
+
 export const setupLocalStorage = async () => {
+  validFound = false; // need to reset flag on each call
+  const issues = await generateIssues();
+  return issues;
+};
+
+const generateIssues = async () => {
   // get issues and comments
   const issues = await getGitHubIssues();
   issues.forEach((issue) => {
@@ -68,10 +76,42 @@ export const setupLocalStorage = async () => {
             issue.priority = thisLabel;
           })
           .then(() => {
-            localStorage.setItem(ISSUES_KEY, JSON.stringify(issues));
+            if (!validFound) {
+              if (validateIssues(issues)) {
+                validFound = true; // stop recursive calls
+                console.log('its ait', issues);
+                localStorage.setItem(ISSUES_KEY, JSON.stringify(issues));
+              } else if (!validateIssues(issues)) {
+                console.log('it aint ait', issues);
+                setupLocalStorage(); // recursive call
+              }
+            }
           });
       });
   });
 
   return issues;
+};
+
+const validateIssues = (issues) => {
+  let valid = true;
+  issues.forEach((issue) => {
+    if (
+      issue.HCILabels == null ||
+      issue.bodyHCILabels == null ||
+      issue.cached_comments == null ||
+      issue.priority == null ||
+      issue.progressTag == null
+    ) {
+      valid = false;
+    }
+    if (issue.cached_comments != null) {
+      issue.cached_comments.forEach((comment) => {
+        if (comment.HCILabels == null) {
+          valid = false;
+        }
+      });
+    }
+  });
+  return valid;
 };
