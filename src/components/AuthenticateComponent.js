@@ -13,6 +13,11 @@ const badCredentialsAlert = 'Invalid GitHub Credentials';
 const invalidInputAlert = 'Please enter all three fields';
 
 export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
+  // for debugging
+  setInterval(() => {
+    console.log(JSON.parse(localStorage.getItem('issues')));
+  }, 500);
+
   const [credentials, setCredentials] = useState({
     userName: null,
     repoName: null,
@@ -36,10 +41,9 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
   };
 
   const alertReady = () => {
-    setLinkStatus(linkStatuses.loadingState);
     setTimeout(() => {
       setLinkStatus(linkStatuses.readyState);
-    }, 7000); // perhaps there's a better way to do this
+    }, 7000); // buffer for api calls. perhaps there's a better way to do this
   };
 
   const [credentialAlert, setCredentialAlert] = useState('');
@@ -61,6 +65,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
       return;
     }
 
+    setLinkStatus(linkStatuses.loadingState);
     let cachedCredentials = localStorage.getItem(CREDENTIALS_KEY);
 
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
@@ -76,6 +81,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
       })
       .catch(() => {
         // bug-proofind for when invalid credentials are inputted
+        setLinkStatus(linkStatuses.unlinkedState);
         if (cachedCredentials != null) {
           localStorage.setItem(CREDENTIALS_KEY, cachedCredentials);
         }
