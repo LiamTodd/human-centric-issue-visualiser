@@ -38,7 +38,6 @@ export const assignHCITags = async (issue) => {
     // set body HCI labels
     let bodyHCILabels = mapToLabels(res[0]); // exclude comments
     issue.bodyHCILabels = bodyHCILabels;
-    console.log('unassigned', issue.bodyHCILabels, issue.number);
     let accumulatedResult = res[0];
     if (res.length > 1) {
       const comments_1 = issue.cached_comments;
@@ -87,7 +86,6 @@ export const assignHCITags = async (issue) => {
         commentsAssigned[j - 1].HCILabels = mappedCommentLabels; // offset by 1 index as predictions includes body + comments
       }
     }
-    console.log('assigned', issue.bodyHCILabels, issue.number);
     return issue.labels.filter(
       (label) =>
         label.name == repoLabels.noHCIIdentifiedLabel.name ||

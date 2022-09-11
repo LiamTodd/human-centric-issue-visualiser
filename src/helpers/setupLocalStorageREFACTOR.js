@@ -17,24 +17,27 @@ const priorityLabels = [
 const nullLabel = { name: null, color: null };
 
 export const setupLocalStorage2 = async () => {
-  const issues = await asyncProcessedIssues();
-  const processedIssues = synchronousProcess(issues);
-  console.log(processedIssues);
-  localStorage.setItem('refactored-issues', JSON.stringify(processedIssues));
+  synchronousProcess(await getGitHubIssues());
+  // const issues = await asyncProcess(
+  //   synchronousProcess(await getGitHubIssues())
+  // );
+  // console.log(issues);
+  // localStorage.setItem(
+  //   'refactored-issues',
+  //   JSON.stringify(asyncProcessedIssues)
+  // );
   return;
 };
 
-const asyncProcessedIssues = async () => {
-  // get issues
-  const issues = await getGitHubIssues();
-  issues.forEach(async (issue) => {
+const asyncProcess = async (issues) => {
+  const processedIssues = issues.map(async (issue) => {
     // get comments
     issue.cached_comments = await getGitHubIssueComments(issue.number);
 
     // get/set ML response
     issue.HCILabels = await assignHCITags(issue);
   });
-  return issues;
+  return processedIssues;
 };
 
 const synchronousProcess = (issues) => {
