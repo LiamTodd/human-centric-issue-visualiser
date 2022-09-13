@@ -14,7 +14,7 @@ export const cleanRepo = async () => {
   const labelNames = repoLabels.map((element) => {
     return element.name;
   });
-  labelNames.filter(
+  deletableLabels = labelNames.filter(
     (labelName) =>
       labelName == labels.appUsageLabel.name ||
       labelName == labels.highPriorityLabel.name ||
@@ -28,9 +28,9 @@ export const cleanRepo = async () => {
       labelName == labels.userReactionLabel.name
   );
 
-  console.log('removing the following labels from repo: ', labelNames);
+  console.log('removing the following labels from repo: ', deletableLabels);
 
-  labelNames.forEach(async (labelName) => {
+  deletableLabels.forEach(async (labelName) => {
     try {
       await octokit.request('DELETE /repos/{owner}/{repo}/labels/{name}', {
         owner: JSON.parse(localStorage.getItem(CREDENTIALS_KEY)).userName,
