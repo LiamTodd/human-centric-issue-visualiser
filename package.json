@@ -1,7 +1,7 @@
 {
-  "name": "human-centric-issues-dashboard",
+  "name": "human-centric-issue-visualiser",
   "version": "0.1.0",
-  "homepage": "https://LiamTodd.github.io/human-centric-issues-dashboard",
+  "homepage": "https://LiamTodd.github.io/human-centric-issue-visualiser",
   "private": true,
   "dependencies": {
     "@octokit/request": "^6.2.0",
