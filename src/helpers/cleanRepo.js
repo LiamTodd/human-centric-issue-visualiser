@@ -14,18 +14,19 @@ export const cleanRepo = async () => {
   const labelNames = repoLabels.map((element) => {
     return element.name;
   });
-  deletableLabels = labelNames.filter(
+  console.log('all labels', labelNames);
+  const deletableLabels = labelNames.filter(
     (labelName) =>
-      labelName == labels.appUsageLabel.name ||
-      labelName == labels.highPriorityLabel.name ||
-      labelName == labels.inclusivenessLabel.name ||
-      labelName == labels.lowPriorityLabel.name ||
-      labelName == labels.mediumPriorityLabel.name ||
-      labelName == labels.noHCIIdentifiedLabel.name ||
-      labelName == labels.resolvedHCILabel.name ||
-      labelName == labels.resolvingHCILabel.name ||
-      labelName == labels.unresolvedHCILabel.name ||
-      labelName == labels.userReactionLabel.name
+      labelName === labels.appUsageLabel.name ||
+      labelName === labels.highPriorityLabel.name ||
+      labelName === labels.inclusivenessLabel.name ||
+      labelName === labels.lowPriorityLabel.name ||
+      labelName === labels.mediumPriorityLabel.name ||
+      labelName === labels.noHCIIdentifiedLabel.name ||
+      labelName === labels.resolvedHCILabel.name ||
+      labelName === labels.resolvingHCILabel.name ||
+      labelName === labels.unresolvedHCILabel.name ||
+      labelName === labels.userReactionLabel.name
   );
 
   console.log('removing the following labels from repo: ', deletableLabels);

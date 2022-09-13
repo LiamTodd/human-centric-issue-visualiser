@@ -42,7 +42,7 @@ export default function NavbarComponent() {
                     }
               }
             >
-              Link Repository
+              Link Repo
             </NavLink>
           </Col>
           <Col>
