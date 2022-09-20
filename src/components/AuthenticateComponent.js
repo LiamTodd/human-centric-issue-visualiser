@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createGitHubLabels } from '../helpers/createGitHubLabels';
-import { CREDENTIALS_KEY } from '../helpers/localStorageKeys';
+import { CREDENTIALS_KEY, ISSUES_KEY } from '../helpers/localStorageKeys';
 import { setupLocalStorage } from '../helpers/setupLocalStorage';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -40,7 +40,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
   const alertReady = () => {
     setTimeout(() => {
       setLinkStatus(linkStatuses.readyState);
-    }, 7000); // buffer for api calls. perhaps there's a better way to do this
+    }, 3000); // buffer for api calls. perhaps there's a better way to do this
   };
 
   const [credentialAlert, setCredentialAlert] = useState('');
@@ -68,16 +68,19 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels()
       .then(() => {
-        setupLocalStorage().then(() => {
+        setupLocalStorage().then((processedIssues) => {
+          console.log('This in LS', processedIssues); // could local storage be set here???
+          localStorage.setItem(ISSUES_KEY, JSON.stringify(processedIssues));
           alertReady();
         });
         setCredentialAlert('');
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e);
         // bug-proofind for when invalid credentials are inputted
         setLinkStatus(linkStatuses.unlinkedState);
         if (cachedCredentials != null) {
-          localStorage.setItem(CREDENTIALS_KEY, cachedCredentials);
+          localStorage.setItem(CREDENTIALS_KEY, cachedCredentials); // restore previous credentials
         }
         setCredentialAlert(
           <DangerAlertComponent

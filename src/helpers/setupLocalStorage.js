@@ -26,72 +26,73 @@ export const setupLocalStorage = async () => {
 
 const generateIssues = async () => {
   // get issues and comments
-  const issues = await getGitHubIssues();
-  issues.forEach((issue) => {
-    getGitHubIssueComments(issue.number)
-      .then((commentsResponse) => {
-        // set comments
-        issue.cached_comments = commentsResponse;
-      })
-      .then(() => {
-        // get ML response
-        assignHCITags(issue)
-          .then((HCIs) => {
-            issue.HCILabels = HCIs;
-          })
-          .then(() => {
-            // set set status labels
-            const labels = issue.labels;
-            // uses the assumption that only one status label is applied to each issue
-            let thisLabel = nullLabel;
-            labels.forEach((label) => {
-              if (
-                statusLabels
-                  .map((label) => {
-                    return label.name;
-                  })
-                  .includes(label.name)
-              ) {
-                thisLabel = label;
+  let issues = await getGitHubIssues();
+  issues = await new Promise((resolve) => {
+    issues.forEach((issue) => {
+      getGitHubIssueComments(issue.number)
+        .then((commentsResponse) => {
+          // set comments
+          issue.cached_comments = commentsResponse;
+        })
+        .then(() => {
+          // get ML response
+          assignHCITags(issue)
+            .then((HCIs) => {
+              issue.HCILabels = HCIs;
+            })
+            .then(() => {
+              // set set status labels
+              const labels = issue.labels;
+              // uses the assumption that only one status label is applied to each issue
+              let thisLabel = nullLabel;
+              labels.forEach((label) => {
+                if (
+                  statusLabels
+                    .map((label) => {
+                      return label.name;
+                    })
+                    .includes(label.name)
+                ) {
+                  thisLabel = label;
+                }
+              });
+              issue.progressTag = thisLabel;
+            })
+            .then(() => {
+              // set priority labels
+              const labels = issue.labels;
+              // uses the assumption that only one priority label is applied to each issue
+              let thisLabel = nullLabel;
+              labels.forEach((label) => {
+                if (
+                  priorityLabels
+                    .map((label) => {
+                      return label.name;
+                    })
+                    .includes(label.name)
+                ) {
+                  thisLabel = label;
+                }
+              });
+              issue.priority = thisLabel;
+            })
+            .then(() => {
+              // validation
+              if (!validFound) {
+                // only have the possibility of recursion of a valid copy has NOT been set yet
+                if (validateIssues(issues)) {
+                  validFound = true; // stop recursive calls
+                  console.log('its ait', issues);
+                  resolve(issues);
+                } else if (!validateIssues(issues)) {
+                  console.log('it aint ait', issues);
+                  generateIssues(); // recursive call
+                }
               }
             });
-            issue.progressTag = thisLabel;
-          })
-          .then(() => {
-            // set priority labels
-            const labels = issue.labels;
-            // uses the assumption that only one priority label is applied to each issue
-            let thisLabel = nullLabel;
-            labels.forEach((label) => {
-              if (
-                priorityLabels
-                  .map((label) => {
-                    return label.name;
-                  })
-                  .includes(label.name)
-              ) {
-                thisLabel = label;
-              }
-            });
-            issue.priority = thisLabel;
-          })
-          .then(() => {
-            // validation
-            if (!validFound) {
-              // only have the possibility of recursion of a valid copy has NOT been set yet
-              if (validateIssues(issues)) {
-                validFound = true; // stop recursive calls
-                console.log('its ait', issues);
-                localStorage.setItem(ISSUES_KEY, JSON.stringify(issues));
-              } else if (!validateIssues(issues)) {
-                console.log('it aint ait', issues);
-                generateIssues(); // recursive call
-              }
-            }
-          });
-      });
+        });
+    });
   });
-
   return issues;
 };
 
