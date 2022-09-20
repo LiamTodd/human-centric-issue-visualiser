@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createGitHubLabels } from '../helpers/createGitHubLabels';
 import { CREDENTIALS_KEY, ISSUES_KEY } from '../helpers/localStorageKeys';
-import { setupLocalStorage } from '../helpers/setupLocalStorage';
+import { preProcessIssues } from '../helpers/preProcessIssues';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import * as linkStatuses from '../helpers/linkStatuses';
@@ -68,7 +68,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
     localStorage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     createGitHubLabels()
       .then(() => {
-        setupLocalStorage().then((processedIssues) => {
+        preProcessIssues().then((processedIssues) => {
           console.log('This in LS', processedIssues); // could local storage be set here???
           localStorage.setItem(ISSUES_KEY, JSON.stringify(processedIssues));
           alertReady();

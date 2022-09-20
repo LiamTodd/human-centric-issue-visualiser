@@ -18,7 +18,7 @@ const nullLabel = { name: null, color: null };
 
 let validFound = false;
 
-export const setupLocalStorage = async () => {
+export const preProcessIssues = async () => {
   validFound = false; // need to reset flag on each call
   const issues = await generateIssues();
   return issues;
