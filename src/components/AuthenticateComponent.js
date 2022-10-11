@@ -116,7 +116,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
             style={{ width: '30%' }}
             type="text"
             onChange={updateUsername}
-            placeholder="Enter GitHub Username of the Repository Owner"
+            placeholder="Enter GitHub Username of a Repository Contributor"
           ></input>
         </Form.Group>
 
