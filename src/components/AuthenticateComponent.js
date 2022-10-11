@@ -109,7 +109,7 @@ export default function AuthenticateComponent({ linkStatus, setLinkStatus }) {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label style={{ fontSize: '16px' }}>
-            GitHub Repository Owner Username
+            GitHub Repository Contributor Username
           </Form.Label>
           <br></br>
           <input

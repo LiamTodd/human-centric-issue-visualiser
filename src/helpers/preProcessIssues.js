@@ -76,15 +76,15 @@ const generateIssues = async () => {
               });
               issue.priority = thisLabel;
             })
-            .then(() => {
+            .then(async () => {
               // validation
               if (!validFound) {
                 // only have the possibility of recursion of a valid copy has NOT been set yet
-                if (validateIssues(issues)) {
+                if (await validateIssues(issues)) {
                   validFound = true; // stop recursive calls
                   console.log('its ait', issues);
                   resolve(issues);
-                } else if (!validateIssues(issues)) {
+                } else if (!(await validateIssues(issues))) {
                   console.log('it aint ait', issues);
                   generateIssues(); // recursive call
                 }
@@ -96,25 +96,28 @@ const generateIssues = async () => {
   return issues;
 };
 
-const validateIssues = (issues) => {
+const validateIssues = async (issues) => {
   let valid = true;
-  issues.forEach((issue) => {
-    if (
-      issue.HCILabels == null ||
-      issue.bodyHCILabels == null ||
-      issue.cached_comments == null ||
-      issue.priority == null ||
-      issue.progressTag == null
-    ) {
-      valid = false;
-    }
-    if (issue.cached_comments != null) {
-      issue.cached_comments.forEach((comment) => {
-        if (comment.HCILabels == null) {
-          valid = false;
-        }
-      });
-    }
+  valid = await new Promise((resolve) => {
+    issues.forEach((issue) => {
+      if (
+        issue.HCILabels == null ||
+        issue.bodyHCILabels == null ||
+        issue.cached_comments == null ||
+        issue.priority == null ||
+        issue.progressTag == null
+      ) {
+        valid = false;
+      }
+      if (issue.cached_comments != null) {
+        issue.cached_comments.forEach((comment) => {
+          if (comment.HCILabels == null) {
+            valid = false;
+          }
+        });
+      }
+    });
+    resolve(valid);
   });
   return valid;
 };
