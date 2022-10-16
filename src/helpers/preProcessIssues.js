@@ -83,10 +83,8 @@ const generateIssues = async () => {
                 // only have the possibility of recursion of a valid copy has NOT been set yet
                 if (await validateIssues(issues)) {
                   validFound = true; // stop recursive calls
-                  console.log('its ait', issues);
                   resolve(issues);
                 } else if (!(await validateIssues(issues))) {
-                  console.log('it aint ait', issues);
                   generateIssues(); // recursive call
                 }
               }
