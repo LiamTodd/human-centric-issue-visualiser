@@ -70,7 +70,7 @@ export default function CorrectionIssueComponent({ issue, setIssues }) {
           </a>
           {issue.body}
           <br></br>
-          Raised by {issue.user.login}, {issue.created_at.slice(0, 10)}
+          Raised by {issue.fluffedAuthor}, {issue.created_at.slice(0, 10)}
           <br></br>
           <br></br>
           <div

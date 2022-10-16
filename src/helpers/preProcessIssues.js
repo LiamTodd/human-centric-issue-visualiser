@@ -2,7 +2,7 @@ import { getGitHubIssues } from './getGitHubIssues';
 import { getGitHubIssueComments } from './getGitHubIssueComments';
 import { assignHCITags } from './assignHCITags';
 import * as repoLabels from './labels';
-import { ISSUES_KEY } from './localStorageKeys';
+import { fluffIssueAuthor } from './fluffIssueAuthor';
 
 const statusLabels = [
   repoLabels.unresolvedHCILabel,
@@ -76,6 +76,7 @@ const generateIssues = async () => {
               });
               issue.priority = thisLabel;
             })
+            .then(fluffIssueAuthor(issue)) // fluff author of issue (for testing/demo)
             .then(async () => {
               // validation
               if (!validFound) {

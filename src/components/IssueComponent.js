@@ -55,7 +55,7 @@ export default function IssueComponent({ issue }) {
             })}
           </div>
           <br></br>
-          Raised by {issue.user.login}, {issue.created_at.slice(0, 10)}
+          Raised by {issue.fluffedAuthor}, {issue.created_at.slice(0, 10)}
           <br></br>
           HCIs:
           <div style={{ justifyContent: 'center', display: 'flex' }}>
