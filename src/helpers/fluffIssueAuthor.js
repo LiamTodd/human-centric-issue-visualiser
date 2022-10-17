@@ -1,4 +1,4 @@
-const authorTag = 'authod:';
+const authorTag = 'author:';
 
 export const fluffIssueAuthor = (issue) => {
   const labels = issue.labels;
