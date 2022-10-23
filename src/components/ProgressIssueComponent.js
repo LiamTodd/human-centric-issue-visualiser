@@ -92,7 +92,6 @@ export default function ProgressIssueComponent({ issue, setIssues }) {
               );
             })}
           </div>
-          <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
           {issue.progressTag.name == null && (
             <Button
               variant="outline-secondary"

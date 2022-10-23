@@ -87,7 +87,6 @@ export default function PrioritiseIssueComponent({ issue, setIssues }) {
               );
             })}
           </div>
-          <Card.Text>ML Confidence: {issue.confidence}</Card.Text>
           {issue.priority.name == null && (
             <Button
               variant="outline-secondary"
