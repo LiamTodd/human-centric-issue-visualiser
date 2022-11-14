@@ -26,7 +26,7 @@ export default function StackedBarChartComponent() {
     plugins: {
       title: {
         display: true,
-        text: 'HCIs against time',
+        text: 'HCIs Against Time',
         font: {
           size: 24
         }
